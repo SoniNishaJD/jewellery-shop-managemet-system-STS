@@ -46,9 +46,9 @@
                       </tr> 
                     </thead> 
                     <tbody> 
-                      <tr th:each="productImage : ${listproductImages}">
+                      <tr th:each="productImage : ${listProductImages}">
 <td th:text= "${productImage.id}"> </td>
-<td th:text= "${productImage.productId}"> </td>
+<td th:text= "${productImage.product.name}"> </td>
 <td th:text= "${productImage.image}"> </td>
 <td th:text= "${productImage.status}"> </td>
 <td> <a th:href="@{/showFormForUpdate/{id}(id=${productImage.id})}" class="btn btn-primary">Update</a> 

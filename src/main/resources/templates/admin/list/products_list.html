@@ -39,10 +39,10 @@
                     <thead> 
                       <tr>
 <th>Id</th>
+<th>Brand Id</th>
+<th>Category Id</th>
 <th>Name</th>
 <th>Image</th>
-<th>Category Id</th>
-<th>Brand Id</th>
 <th>Mrp</th>
 <th>Sales Price</th>
 <th>Grose Weight</th>
@@ -56,12 +56,12 @@
                       </tr> 
                     </thead> 
                     <tbody> 
-                      <tr th:each="product : ${listproducts}">
+                      <tr th:each="product : ${listProducts}">
 <td th:text= "${product.id}"> </td>
+<td th:text= "${product.brand.name}"> </td>
+<td th:text= "${product.category.name}"> </td>
 <td th:text= "${product.name}"> </td>
 <td th:text= "${product.image}"> </td>
-<td th:text= "${product.categoryId}"> </td>
-<td th:text= "${product.brandId}"> </td>
 <td th:text= "${product.mrp}"> </td>
 <td th:text= "${product.salesPrice}"> </td>
 <td th:text= "${product.groseWeight}"> </td>
@@ -79,10 +79,10 @@
                     <tfoot> 
                       <tr>
 <th>Id</th>
+<th>Brand Id</th>
+<th>Category Id</th>
 <th>Name</th>
 <th>Image</th>
-<th>Category Id</th>
-<th>Brand Id</th>
 <th>Mrp</th>
 <th>Sales Price</th>
 <th>Grose Weight</th>

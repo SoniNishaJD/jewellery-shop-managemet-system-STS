@@ -39,8 +39,8 @@
                     <thead> 
                       <tr>
 <th>Id</th>
-<th>Order Id</th>
 <th>Product Id</th>
+<th>Order Id</th>
 <th>Mrp</th>
 <th>Price</th>
 <th>Qty</th>
@@ -49,10 +49,10 @@
                       </tr> 
                     </thead> 
                     <tbody> 
-                      <tr th:each="orderDetail : ${listorderDetails}">
+                      <tr th:each="orderDetail : ${listOrderDetails}">
 <td th:text= "${orderDetail.id}"> </td>
-<td th:text= "${orderDetail.orderId}"> </td>
-<td th:text= "${orderDetail.productId}"> </td>
+<td th:text= "${orderDetail.product.name}"> </td>
+<td th:text= "${orderDetail.order.address}"> </td>
 <td th:text= "${orderDetail.mrp}"> </td>
 <td th:text= "${orderDetail.price}"> </td>
 <td th:text= "${orderDetail.qty}"> </td>
@@ -65,8 +65,8 @@
                     <tfoot> 
                       <tr>
 <th>Id</th>
-<th>Order Id</th>
 <th>Product Id</th>
+<th>Order Id</th>
 <th>Mrp</th>
 <th>Price</th>
 <th>Qty</th>

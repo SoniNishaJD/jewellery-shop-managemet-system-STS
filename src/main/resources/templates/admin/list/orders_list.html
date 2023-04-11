@@ -39,8 +39,8 @@
                     <thead> 
                       <tr>
 <th>Id</th>
-<th>Order Date</th>
 <th>User Id</th>
+<th>Order Date</th>
 <th>Address</th>
 <th>City</th>
 <th>Pincode</th>
@@ -56,10 +56,10 @@
                       </tr> 
                     </thead> 
                     <tbody> 
-                      <tr th:each="order : ${listorders}">
+                      <tr th:each="order : ${listOrders}">
 <td th:text= "${order.id}"> </td>
+<td th:text= "${order.user.firstName}"> </td>
 <td th:text= "${order.orderDate}"> </td>
-<td th:text= "${order.userId}"> </td>
 <td th:text= "${order.address}"> </td>
 <td th:text= "${order.city}"> </td>
 <td th:text= "${order.pincode}"> </td>
@@ -79,8 +79,8 @@
                     <tfoot> 
                       <tr>
 <th>Id</th>
-<th>Order Date</th>
 <th>User Id</th>
+<th>Order Date</th>
 <th>Address</th>
 <th>City</th>
 <th>Pincode</th>

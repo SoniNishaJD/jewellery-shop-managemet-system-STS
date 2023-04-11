@@ -43,8 +43,8 @@
                    
  <select th:field="${orderDetail.product}" name="product" class="form-select">  
   <option th:each="product:${listProducts}"  
-         th:text="${product.getid()}"  
-         th:value="${product.getid()}"></option>  
+         th:text="${product.get()}"  
+         th:value="${product.getId()}"></option>  
  </select>  
                   </div> 
 <div class="form-group"> 
@@ -52,8 +52,8 @@
                    
  <select th:field="${orderDetail.order}" name="order" class="form-select">  
   <option th:each="order:${listOrders}"  
-         th:text="${order.getid()}"  
-         th:value="${order.getid()}"></option>  
+         th:text="${order.get()}"  
+         th:value="${order.getId()}"></option>  
  </select>  
                   </div> 
 <div class="form-group"> 

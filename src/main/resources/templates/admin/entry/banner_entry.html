@@ -43,8 +43,8 @@
                    
  <select th:field="${banner.bannerType}" name="bannerType" class="form-select">  
   <option th:each="bannerType:${listBannerTypes}"  
-         th:text="${bannerType.getid()}"  
-         th:value="${bannerType.getid()}"></option>  
+         th:text="${bannerType.getName()}"  
+         th:value="${bannerType.getId()}"></option>  
  </select>  
                   </div> 
 <div class="form-group"> 

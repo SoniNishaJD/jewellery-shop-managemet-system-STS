@@ -43,8 +43,8 @@
                    
  <select th:field="${blog.blogCategory}" name="blogCategory" class="form-select">  
   <option th:each="blogCategory:${listBlogCategories}"  
-         th:text="${blogCategory.getid()}"  
-         th:value="${blogCategory.getid()}"></option>  
+         th:text="${blogCategory.getTitle()}"  
+         th:value="${blogCategory.getId()}"></option>  
  </select>  
                   </div> 
 <div class="form-group"> 

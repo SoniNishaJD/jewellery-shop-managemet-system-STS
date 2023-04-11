@@ -43,8 +43,8 @@
                    
  <select th:field="${cities.state}" name="state" class="form-select">  
   <option th:each="state:${listStates}"  
-         th:text="${state.getid()}"  
-         th:value="${state.getid()}"></option>  
+         th:text="${state.getName()}"  
+         th:value="${state.getId()}"></option>  
  </select>  
                   </div> 
 <div class="form-group"> 

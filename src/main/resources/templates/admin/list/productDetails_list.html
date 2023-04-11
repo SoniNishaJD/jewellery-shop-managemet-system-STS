@@ -47,9 +47,9 @@
                       </tr> 
                     </thead> 
                     <tbody> 
-                      <tr th:each="productDetail : ${listproductDetails}">
+                      <tr th:each="productDetail : ${listProductDetails}">
 <td th:text= "${productDetail.id}"> </td>
-<td th:text= "${productDetail.productId}"> </td>
+<td th:text= "${productDetail.product.name}"> </td>
 <td th:text= "${productDetail.title}"> </td>
 <td th:text= "${productDetail.detail}"> </td>
 <td th:text= "${productDetail.status}"> </td>

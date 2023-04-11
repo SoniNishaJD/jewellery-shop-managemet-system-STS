@@ -46,9 +46,9 @@
                       </tr> 
                     </thead> 
                     <tbody> 
-                      <tr th:each="bannerImage : ${listbannerImages}">
+                      <tr th:each="bannerImage : ${listBannerImages}">
 <td th:text= "${bannerImage.id}"> </td>
-<td th:text= "${bannerImage.bannerId}"> </td>
+<td th:text= "${bannerImage.banner.name}"> </td>
 <td th:text= "${bannerImage.bannerImage}"> </td>
 <td th:text= "${bannerImage.bannerLink}"> </td>
 <td> <a th:href="@{/showFormForUpdate/{id}(id=${bannerImage.id})}" class="btn btn-primary">Update</a> 

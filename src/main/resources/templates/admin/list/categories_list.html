@@ -39,19 +39,19 @@
                     <thead> 
                       <tr>
 <th>Id</th>
+<th>Main Category Id</th>
 <th>Name</th>
 <th>Image</th>
-<th>Main Category Id</th>
 <th>Status</th>
 <th> Actions </th> 
                       </tr> 
                     </thead> 
                     <tbody> 
-                      <tr th:each="category : ${listcategories}">
+                      <tr th:each="category : ${listCategories}">
 <td th:text= "${category.id}"> </td>
+<td th:text= "${category.mainCategory.name}"> </td>
 <td th:text= "${category.name}"> </td>
 <td th:text= "${category.image}"> </td>
-<td th:text= "${category.mainCategoryId}"> </td>
 <td th:text= "${category.status}"> </td>
 <td> <a th:href="@{/showFormForUpdate/{id}(id=${category.id})}" class="btn btn-primary">Update</a> 
 						<a th:href="@{/deleteCategory/{id}(id=${category.id})}" class="btn btn-danger">Delete</a> 
@@ -61,9 +61,9 @@
                     <tfoot> 
                       <tr>
 <th>Id</th>
+<th>Main Category Id</th>
 <th>Name</th>
 <th>Image</th>
-<th>Main Category Id</th>
 <th>Status</th>
 <th> Actions </th> 
                       </tr> 

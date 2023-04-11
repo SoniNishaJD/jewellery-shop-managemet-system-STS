@@ -50,9 +50,9 @@
                       </tr> 
                     </thead> 
                     <tbody> 
-                      <tr th:each="review : ${listreviews}">
+                      <tr th:each="review : ${listReviews}">
 <td th:text= "${review.id}"> </td>
-<td th:text= "${review.productId}"> </td>
+<td th:text= "${review.product.name}"> </td>
 <td th:text= "${review.rating}"> </td>
 <td th:text= "${review.title}"> </td>
 <td th:text= "${review.review}"> </td>

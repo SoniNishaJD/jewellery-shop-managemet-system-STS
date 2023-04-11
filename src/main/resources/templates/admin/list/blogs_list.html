@@ -50,9 +50,9 @@
                       </tr> 
                     </thead> 
                     <tbody> 
-                      <tr th:each="blog : ${listblogs}">
+                      <tr th:each="blog : ${listBlogs}">
 <td th:text= "${blog.id}"> </td>
-<td th:text= "${blog.blogCategoryId}"> </td>
+<td th:text= "${blog.blogCategory.name}"> </td>
 <td th:text= "${blog.title}"> </td>
 <td th:text= "${blog.shortDescription}"> </td>
 <td th:text= "${blog.description}"> </td>
