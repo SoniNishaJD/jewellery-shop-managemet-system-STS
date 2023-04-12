@@ -25,7 +25,7 @@ public class BannerType {
 
 	@Basic
 	@Column(name = "height", nullable = false)
-	private Float height;
+	private String height;
 
 	@Basic
 	@Column(name = "name", nullable = false, length = 255)
@@ -33,7 +33,7 @@ public class BannerType {
 
 	@Basic
 	@Column(name = "width", nullable = false)
-	private Float width;
+	private String width;
 
 	@OneToMany(mappedBy = "bannerType", fetch = FetchType.LAZY)
 	private Set<Banner> banner = new HashSet<>();
@@ -46,11 +46,11 @@ public class BannerType {
 		this.id = id;
 	}
 
-	public Float getHeight() {
+	public String getHeight() {
 		return height;
 	}
 
-	public void setHeight(Float height) {
+	public void setHeight(String height) {
 		this.height = height;
 	}
 
@@ -62,11 +62,11 @@ public class BannerType {
 		this.name = name;
 	}
 
-	public Float getWidth() {
+	public String getWidth() {
 		return width;
 	}
 
-	public void setWidth(Float width) {
+	public void setWidth(String width) {
 		this.width = width;
 	}
 
@@ -98,7 +98,7 @@ public class BannerType {
 		super();
 	}
 
-	public BannerType(Float height, String name, Float width) {
+	public BannerType(String height, String name, String width) {
 		super();
 		this.height = height;
 		this.name = name;

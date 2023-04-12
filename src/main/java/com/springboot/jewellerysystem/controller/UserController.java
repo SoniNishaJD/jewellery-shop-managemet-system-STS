@@ -33,7 +33,7 @@ public class UserController {
     @GetMapping(value = "/delete") 
     public String deleteUser(Integer id, String keyword) { 
         userService.removeUser(id); 
-        return "redirect:/users/index?keyword=" + keyword; 
+        return "redirect:/user/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping(value = "/save") 
     public String save(User user) { 
         userService.createOrUpdateUser(user); 
-        return "redirect:/users/index"; 
+        return "redirect:/user/index"; 
     }
  
 } 

@@ -45,7 +45,7 @@ public class BannerImageController {
 	@GetMapping(value = "/delete")
 	public String deleteBannerImage(Integer id, String keyword) {
 		bannerImageService.removeBannerImage(id);
-		return "redirect:/bannerImages/index?keyword=" + keyword;
+		return "redirect:/bannerImage/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -61,7 +61,7 @@ public class BannerImageController {
 	@PostMapping(value = "/save")
 	public String save(BannerImage bannerImage) {
 		bannerImageService.createOrUpdateBannerImage(bannerImage);
-		return "redirect:/bannerImages/index";
+		return "redirect:/bannerImage/index";
 	}
 
 }

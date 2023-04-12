@@ -33,7 +33,7 @@ public class PagesController {
     @GetMapping(value = "/delete") 
     public String deletePages(Integer id, String keyword) { 
         pagesService.removePages(id); 
-        return "redirect:/pageses/index?keyword=" + keyword; 
+        return "redirect:/pages/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class PagesController {
     @PostMapping(value = "/save") 
     public String save(Pages pages) { 
         pagesService.createOrUpdatePages(pages); 
-        return "redirect:/pageses/index"; 
+        return "redirect:/pages/index"; 
     }
  
 } 

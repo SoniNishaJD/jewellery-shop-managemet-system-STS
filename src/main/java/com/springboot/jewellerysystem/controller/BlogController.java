@@ -45,7 +45,7 @@ public class BlogController {
 	@GetMapping(value = "/delete")
 	public String deleteBlog(Integer id, String keyword) {
 		blogService.removeBlog(id);
-		return "redirect:/blogs/index?keyword=" + keyword;
+		return "redirect:/blog/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -61,7 +61,7 @@ public class BlogController {
 	@PostMapping(value = "/save")
 	public String save(Blog blog) {
 		blogService.createOrUpdateBlog(blog);
-		return "redirect:/blogs/index";
+		return "redirect:/blog/index";
 	}
 
 }

@@ -33,7 +33,7 @@ public class FeedbackController {
     @GetMapping(value = "/delete") 
     public String deleteFeedback(Integer id, String keyword) { 
         feedbackService.removeFeedback(id); 
-        return "redirect:/feedbacks/index?keyword=" + keyword; 
+        return "redirect:/feedback/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class FeedbackController {
     @PostMapping(value = "/save") 
     public String save(Feedback feedback) { 
         feedbackService.createOrUpdateFeedback(feedback); 
-        return "redirect:/feedbacks/index"; 
+        return "redirect:/feedback/index"; 
     }
  
 } 

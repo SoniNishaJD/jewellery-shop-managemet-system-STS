@@ -33,7 +33,7 @@ public class CurrencyController {
     @GetMapping(value = "/delete") 
     public String deleteCurrency(Integer id, String keyword) { 
         currencyService.removeCurrency(id); 
-        return "redirect:/currencies/index?keyword=" + keyword; 
+        return "redirect:/currency/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class CurrencyController {
     @PostMapping(value = "/save") 
     public String save(Currency currency) { 
         currencyService.createOrUpdateCurrency(currency); 
-        return "redirect:/currencies/index"; 
+        return "redirect:/currency/index"; 
     }
  
 } 

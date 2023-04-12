@@ -33,7 +33,7 @@ public class FaqController {
     @GetMapping(value = "/delete") 
     public String deleteFaq(Integer id, String keyword) { 
         faqService.removeFaq(id); 
-        return "redirect:/faqs/index?keyword=" + keyword; 
+        return "redirect:/faq/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class FaqController {
     @PostMapping(value = "/save") 
     public String save(Faq faq) { 
         faqService.createOrUpdateFaq(faq); 
-        return "redirect:/faqs/index"; 
+        return "redirect:/faq/index"; 
     }
  
 } 

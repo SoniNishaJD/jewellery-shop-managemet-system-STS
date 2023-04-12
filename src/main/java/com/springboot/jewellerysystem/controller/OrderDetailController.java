@@ -53,7 +53,7 @@ public class OrderDetailController {
 	@GetMapping(value = "/delete")
 	public String deleteOrderDetail(Integer id, String keyword) {
 		orderDetailService.removeOrderDetail(id);
-		return "redirect:/orderDetails/index?keyword=" + keyword;
+		return "redirect:/orderDetail/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -72,7 +72,7 @@ public class OrderDetailController {
 	@PostMapping(value = "/save")
 	public String save(OrderDetail orderDetail) {
 		orderDetailService.createOrUpdateOrderDetail(orderDetail);
-		return "redirect:/orderDetails/index";
+		return "redirect:/orderDetail/index";
 	}
 
 }

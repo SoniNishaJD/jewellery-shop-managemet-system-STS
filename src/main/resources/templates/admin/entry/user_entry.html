@@ -93,6 +93,89 @@
     </section> 
     <!-- /.content --> 
   </div> 
-  </div>
+  </div> 
+<section  layout:fragment= "script1"> 
+<script th:src="@{/admin/plugins/jquery-validation/jquery.validate.min.js}"></script>
+  <script th:src="@{/admin/plugins/jquery-validation/additional-methods.min.js}"></script> 
+  <script > 
+    $(function () { 
+      $.validator.setDefaults({ 
+        submitHandler: function () { 
+          alert("Form successful submitted!"); 
+        } 
+      }); 
+      $('#quickForm') 
+        .validate(  { 
+            rules: { 
+              firstName: { 
+                required: true, 
+              }, 
+              lastName: { 
+                required: true, 
+              }, 
+              password: { 
+                required: true, 
+              }, 
+              phone: { 
+                required: true, 
+              }, 
+              email: { 
+                required: true, 
+              }, 
+              role: { 
+                required: true, 
+              }, 
+              status: { 
+                required: true, 
+              }, 
+              entryDate: { 
+                required: true, 
+              }, 
+            }, 
+            messages: { 
+              firstName: { 
+                required: "Please enter a first name", 
+              }, 
+              lastName: { 
+                required: "Please enter a last name", 
+              }, 
+              password: { 
+                required: "Please enter a password", 
+              }, 
+              phone: { 
+                required: "Please enter a phone", 
+              }, 
+              email: { 
+                required: "Please enter a email", 
+              }, 
+              role: { 
+                required: "Please enter a role", 
+              }, 
+              status: { 
+                required: "Please enter a status", 
+              }, 
+              entryDate: { 
+                required: "Please enter a entry date", 
+              }, 
+			}, 
+            errorElement: 'span', 
+            errorPlacement: function (error, element) { 
+              error.addClass('invalid-feedback'); 
+              element.closest('.form-group') 
+                .append(error); 
+            }, 
+            highlight: function (element, errorClass, 
+              validClass) { 
+              $(element).addClass('is-invalid'); 
+            }, 
+            unhighlight: function (element, errorClass, 
+              validClass) { 
+              $(element).removeClass('is-invalid'); 
+            } 
+          }); 
+    }); 
+  </script> 
+ </section>
+
  </body>
  <html>

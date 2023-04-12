@@ -33,7 +33,7 @@ public class StyleController {
     @GetMapping(value = "/delete") 
     public String deleteStyle(Integer id, String keyword) { 
         styleService.removeStyle(id); 
-        return "redirect:/styles/index?keyword=" + keyword; 
+        return "redirect:/style/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class StyleController {
     @PostMapping(value = "/save") 
     public String save(Style style) { 
         styleService.createOrUpdateStyle(style); 
-        return "redirect:/styles/index"; 
+        return "redirect:/style/index"; 
     }
  
 } 

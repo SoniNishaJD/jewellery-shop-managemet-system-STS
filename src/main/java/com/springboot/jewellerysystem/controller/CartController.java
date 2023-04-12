@@ -52,7 +52,7 @@ public class CartController {
 	@GetMapping(value = "/delete")
 	public String deleteCart(Integer id, String keyword) {
 		cartService.removeCart(id);
-		return "redirect:/carts/index?keyword=" + keyword;
+		return "redirect:/cart/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -71,7 +71,7 @@ public class CartController {
 	@PostMapping(value = "/save")
 	public String save(Cart cart) {
 		cartService.createOrUpdateCart(cart);
-		return "redirect:/carts/index";
+		return "redirect:/cart/index";
 	}
 
 }

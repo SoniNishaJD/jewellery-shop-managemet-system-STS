@@ -45,7 +45,7 @@ public class ProductImageController {
 	@GetMapping(value = "/delete")
 	public String deleteProductImage(Integer id, String keyword) {
 		productImageService.removeProductImage(id);
-		return "redirect:/productImages/index?keyword=" + keyword;
+		return "redirect:/productImage/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -61,7 +61,7 @@ public class ProductImageController {
 	@PostMapping(value = "/save")
 	public String save(ProductImage productImage) {
 		productImageService.createOrUpdateProductImage(productImage);
-		return "redirect:/productImages/index";
+		return "redirect:/productImage/index";
 	}
 
 }

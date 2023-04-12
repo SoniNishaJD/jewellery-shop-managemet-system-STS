@@ -33,7 +33,7 @@ public class RateMasterController {
     @GetMapping(value = "/delete") 
     public String deleteRateMaster(Integer id, String keyword) { 
         rateMasterService.removeRateMaster(id); 
-        return "redirect:/rateMasters/index?keyword=" + keyword; 
+        return "redirect:/rateMaster/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class RateMasterController {
     @PostMapping(value = "/save") 
     public String save(RateMaster rateMaster) { 
         rateMasterService.createOrUpdateRateMaster(rateMaster); 
-        return "redirect:/rateMasters/index"; 
+        return "redirect:/rateMaster/index"; 
     }
  
 } 

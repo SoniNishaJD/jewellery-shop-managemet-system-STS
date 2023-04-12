@@ -45,7 +45,7 @@ public class CitiesController {
 	@GetMapping(value = "/delete")
 	public String deleteCities(Integer id, String keyword) {
 		citiesService.removeCities(id);
-		return "redirect:/citieses/index?keyword=" + keyword;
+		return "redirect:/cities/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -61,7 +61,7 @@ public class CitiesController {
 	@PostMapping(value = "/save")
 	public String save(Cities cities) {
 		citiesService.createOrUpdateCities(cities);
-		return "redirect:/citieses/index";
+		return "redirect:/cities/index";
 	}
 
 }

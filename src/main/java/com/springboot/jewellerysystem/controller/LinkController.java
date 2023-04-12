@@ -33,7 +33,7 @@ public class LinkController {
     @GetMapping(value = "/delete") 
     public String deleteLink(Integer id, String keyword) { 
         linkService.removeLink(id); 
-        return "redirect:/links/index?keyword=" + keyword; 
+        return "redirect:/link/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class LinkController {
     @PostMapping(value = "/save") 
     public String save(Link link) { 
         linkService.createOrUpdateLink(link); 
-        return "redirect:/links/index"; 
+        return "redirect:/link/index"; 
     }
  
 } 

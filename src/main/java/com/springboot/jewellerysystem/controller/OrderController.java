@@ -1,3 +1,4 @@
+
 package com.springboot.jewellerysystem.controller;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class OrderController {
 	@GetMapping(value = "/delete")
 	public String deleteOrder(Integer id, String keyword) {
 		orderService.removeOrder(id);
-		return "redirect:/orders/index?keyword=" + keyword;
+		return "redirect:/order/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -61,7 +62,7 @@ public class OrderController {
 	@PostMapping(value = "/save")
 	public String save(Order order) {
 		orderService.createOrUpdateOrder(order);
-		return "redirect:/orders/index";
+		return "redirect:/order/index";
 	}
 
 }

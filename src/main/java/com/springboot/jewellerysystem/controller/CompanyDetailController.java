@@ -33,7 +33,7 @@ public class CompanyDetailController {
     @GetMapping(value = "/delete") 
     public String deleteCompanyDetail(Integer id, String keyword) { 
         companyDetailService.removeCompanyDetail(id); 
-        return "redirect:/companyDetails/index?keyword=" + keyword; 
+        return "redirect:/companyDetail/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class CompanyDetailController {
     @PostMapping(value = "/save") 
     public String save(CompanyDetail companyDetail) { 
         companyDetailService.createOrUpdateCompanyDetail(companyDetail); 
-        return "redirect:/companyDetails/index"; 
+        return "redirect:/companyDetail/index"; 
     }
  
 } 

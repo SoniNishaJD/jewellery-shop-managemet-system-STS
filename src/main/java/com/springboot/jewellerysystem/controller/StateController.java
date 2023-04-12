@@ -1,3 +1,4 @@
+
 package com.springboot.jewellerysystem.controller;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class StateController {
 	@GetMapping(value = "/delete")
 	public String deleteState(Integer id, String keyword) {
 		stateService.removeState(id);
-		return "redirect:/states/index?keyword=" + keyword;
+		return "redirect:/state/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -61,7 +62,7 @@ public class StateController {
 	@PostMapping(value = "/save")
 	public String save(State state) {
 		stateService.createOrUpdateState(state);
-		return "redirect:/states/index";
+		return "redirect:/state/index";
 	}
 
 }

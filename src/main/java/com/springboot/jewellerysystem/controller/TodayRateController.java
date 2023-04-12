@@ -33,7 +33,7 @@ public class TodayRateController {
     @GetMapping(value = "/delete") 
     public String deleteTodayRate(Integer id, String keyword) { 
         todayRateService.removeTodayRate(id); 
-        return "redirect:/todayRates/index?keyword=" + keyword; 
+        return "redirect:/todayRate/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class TodayRateController {
     @PostMapping(value = "/save") 
     public String save(TodayRate todayRate) { 
         todayRateService.createOrUpdateTodayRate(todayRate); 
-        return "redirect:/todayRates/index"; 
+        return "redirect:/todayRate/index"; 
     }
  
 } 

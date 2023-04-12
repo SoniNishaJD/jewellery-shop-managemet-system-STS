@@ -33,7 +33,7 @@ public class ContactUsController {
     @GetMapping(value = "/delete") 
     public String deleteContactUs(Integer id, String keyword) { 
         contactUsService.removeContactUs(id); 
-        return "redirect:/contactUses/index?keyword=" + keyword; 
+        return "redirect:/contactUs/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class ContactUsController {
     @PostMapping(value = "/save") 
     public String save(ContactUs contactUs) { 
         contactUsService.createOrUpdateContactUs(contactUs); 
-        return "redirect:/contactUses/index"; 
+        return "redirect:/contactUs/index"; 
     }
  
 } 

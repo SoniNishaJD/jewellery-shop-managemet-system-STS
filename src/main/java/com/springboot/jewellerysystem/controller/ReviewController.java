@@ -45,7 +45,7 @@ public class ReviewController {
 	@GetMapping(value = "/delete")
 	public String deleteReview(Integer id, String keyword) {
 		reviewService.removeReview(id);
-		return "redirect:/reviews/index?keyword=" + keyword;
+		return "redirect:/review/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -61,7 +61,7 @@ public class ReviewController {
 	@PostMapping(value = "/save")
 	public String save(Review review) {
 		reviewService.createOrUpdateReview(review);
-		return "redirect:/reviews/index";
+		return "redirect:/review/index";
 	}
 
 }

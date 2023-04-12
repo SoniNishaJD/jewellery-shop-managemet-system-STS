@@ -1,3 +1,4 @@
+
 package com.springboot.jewellerysystem.controller;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class CategoryController {
 	@GetMapping(value = "/delete")
 	public String deleteCategory(Integer id, String keyword) {
 		categoryService.removeCategory(id);
-		return "redirect:/categories/index?keyword=" + keyword;
+		return "redirect:/category/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -61,7 +62,7 @@ public class CategoryController {
 	@PostMapping(value = "/save")
 	public String save(Category category) {
 		categoryService.createOrUpdateCategory(category);
-		return "redirect:/categories/index";
+		return "redirect:/category/index";
 	}
 
 }

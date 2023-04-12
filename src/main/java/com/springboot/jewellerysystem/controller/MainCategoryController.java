@@ -33,7 +33,7 @@ public class MainCategoryController {
     @GetMapping(value = "/delete") 
     public String deleteMainCategory(Integer id, String keyword) { 
         mainCategoryService.removeMainCategory(id); 
-        return "redirect:/mainCategories/index?keyword=" + keyword; 
+        return "redirect:/mainCategory/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class MainCategoryController {
     @PostMapping(value = "/save") 
     public String save(MainCategory mainCategory) { 
         mainCategoryService.createOrUpdateMainCategory(mainCategory); 
-        return "redirect:/mainCategories/index"; 
+        return "redirect:/mainCategory/index"; 
     }
  
 } 

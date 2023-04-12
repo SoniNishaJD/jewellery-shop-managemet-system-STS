@@ -33,7 +33,7 @@ public class OurServiceController {
     @GetMapping(value = "/delete") 
     public String deleteOurService(Integer id, String keyword) { 
         ourServiceService.removeOurService(id); 
-        return "redirect:/ourServices/index?keyword=" + keyword; 
+        return "redirect:/ourService/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class OurServiceController {
     @PostMapping(value = "/save") 
     public String save(OurService ourService) { 
         ourServiceService.createOrUpdateOurService(ourService); 
-        return "redirect:/ourServices/index"; 
+        return "redirect:/ourService/index"; 
     }
  
 } 

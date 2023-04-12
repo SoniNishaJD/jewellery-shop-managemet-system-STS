@@ -53,7 +53,7 @@ public class ProductController {
 	@GetMapping(value = "/delete")
 	public String deleteProduct(Integer id, String keyword) {
 		productService.removeProduct(id);
-		return "redirect:/products/index?keyword=" + keyword;
+		return "redirect:/product/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -72,7 +72,7 @@ public class ProductController {
 	@PostMapping(value = "/save")
 	public String save(Product product) {
 		productService.createOrUpdateProduct(product);
-		return "redirect:/products/index";
+		return "redirect:/product/index";
 	}
 
 }

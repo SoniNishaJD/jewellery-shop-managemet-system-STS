@@ -33,7 +33,7 @@ public class SliderController {
     @GetMapping(value = "/delete") 
     public String deleteSlider(Integer id, String keyword) { 
         sliderService.removeSlider(id); 
-        return "redirect:/sliders/index?keyword=" + keyword; 
+        return "redirect:/slider/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class SliderController {
     @PostMapping(value = "/save") 
     public String save(Slider slider) { 
         sliderService.createOrUpdateSlider(slider); 
-        return "redirect:/sliders/index"; 
+        return "redirect:/slider/index"; 
     }
  
 } 

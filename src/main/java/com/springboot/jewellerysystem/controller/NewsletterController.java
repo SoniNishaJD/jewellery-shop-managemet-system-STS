@@ -33,7 +33,7 @@ public class NewsletterController {
     @GetMapping(value = "/delete") 
     public String deleteNewsletter(Integer id, String keyword) { 
         newsletterService.removeNewsletter(id); 
-        return "redirect:/newsletters/index?keyword=" + keyword; 
+        return "redirect:/newsletter/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class NewsletterController {
     @PostMapping(value = "/save") 
     public String save(Newsletter newsletter) { 
         newsletterService.createOrUpdateNewsletter(newsletter); 
-        return "redirect:/newsletters/index"; 
+        return "redirect:/newsletter/index"; 
     }
  
 } 

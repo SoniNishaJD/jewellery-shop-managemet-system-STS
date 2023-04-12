@@ -33,7 +33,7 @@ public class BrandController {
     @GetMapping(value = "/delete") 
     public String deleteBrand(Integer id, String keyword) { 
         brandService.removeBrand(id); 
-        return "redirect:/brands/index?keyword=" + keyword; 
+        return "redirect:/brand/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class BrandController {
     @PostMapping(value = "/save") 
     public String save(Brand brand) { 
         brandService.createOrUpdateBrand(brand); 
-        return "redirect:/brands/index"; 
+        return "redirect:/brand/index"; 
     }
  
 } 

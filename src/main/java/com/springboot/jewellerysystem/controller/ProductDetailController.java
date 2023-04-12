@@ -45,7 +45,7 @@ public class ProductDetailController {
 	@GetMapping(value = "/delete")
 	public String deleteProductDetail(Integer id, String keyword) {
 		productDetailService.removeProductDetail(id);
-		return "redirect:/productDetails/index?keyword=" + keyword;
+		return "redirect:/productDetail/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -61,7 +61,7 @@ public class ProductDetailController {
 	@PostMapping(value = "/save")
 	public String save(ProductDetail productDetail) {
 		productDetailService.createOrUpdateProductDetail(productDetail);
-		return "redirect:/productDetails/index";
+		return "redirect:/productDetail/index";
 	}
 
 }

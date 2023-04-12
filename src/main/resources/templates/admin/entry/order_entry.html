@@ -41,7 +41,7 @@
 <div class="form-group"> 
                     <label for="user">User</label> 
                    
- <select th:field="${order.user}" name="user" class="form-select">  
+ <select th:field="${order.user}" name="user" class="form-control col-md-3">  
   <option th:each="user:${listUsers}"  
          th:text="${user.getAddress()}"  
          th:value="${user.getId()}"></option>  
@@ -118,6 +118,119 @@
     </section> 
     <!-- /.content --> 
   </div> 
-  </div>
+  </div> 
+<section  layout:fragment= "script1"> 
+<script th:src="@{/admin/plugins/jquery-validation/jquery.validate.min.js}"></script>
+  <script th:src="@{/admin/plugins/jquery-validation/additional-methods.min.js}"></script> 
+  <script > 
+    $(function () { 
+      $.validator.setDefaults({ 
+        submitHandler: function () { 
+          alert("Form successful submitted!"); 
+        } 
+      }); 
+      $('#quickForm') 
+        .validate(  { 
+            rules: { 
+              user: { 
+                required: true, 
+              }, 
+              orderDate: { 
+                required: true, 
+              }, 
+              address: { 
+                required: true, 
+              }, 
+              city: { 
+                required: true, 
+              }, 
+              pincode: { 
+                required: true, 
+              }, 
+              orderNum: { 
+                required: true, 
+              }, 
+              trackingCode: { 
+                required: true, 
+              }, 
+              deliveryStatus: { 
+                required: true, 
+              }, 
+              paymentType: { 
+                required: true, 
+              }, 
+              paymentStatus: { 
+                required: true, 
+              }, 
+              paymentDetail: { 
+                required: true, 
+              }, 
+              grandTotal: { 
+                required: true, 
+              }, 
+              discount: { 
+                required: true, 
+              }, 
+            }, 
+            messages: { 
+              user: { 
+                required: "Please enter a user", 
+              }, 
+              orderDate: { 
+                required: "Please enter a order date", 
+              }, 
+              address: { 
+                required: "Please enter a address", 
+              }, 
+              city: { 
+                required: "Please enter a city", 
+              }, 
+              pincode: { 
+                required: "Please enter a pincode", 
+              }, 
+              orderNum: { 
+                required: "Please enter a order num", 
+              }, 
+              trackingCode: { 
+                required: "Please enter a tracking code", 
+              }, 
+              deliveryStatus: { 
+                required: "Please enter a delivery status", 
+              }, 
+              paymentType: { 
+                required: "Please enter a payment type", 
+              }, 
+              paymentStatus: { 
+                required: "Please enter a payment status", 
+              }, 
+              paymentDetail: { 
+                required: "Please enter a payment detail", 
+              }, 
+              grandTotal: { 
+                required: "Please enter a grand total", 
+              }, 
+              discount: { 
+                required: "Please enter a discount", 
+              }, 
+			}, 
+            errorElement: 'span', 
+            errorPlacement: function (error, element) { 
+              error.addClass('invalid-feedback'); 
+              element.closest('.form-group') 
+                .append(error); 
+            }, 
+            highlight: function (element, errorClass, 
+              validClass) { 
+              $(element).addClass('is-invalid'); 
+            }, 
+            unhighlight: function (element, errorClass, 
+              validClass) { 
+              $(element).removeClass('is-invalid'); 
+            } 
+          }); 
+    }); 
+  </script> 
+ </section>
+
  </body>
  <html>

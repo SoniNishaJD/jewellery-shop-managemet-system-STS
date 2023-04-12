@@ -52,7 +52,7 @@ public class WishlistController {
 	@GetMapping(value = "/delete")
 	public String deleteWishlist(Integer id, String keyword) {
 		wishlistService.removeWishlist(id);
-		return "redirect:/wishlists/index?keyword=" + keyword;
+		return "redirect:/wishlist/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update")
@@ -71,7 +71,7 @@ public class WishlistController {
 	@PostMapping(value = "/save")
 	public String save(Wishlist wishlist) {
 		wishlistService.createOrUpdateWishlist(wishlist);
-		return "redirect:/wishlists/index";
+		return "redirect:/wishlist/index";
 	}
 
 }

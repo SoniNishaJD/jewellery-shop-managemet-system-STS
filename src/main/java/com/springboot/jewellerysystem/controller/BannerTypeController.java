@@ -33,7 +33,7 @@ public class BannerTypeController {
     @GetMapping(value = "/delete") 
     public String deleteBannerType(Integer id, String keyword) { 
         bannerTypeService.removeBannerType(id); 
-        return "redirect:/bannerTypes/index?keyword=" + keyword; 
+        return "redirect:/bannerType/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class BannerTypeController {
     @PostMapping(value = "/save") 
     public String save(BannerType bannerType) { 
         bannerTypeService.createOrUpdateBannerType(bannerType); 
-        return "redirect:/bannerTypes/index"; 
+        return "redirect:/bannerType/index"; 
     }
  
 } 

@@ -33,7 +33,7 @@ public class BlogCategoryController {
     @GetMapping(value = "/delete") 
     public String deleteBlogCategory(Integer id, String keyword) { 
         blogCategoryService.removeBlogCategory(id); 
-        return "redirect:/blogCategories/index?keyword=" + keyword; 
+        return "redirect:/blogCategory/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update") 
@@ -46,7 +46,7 @@ public class BlogCategoryController {
     @PostMapping(value = "/save") 
     public String save(BlogCategory blogCategory) { 
         blogCategoryService.createOrUpdateBlogCategory(blogCategory); 
-        return "redirect:/blogCategories/index"; 
+        return "redirect:/blogCategory/index"; 
     }
  
 } 
