@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,23 +50,23 @@ public class WishlistController {
 		return "admin/entry/wishlist_entry";
 	}
 
-	@GetMapping(value = "/delete")
-	public String deleteWishlist(Integer id, String keyword) {
+	@GetMapping(value = "/delete/{id}")
+	public String deleteWishlist(@PathVariable(value = "id") Integer id, String keyword) {
 		wishlistService.removeWishlist(id);
 		return "redirect:/wishlist/index?keyword=" + keyword;
 	}
 
-	@GetMapping(value = "/update")
-	public String updateWishlist(Model model, Integer id) {
+	@GetMapping(value = "/update/{id}")
+	public String updateWishlist(@PathVariable(value = "id") Integer id, Model model) {
 		Wishlist wishlist = wishlistService.loadWishlistById(id);
-		model.addAttribute("Wishlist", wishlist);
+		model.addAttribute("wishlist", wishlist);
 		List<Product> products = productService.getAllProduct();
 		model.addAttribute("listProducts", products);
 
 		List<User> users = userService.getAllUser();
 		model.addAttribute("listUsers", users);
 
-		return "admin/edit/Wishlist_update";
+		return "admin/edit/wishlist_edit";
 	}
 
 	@PostMapping(value = "/save")

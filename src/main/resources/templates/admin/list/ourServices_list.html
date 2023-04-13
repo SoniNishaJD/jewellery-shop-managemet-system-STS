@@ -53,8 +53,8 @@
 <td th:text= "${ourService.description}"> </td>
 <td th:text= "${ourService.image}"> </td>
 <td th:text= "${ourService.status}"> </td>
-<td> <a th:href="@{/showFormForUpdate/{id}(id=${ourService.id})}" class="btn btn-primary">Update</a> 
-						<a th:href="@{/deleteOurService/{id}(id=${ourService.id})}" class="btn btn-danger">Delete</a> 
+<td> <a th:href="@{/ourService/update/{id}(id=${ourService.id})}" class="btn btn-primary">Update</a> 
+						<a th:href="@{/ourService/delete/{id}(id=${ourService.id})}" class="btn btn-danger">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

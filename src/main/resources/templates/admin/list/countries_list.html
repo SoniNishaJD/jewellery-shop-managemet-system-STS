@@ -49,8 +49,8 @@
 <td th:text= "${country.id}"> </td>
 <td th:text= "${country.name}"> </td>
 <td th:text= "${country.code}"> </td>
-<td> <a th:href="@{/showFormForUpdate/{id}(id=${country.id})}" class="btn btn-primary">Update</a> 
-						<a th:href="@{/deleteCountry/{id}(id=${country.id})}" class="btn btn-danger">Delete</a> 
+<td> <a th:href="@{/country/update/{id}(id=${country.id})}" class="btn btn-primary">Update</a> 
+						<a th:href="@{/country/delete/{id}(id=${country.id})}" class="btn btn-danger">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

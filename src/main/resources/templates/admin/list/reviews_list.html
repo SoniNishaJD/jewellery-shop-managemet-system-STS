@@ -59,8 +59,8 @@
 <td th:text= "${review.name}"> </td>
 <td th:text= "${review.email}"> </td>
 <td th:text= "${review.status}"> </td>
-<td> <a th:href="@{/showFormForUpdate/{id}(id=${review.id})}" class="btn btn-primary">Update</a> 
-						<a th:href="@{/deleteReview/{id}(id=${review.id})}" class="btn btn-danger">Delete</a> 
+<td> <a th:href="@{/review/update/{id}(id=${review.id})}" class="btn btn-primary">Update</a> 
+						<a th:href="@{/review/delete/{id}(id=${review.id})}" class="btn btn-danger">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

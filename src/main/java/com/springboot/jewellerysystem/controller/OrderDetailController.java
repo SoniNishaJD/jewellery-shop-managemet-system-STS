@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,23 +51,23 @@ public class OrderDetailController {
 		return "admin/entry/orderDetail_entry";
 	}
 
-	@GetMapping(value = "/delete")
-	public String deleteOrderDetail(Integer id, String keyword) {
+	@GetMapping(value = "/delete/{id}")
+	public String deleteOrderDetail(@PathVariable(value = "id") Integer id, String keyword) {
 		orderDetailService.removeOrderDetail(id);
 		return "redirect:/orderDetail/index?keyword=" + keyword;
 	}
 
-	@GetMapping(value = "/update")
-	public String updateOrderDetail(Model model, Integer id) {
+	@GetMapping(value = "/update/{id}")
+	public String updateOrderDetail(@PathVariable(value = "id") Integer id, Model model) {
 		OrderDetail orderDetail = orderDetailService.loadOrderDetailById(id);
-		model.addAttribute("OrderDetail", orderDetail);
+		model.addAttribute("orderDetail", orderDetail);
 		List<Product> products = productService.getAllProduct();
 		model.addAttribute("listProducts", products);
 
 		List<Order> orders = orderService.getAllOrder();
 		model.addAttribute("listOrders", orders);
 
-		return "admin/edit/OrderDetail_update";
+		return "admin/edit/orderDetail_edit";
 	}
 
 	@PostMapping(value = "/save")

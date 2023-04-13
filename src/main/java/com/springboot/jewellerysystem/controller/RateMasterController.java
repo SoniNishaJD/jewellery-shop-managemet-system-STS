@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PostMapping; 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
@@ -30,17 +31,17 @@ public class RateMasterController {
         model.addAttribute("rateMaster", new RateMaster()); 
         return "admin/entry/rateMaster_entry"; 
     } 
-    @GetMapping(value = "/delete") 
-    public String deleteRateMaster(Integer id, String keyword) { 
+    @GetMapping(value = "/delete/{id}") 
+    public String deleteRateMaster(@PathVariable(value = "id") Integer id, String keyword) { 
         rateMasterService.removeRateMaster(id); 
         return "redirect:/rateMaster/index?keyword=" + keyword; 
     }
  
-    @GetMapping(value = "/update") 
-    public String updateRateMaster(Model model, Integer id) { 
+    @GetMapping(value = "/update/{id}") 
+    public String updateRateMaster(@PathVariable(value = "id") Integer id, Model model) { 
         RateMaster rateMaster = rateMasterService.loadRateMasterById(id); 
-        model.addAttribute("RateMaster", rateMaster); 
-        return "admin/edit/RateMaster_update"; 
+        model.addAttribute("rateMaster", rateMaster); 
+        return "admin/edit/rateMaster_edit"; 
     }
  
     @PostMapping(value = "/save") 

@@ -53,8 +53,8 @@
 <td th:text= "${rateMaster.rate}"> </td>
 <td th:text= "${rateMaster.gram}"> </td>
 <td th:text= "${rateMaster.status}"> </td>
-<td> <a th:href="@{/showFormForUpdate/{id}(id=${rateMaster.id})}" class="btn btn-primary">Update</a> 
-						<a th:href="@{/deleteRateMaster/{id}(id=${rateMaster.id})}" class="btn btn-danger">Delete</a> 
+<td> <a th:href="@{/rateMaster/update/{id}(id=${rateMaster.id})}" class="btn btn-primary">Update</a> 
+						<a th:href="@{/rateMaster/delete/{id}(id=${rateMaster.id})}" class="btn btn-danger">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

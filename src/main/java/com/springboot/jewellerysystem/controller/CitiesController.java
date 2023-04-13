@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,20 +43,20 @@ public class CitiesController {
 		return "admin/entry/cities_entry";
 	}
 
-	@GetMapping(value = "/delete")
-	public String deleteCities(Integer id, String keyword) {
+	@GetMapping(value = "/delete/{id}")
+	public String deleteCities(@PathVariable(value = "id") Integer id, String keyword) {
 		citiesService.removeCities(id);
 		return "redirect:/cities/index?keyword=" + keyword;
 	}
 
-	@GetMapping(value = "/update")
-	public String updateCities(Model model, Integer id) {
+	@GetMapping(value = "/update/{id}")
+	public String updateCities(@PathVariable(value = "id") Integer id, Model model) {
 		Cities cities = citiesService.loadCitiesById(id);
-		model.addAttribute("Cities", cities);
+		model.addAttribute("cities", cities);
 		List<State> states = stateService.getAllState();
 		model.addAttribute("listStates", states);
 
-		return "admin/edit/Cities_update";
+		return "admin/edit/cities_edit";
 	}
 
 	@PostMapping(value = "/save")

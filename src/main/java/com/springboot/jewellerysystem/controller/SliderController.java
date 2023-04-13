@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PostMapping; 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
@@ -30,17 +31,17 @@ public class SliderController {
         model.addAttribute("slider", new Slider()); 
         return "admin/entry/slider_entry"; 
     } 
-    @GetMapping(value = "/delete") 
-    public String deleteSlider(Integer id, String keyword) { 
+    @GetMapping(value = "/delete/{id}") 
+    public String deleteSlider(@PathVariable(value = "id") Integer id, String keyword) { 
         sliderService.removeSlider(id); 
         return "redirect:/slider/index?keyword=" + keyword; 
     }
  
-    @GetMapping(value = "/update") 
-    public String updateSlider(Model model, Integer id) { 
+    @GetMapping(value = "/update/{id}") 
+    public String updateSlider(@PathVariable(value = "id") Integer id, Model model) { 
         Slider slider = sliderService.loadSliderById(id); 
-        model.addAttribute("Slider", slider); 
-        return "admin/edit/Slider_update"; 
+        model.addAttribute("slider", slider); 
+        return "admin/edit/slider_edit"; 
     }
  
     @PostMapping(value = "/save") 

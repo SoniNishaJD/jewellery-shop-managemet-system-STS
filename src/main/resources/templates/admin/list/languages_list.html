@@ -51,8 +51,8 @@
 <td th:text= "${language.name}"> </td>
 <td th:text= "${language.status}"> </td>
 <td th:text= "${language.code}"> </td>
-<td> <a th:href="@{/showFormForUpdate/{id}(id=${language.id})}" class="btn btn-primary">Update</a> 
-						<a th:href="@{/deleteLanguage/{id}(id=${language.id})}" class="btn btn-danger">Delete</a> 
+<td> <a th:href="@{/language/update/{id}(id=${language.id})}" class="btn btn-primary">Update</a> 
+						<a th:href="@{/language/delete/{id}(id=${language.id})}" class="btn btn-danger">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

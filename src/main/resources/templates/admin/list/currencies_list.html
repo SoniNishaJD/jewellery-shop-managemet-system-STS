@@ -55,8 +55,8 @@
 <td th:text= "${currency.exchangeRate}"> </td>
 <td th:text= "${currency.code}"> </td>
 <td th:text= "${currency.status}"> </td>
-<td> <a th:href="@{/showFormForUpdate/{id}(id=${currency.id})}" class="btn btn-primary">Update</a> 
-						<a th:href="@{/deleteCurrency/{id}(id=${currency.id})}" class="btn btn-danger">Delete</a> 
+<td> <a th:href="@{/currency/update/{id}(id=${currency.id})}" class="btn btn-primary">Update</a> 
+						<a th:href="@{/currency/delete/{id}(id=${currency.id})}" class="btn btn-danger">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

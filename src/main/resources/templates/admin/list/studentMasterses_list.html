@@ -1,0 +1,105 @@
+<!DOCTYPE html> 
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="index"> 
+<head> 
+    <title>StudentMasters List</title> 
+</head> 
+<body> 
+
+ <div layout:fragment="content1"> 
+ <div class="content-wrapper"> 
+      <!-- Content Header (Page header) --> 
+      <section class="content-header"> 
+        <div class="container-fluid"> 
+          <div class="row mb-2"> 
+            <div class="col-sm-6"> 
+            </div> 
+            <div class="col-sm-6"> 
+              <ol class="breadcrumb float-sm-right"> 
+                <li class="breadcrumb-item"><a href="#">Home</a></li> 
+                <li class="breadcrumb-item active">DataTables</li> 
+              </ol> 
+            </div> 
+          </div> 
+        </div><!-- /.container-fluid --> 
+      </section> 
+ 
+      <!-- Main content --> 
+      <section class="content"> 
+        <div class="container-fluid"> 
+          <div class="row"> 
+            <div class="col-12"> 
+ 
+ 
+              <div class="card"> 
+                <div class="card-header"> 
+                </div> 
+                <!-- /.card-header --> 
+                <div class="card-body"> 
+                  <table id="example1" class="table table-bordered table-striped"> 
+                    <thead> 
+                      <tr>
+<th>Id</th>
+<th>Users</th>
+<th>Name</th>
+<th>Gender</th>
+<th>Phone</th>
+<th>Photo</th>
+<th>City</th>
+<th>Entry Date</th>
+<th>Department</th>
+<th>Course</th>
+<th>Semester</th>
+<th> Actions </th> 
+                      </tr> 
+                    </thead> 
+                    <tbody> 
+                      <tr th:each="studentMasters : ${listStudentMasterses}">
+<td th:text= "${studentMasters.id}"> </td>
+<td th:text= "${studentMasters.users.name}"> </td>
+<td th:text= "${studentMasters.name}"> </td>
+<td th:text= "${studentMasters.gender}"> </td>
+<td th:text= "${studentMasters.phone}"> </td>
+<td th:text= "${studentMasters.photo}"> </td>
+<td th:text= "${studentMasters.city}"> </td>
+<td th:text= "${studentMasters.entryDate}"> </td>
+<td th:text= "${studentMasters.department}"> </td>
+<td th:text= "${studentMasters.course}"> </td>
+<td th:text= "${studentMasters.semester}"> </td>
+<td> <a th:href="@{/showFormForUpdate/{id}(id=${studentMasters.id})}" class="btn btn-primary">Update</a> 
+						<a th:href="@{/deleteStudentMasters/{id}(id=${studentMasters.id})}" class="btn btn-danger">Delete</a> 
+					</td>  
+                      </tr> 
+                    </tbody> 
+                    <tfoot> 
+                      <tr>
+<th>Id</th>
+<th>Users</th>
+<th>Name</th>
+<th>Gender</th>
+<th>Phone</th>
+<th>Photo</th>
+<th>City</th>
+<th>Entry Date</th>
+<th>Department</th>
+<th>Course</th>
+<th>Semester</th>
+<th> Actions </th> 
+                      </tr> 
+                    </tfoot> 
+                  </table> 
+                </div> 
+                <!-- /.card-body --> 
+              </div> 
+              <!-- /.card --> 
+            </div> 
+            <!-- /.col --> 
+          </div> 
+          <!-- /.row --> 
+        </div> 
+        <!-- /.container-fluid --> 
+      </section> 
+      <!-- /.content --> 
+    </div> 
+    </div>
+ </body>
+ <html>

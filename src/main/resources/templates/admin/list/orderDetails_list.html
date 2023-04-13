@@ -57,8 +57,8 @@
 <td th:text= "${orderDetail.price}"> </td>
 <td th:text= "${orderDetail.qty}"> </td>
 <td th:text= "${orderDetail.amount}"> </td>
-<td> <a th:href="@{/showFormForUpdate/{id}(id=${orderDetail.id})}" class="btn btn-primary">Update</a> 
-						<a th:href="@{/deleteOrderDetail/{id}(id=${orderDetail.id})}" class="btn btn-danger">Delete</a> 
+<td> <a th:href="@{/orderDetail/update/{id}(id=${orderDetail.id})}" class="btn btn-primary">Update</a> 
+						<a th:href="@{/orderDetail/delete/{id}(id=${orderDetail.id})}" class="btn btn-danger">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

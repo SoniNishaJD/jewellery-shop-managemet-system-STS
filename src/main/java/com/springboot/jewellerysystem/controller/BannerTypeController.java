@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PostMapping; 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
@@ -30,17 +31,17 @@ public class BannerTypeController {
         model.addAttribute("bannerType", new BannerType()); 
         return "admin/entry/bannerType_entry"; 
     } 
-    @GetMapping(value = "/delete") 
-    public String deleteBannerType(Integer id, String keyword) { 
+    @GetMapping(value = "/delete/{id}") 
+    public String deleteBannerType(@PathVariable(value = "id") Integer id, String keyword) { 
         bannerTypeService.removeBannerType(id); 
         return "redirect:/bannerType/index?keyword=" + keyword; 
     }
  
-    @GetMapping(value = "/update") 
-    public String updateBannerType(Model model, Integer id) { 
+    @GetMapping(value = "/update/{id}") 
+    public String updateBannerType(@PathVariable(value = "id") Integer id, Model model) { 
         BannerType bannerType = bannerTypeService.loadBannerTypeById(id); 
-        model.addAttribute("BannerType", bannerType); 
-        return "admin/edit/BannerType_update"; 
+        model.addAttribute("bannerType", bannerType); 
+        return "admin/edit/bannerType_edit"; 
     }
  
     @PostMapping(value = "/save") 

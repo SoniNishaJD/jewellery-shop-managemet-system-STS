@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PostMapping; 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
@@ -30,17 +31,17 @@ public class LinkController {
         model.addAttribute("link", new Link()); 
         return "admin/entry/link_entry"; 
     } 
-    @GetMapping(value = "/delete") 
-    public String deleteLink(Integer id, String keyword) { 
+    @GetMapping(value = "/delete/{id}") 
+    public String deleteLink(@PathVariable(value = "id") Integer id, String keyword) { 
         linkService.removeLink(id); 
         return "redirect:/link/index?keyword=" + keyword; 
     }
  
-    @GetMapping(value = "/update") 
-    public String updateLink(Model model, Integer id) { 
+    @GetMapping(value = "/update/{id}") 
+    public String updateLink(@PathVariable(value = "id") Integer id, Model model) { 
         Link link = linkService.loadLinkById(id); 
-        model.addAttribute("Link", link); 
-        return "admin/edit/Link_update"; 
+        model.addAttribute("link", link); 
+        return "admin/edit/link_edit"; 
     }
  
     @PostMapping(value = "/save") 

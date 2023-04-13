@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PostMapping; 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
@@ -30,17 +31,17 @@ public class UserController {
         model.addAttribute("user", new User()); 
         return "admin/entry/user_entry"; 
     } 
-    @GetMapping(value = "/delete") 
-    public String deleteUser(Integer id, String keyword) { 
+    @GetMapping(value = "/delete/{id}") 
+    public String deleteUser(@PathVariable(value = "id") Integer id, String keyword) { 
         userService.removeUser(id); 
         return "redirect:/user/index?keyword=" + keyword; 
     }
  
-    @GetMapping(value = "/update") 
-    public String updateUser(Model model, Integer id) { 
+    @GetMapping(value = "/update/{id}") 
+    public String updateUser(@PathVariable(value = "id") Integer id, Model model) { 
         User user = userService.loadUserById(id); 
-        model.addAttribute("User", user); 
-        return "admin/edit/User_update"; 
+        model.addAttribute("user", user); 
+        return "admin/edit/user_edit"; 
     }
  
     @PostMapping(value = "/save") 

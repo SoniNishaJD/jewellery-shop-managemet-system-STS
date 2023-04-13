@@ -51,8 +51,8 @@
 <td th:text= "${link.linkType}"> </td>
 <td th:text= "${link.url}"> </td>
 <td th:text= "${link.status}"> </td>
-<td> <a th:href="@{/showFormForUpdate/{id}(id=${link.id})}" class="btn btn-primary">Update</a> 
-						<a th:href="@{/deleteLink/{id}(id=${link.id})}" class="btn btn-danger">Delete</a> 
+<td> <a th:href="@{/link/update/{id}(id=${link.id})}" class="btn btn-primary">Update</a> 
+						<a th:href="@{/link/delete/{id}(id=${link.id})}" class="btn btn-danger">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

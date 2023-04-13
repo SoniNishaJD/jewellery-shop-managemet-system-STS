@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PostMapping; 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
@@ -30,17 +31,17 @@ public class CompanyDetailController {
         model.addAttribute("companyDetail", new CompanyDetail()); 
         return "admin/entry/companyDetail_entry"; 
     } 
-    @GetMapping(value = "/delete") 
-    public String deleteCompanyDetail(Integer id, String keyword) { 
+    @GetMapping(value = "/delete/{id}") 
+    public String deleteCompanyDetail(@PathVariable(value = "id") Integer id, String keyword) { 
         companyDetailService.removeCompanyDetail(id); 
         return "redirect:/companyDetail/index?keyword=" + keyword; 
     }
  
-    @GetMapping(value = "/update") 
-    public String updateCompanyDetail(Model model, Integer id) { 
+    @GetMapping(value = "/update/{id}") 
+    public String updateCompanyDetail(@PathVariable(value = "id") Integer id, Model model) { 
         CompanyDetail companyDetail = companyDetailService.loadCompanyDetailById(id); 
-        model.addAttribute("CompanyDetail", companyDetail); 
-        return "admin/edit/CompanyDetail_update"; 
+        model.addAttribute("companyDetail", companyDetail); 
+        return "admin/edit/companyDetail_edit"; 
     }
  
     @PostMapping(value = "/save") 

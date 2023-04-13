@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,20 +43,20 @@ public class ProductImageController {
 		return "admin/entry/productImage_entry";
 	}
 
-	@GetMapping(value = "/delete")
-	public String deleteProductImage(Integer id, String keyword) {
+	@GetMapping(value = "/delete/{id}")
+	public String deleteProductImage(@PathVariable(value = "id") Integer id, String keyword) {
 		productImageService.removeProductImage(id);
 		return "redirect:/productImage/index?keyword=" + keyword;
 	}
 
-	@GetMapping(value = "/update")
-	public String updateProductImage(Model model, Integer id) {
+	@GetMapping(value = "/update/{id}")
+	public String updateProductImage(@PathVariable(value = "id") Integer id, Model model) {
 		ProductImage productImage = productImageService.loadProductImageById(id);
-		model.addAttribute("ProductImage", productImage);
+		model.addAttribute("productImage", productImage);
 		List<Product> products = productService.getAllProduct();
 		model.addAttribute("listProducts", products);
 
-		return "admin/edit/ProductImage_update";
+		return "admin/edit/productImage_edit";
 	}
 
 	@PostMapping(value = "/save")

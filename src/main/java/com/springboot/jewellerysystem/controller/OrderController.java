@@ -1,4 +1,3 @@
-
 package com.springboot.jewellerysystem.controller;
 
 import java.util.List;
@@ -6,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,20 +43,20 @@ public class OrderController {
 		return "admin/entry/order_entry";
 	}
 
-	@GetMapping(value = "/delete")
-	public String deleteOrder(Integer id, String keyword) {
+	@GetMapping(value = "/delete/{id}")
+	public String deleteOrder(@PathVariable(value = "id") Integer id, String keyword) {
 		orderService.removeOrder(id);
 		return "redirect:/order/index?keyword=" + keyword;
 	}
 
-	@GetMapping(value = "/update")
-	public String updateOrder(Model model, Integer id) {
+	@GetMapping(value = "/update/{id}")
+	public String updateOrder(@PathVariable(value = "id") Integer id, Model model) {
 		Order order = orderService.loadOrderById(id);
-		model.addAttribute("Order", order);
+		model.addAttribute("order", order);
 		List<User> users = userService.getAllUser();
 		model.addAttribute("listUsers", users);
 
-		return "admin/edit/Order_update";
+		return "admin/edit/order_edit";
 	}
 
 	@PostMapping(value = "/save")

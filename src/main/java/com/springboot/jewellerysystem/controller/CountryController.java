@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PostMapping; 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
@@ -30,17 +31,17 @@ public class CountryController {
         model.addAttribute("country", new Country()); 
         return "admin/entry/country_entry"; 
     } 
-    @GetMapping(value = "/delete") 
-    public String deleteCountry(Integer id, String keyword) { 
+    @GetMapping(value = "/delete/{id}") 
+    public String deleteCountry(@PathVariable(value = "id") Integer id, String keyword) { 
         countryService.removeCountry(id); 
         return "redirect:/country/index?keyword=" + keyword; 
     }
  
-    @GetMapping(value = "/update") 
-    public String updateCountry(Model model, Integer id) { 
+    @GetMapping(value = "/update/{id}") 
+    public String updateCountry(@PathVariable(value = "id") Integer id, Model model) { 
         Country country = countryService.loadCountryById(id); 
-        model.addAttribute("Country", country); 
-        return "admin/edit/Country_update"; 
+        model.addAttribute("country", country); 
+        return "admin/edit/country_edit"; 
     }
  
     @PostMapping(value = "/save") 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PostMapping; 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
@@ -30,17 +31,17 @@ public class MainCategoryController {
         model.addAttribute("mainCategory", new MainCategory()); 
         return "admin/entry/mainCategory_entry"; 
     } 
-    @GetMapping(value = "/delete") 
-    public String deleteMainCategory(Integer id, String keyword) { 
+    @GetMapping(value = "/delete/{id}") 
+    public String deleteMainCategory(@PathVariable(value = "id") Integer id, String keyword) { 
         mainCategoryService.removeMainCategory(id); 
         return "redirect:/mainCategory/index?keyword=" + keyword; 
     }
  
-    @GetMapping(value = "/update") 
-    public String updateMainCategory(Model model, Integer id) { 
+    @GetMapping(value = "/update/{id}") 
+    public String updateMainCategory(@PathVariable(value = "id") Integer id, Model model) { 
         MainCategory mainCategory = mainCategoryService.loadMainCategoryById(id); 
-        model.addAttribute("MainCategory", mainCategory); 
-        return "admin/edit/MainCategory_update"; 
+        model.addAttribute("mainCategory", mainCategory); 
+        return "admin/edit/mainCategory_edit"; 
     }
  
     @PostMapping(value = "/save") 

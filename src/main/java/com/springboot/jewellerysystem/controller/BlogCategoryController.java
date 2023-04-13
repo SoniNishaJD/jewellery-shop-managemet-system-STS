@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PostMapping; 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
@@ -30,17 +31,17 @@ public class BlogCategoryController {
         model.addAttribute("blogCategory", new BlogCategory()); 
         return "admin/entry/blogCategory_entry"; 
     } 
-    @GetMapping(value = "/delete") 
-    public String deleteBlogCategory(Integer id, String keyword) { 
+    @GetMapping(value = "/delete/{id}") 
+    public String deleteBlogCategory(@PathVariable(value = "id") Integer id, String keyword) { 
         blogCategoryService.removeBlogCategory(id); 
         return "redirect:/blogCategory/index?keyword=" + keyword; 
     }
  
-    @GetMapping(value = "/update") 
-    public String updateBlogCategory(Model model, Integer id) { 
+    @GetMapping(value = "/update/{id}") 
+    public String updateBlogCategory(@PathVariable(value = "id") Integer id, Model model) { 
         BlogCategory blogCategory = blogCategoryService.loadBlogCategoryById(id); 
-        model.addAttribute("BlogCategory", blogCategory); 
-        return "admin/edit/BlogCategory_update"; 
+        model.addAttribute("blogCategory", blogCategory); 
+        return "admin/edit/blogCategory_edit"; 
     }
  
     @PostMapping(value = "/save") 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PostMapping; 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
@@ -30,17 +31,17 @@ public class FeedbackController {
         model.addAttribute("feedback", new Feedback()); 
         return "admin/entry/feedback_entry"; 
     } 
-    @GetMapping(value = "/delete") 
-    public String deleteFeedback(Integer id, String keyword) { 
+    @GetMapping(value = "/delete/{id}") 
+    public String deleteFeedback(@PathVariable(value = "id") Integer id, String keyword) { 
         feedbackService.removeFeedback(id); 
         return "redirect:/feedback/index?keyword=" + keyword; 
     }
  
-    @GetMapping(value = "/update") 
-    public String updateFeedback(Model model, Integer id) { 
+    @GetMapping(value = "/update/{id}") 
+    public String updateFeedback(@PathVariable(value = "id") Integer id, Model model) { 
         Feedback feedback = feedbackService.loadFeedbackById(id); 
-        model.addAttribute("Feedback", feedback); 
-        return "admin/edit/Feedback_update"; 
+        model.addAttribute("feedback", feedback); 
+        return "admin/edit/feedback_edit"; 
     }
  
     @PostMapping(value = "/save") 

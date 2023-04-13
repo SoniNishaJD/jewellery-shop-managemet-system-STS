@@ -1,4 +1,3 @@
-
 package com.springboot.jewellerysystem.controller;
 
 import java.util.List;
@@ -6,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,20 +43,20 @@ public class StateController {
 		return "admin/entry/state_entry";
 	}
 
-	@GetMapping(value = "/delete")
-	public String deleteState(Integer id, String keyword) {
+	@GetMapping(value = "/delete/{id}")
+	public String deleteState(@PathVariable(value = "id") Integer id, String keyword) {
 		stateService.removeState(id);
 		return "redirect:/state/index?keyword=" + keyword;
 	}
 
-	@GetMapping(value = "/update")
-	public String updateState(Model model, Integer id) {
+	@GetMapping(value = "/update/{id}")
+	public String updateState(@PathVariable(value = "id") Integer id, Model model) {
 		State state = stateService.loadStateById(id);
-		model.addAttribute("State", state);
+		model.addAttribute("state", state);
 		List<Country> countries = countryService.getAllCountry();
 		model.addAttribute("listCountries", countries);
 
-		return "admin/edit/State_update";
+		return "admin/edit/state_edit";
 	}
 
 	@PostMapping(value = "/save")
