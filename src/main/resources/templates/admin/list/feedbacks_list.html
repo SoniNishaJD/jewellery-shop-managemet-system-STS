@@ -30,10 +30,11 @@
         <div class="container-fluid"> 
           <div class="row"> 
             <div class="col-12"> 
- 
+  
  
               <div class="card"> 
-                <div class="card-header"> 
+                <div class="card-header">
+<a th:href="@{/feedback/create}" class="btn btn-primary btn-sm">ADD NEW FEEDBACK</a>  
                 </div> 
                 <!-- /.card-header --> 
                 <div class="card-body"> 
@@ -46,7 +47,7 @@
 <th>Email</th>
 <th>Message</th>
 <th>Name</th>
-<th style = "width:165px"> Actions </th> 
+<th style = "width:150px"> Actions </th> 
                       </tr> 
                     </thead> 
                     <tbody> 
@@ -57,8 +58,8 @@
 <td th:text= "${feedback.email}"> </td>
 <td th:text= "${feedback.message}"> </td>
 <td th:text= "${feedback.name}"> </td>
-<td> <a th:href="@{/feedback/update/{id}(id=${feedback.id})}" class="btn btn-primary">UPDATE</a> 
-						<a th:href="@{/feedback/delete/{id}(id=${feedback.id})}" class="btn btn-danger">DELETE</a> 
+<td> <a th:href="@{/feedback/update/{id}(id=${feedback.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/feedback/delete/{id}(id=${feedback.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

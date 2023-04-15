@@ -47,7 +47,7 @@
                    
  <select th:field="${bannerImage.banner}" name="banner" class="form-control col-md-3">  
   <option th:each="banner:${listBanners}"  
-         th:text="${banner.getBannerImage()}"  
+         th:text="${banner.getName()}"  
          th:value="${banner.getId()}"></option>  
  </select>  
                   </div> 
@@ -64,7 +64,8 @@
                 </div> 
                 <!-- /.card-body --> 
                 <div class="card-footer"> 
-                  <button type="submit" class="btn btn-primary">UPDATE</button> 
+                  <button type="submit" class="btn btn-primary btn-sm">UPDATE</button> 
+                  <a th:href="@{/bannerImage/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a> 
                 </div> 
               </form> 
             </div> 

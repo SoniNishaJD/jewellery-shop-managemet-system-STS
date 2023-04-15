@@ -35,9 +35,6 @@ public class Brand {
 	@Column(name = "status", nullable = false)
 	private Integer status;
 
-	@Basic
-	@Column(name = "image", nullable = false, length = 255)
-	private String image;
 
 	@OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
 	private Set<Product> product = new HashSet<>();
@@ -74,13 +71,7 @@ public class Brand {
 		this.status = status;
 	}
 
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
+	
 
 	public Set<Product> getProducts() {
 		return product;
@@ -98,29 +89,28 @@ public class Brand {
 			return false;
 		Brand other = (Brand) obj;
 		return Objects.equals(id, other.id) && Objects.equals(name, other.name) && Objects.equals(logo, other.logo)
-				&& Objects.equals(status, other.status) && Objects.equals(image, other.image);
+				&& Objects.equals(status, other.status) ;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, logo, status, image);
+		return Objects.hash(id, name, logo, status);
 	}
 
 	public Brand() {
 		super();
 	}
 
-	public Brand(String name, String logo, Integer status, String image) {
+	public Brand(String name, String logo, Integer status) {
 		super();
 		this.name = name;
 		this.logo = logo;
 		this.status = status;
-		this.image = image;
+		
 	}
 
 	@Override
 	public String toString() {
-		return "Brand [id=" + id + ", name=" + name + ", logo=" + logo + ", status=" + status + ", image=" + image
-				+ "]";
+		return "Brand [id=" + id + ", name=" + name + ", logo=" + logo + ", status=" + status +  "]";
 	}
 }

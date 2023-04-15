@@ -30,10 +30,11 @@
         <div class="container-fluid"> 
           <div class="row"> 
             <div class="col-12"> 
- 
+  
  
               <div class="card"> 
-                <div class="card-header"> 
+                <div class="card-header">
+<a th:href="@{/companyDetail/create}" class="btn btn-primary btn-sm">ADD NEW COMPANYDETAIL</a>  
                 </div> 
                 <!-- /.card-header --> 
                 <div class="card-body"> 
@@ -49,7 +50,7 @@
 <th>Email</th>
 <th>Copy Right</th>
 <th>Home Page</th>
-<th style = "width:165px"> Actions </th> 
+<th style = "width:150px"> Actions </th> 
                       </tr> 
                     </thead> 
                     <tbody> 
@@ -63,8 +64,8 @@
 <td th:text= "${companyDetail.email}"> </td>
 <td th:text= "${companyDetail.copyRight}"> </td>
 <td th:text= "${companyDetail.homePage}"> </td>
-<td> <a th:href="@{/companyDetail/update/{id}(id=${companyDetail.id})}" class="btn btn-primary">UPDATE</a> 
-						<a th:href="@{/companyDetail/delete/{id}(id=${companyDetail.id})}" class="btn btn-danger">DELETE</a> 
+<td> <a th:href="@{/companyDetail/update/{id}(id=${companyDetail.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/companyDetail/delete/{id}(id=${companyDetail.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

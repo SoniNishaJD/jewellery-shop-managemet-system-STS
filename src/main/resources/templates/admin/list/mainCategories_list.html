@@ -30,10 +30,11 @@
         <div class="container-fluid"> 
           <div class="row"> 
             <div class="col-12"> 
- 
+  
  
               <div class="card"> 
-                <div class="card-header"> 
+                <div class="card-header">
+<a th:href="@{/mainCategory/create}" class="btn btn-primary btn-sm">ADD NEW MAINCATEGORY</a>  
                 </div> 
                 <!-- /.card-header --> 
                 <div class="card-body"> 
@@ -44,7 +45,7 @@
 <th>Name</th>
 <th>Image</th>
 <th>Status</th>
-<th style = "width:165px"> Actions </th> 
+<th style = "width:150px"> Actions </th> 
                       </tr> 
                     </thead> 
                     <tbody> 
@@ -53,8 +54,8 @@
 <td th:text= "${mainCategory.name}"> </td>
 <td th:text= "${mainCategory.image}"> </td>
 <td th:text= "${mainCategory.status}"> </td>
-<td> <a th:href="@{/mainCategory/update/{id}(id=${mainCategory.id})}" class="btn btn-primary">UPDATE</a> 
-						<a th:href="@{/mainCategory/delete/{id}(id=${mainCategory.id})}" class="btn btn-danger">DELETE</a> 
+<td> <a th:href="@{/mainCategory/update/{id}(id=${mainCategory.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/mainCategory/delete/{id}(id=${mainCategory.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

@@ -30,10 +30,11 @@
         <div class="container-fluid"> 
           <div class="row"> 
             <div class="col-12"> 
- 
+  
  
               <div class="card"> 
-                <div class="card-header"> 
+                <div class="card-header">
+<a th:href="@{/newsletter/create}" class="btn btn-primary btn-sm">ADD NEW NEWSLETTER</a>  
                 </div> 
                 <!-- /.card-header --> 
                 <div class="card-body"> 
@@ -43,7 +44,7 @@
 <th>Id</th>
 <th>Email</th>
 <th>Status</th>
-<th style = "width:165px"> Actions </th> 
+<th style = "width:150px"> Actions </th> 
                       </tr> 
                     </thead> 
                     <tbody> 
@@ -51,8 +52,8 @@
 <td th:text= "${newsletter.id}"> </td>
 <td th:text= "${newsletter.email}"> </td>
 <td th:text= "${newsletter.status}"> </td>
-<td> <a th:href="@{/newsletter/update/{id}(id=${newsletter.id})}" class="btn btn-primary">UPDATE</a> 
-						<a th:href="@{/newsletter/delete/{id}(id=${newsletter.id})}" class="btn btn-danger">DELETE</a> 
+<td> <a th:href="@{/newsletter/update/{id}(id=${newsletter.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/newsletter/delete/{id}(id=${newsletter.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

@@ -47,7 +47,7 @@
                    
  <select th:field="${order.user}" name="user" class="form-control col-md-3">  
   <option th:each="user:${listUsers}"  
-         th:text="${user.getAddress()}"  
+         th:text="${user.getFirstName()}"  
          th:value="${user.getId()}"></option>  
  </select>  
                   </div> 
@@ -104,7 +104,8 @@
                 </div> 
                 <!-- /.card-body --> 
                 <div class="card-footer"> 
-                  <button type="submit" class="btn btn-primary">UPDATE</button> 
+                  <button type="submit" class="btn btn-primary btn-sm">UPDATE</button> 
+                  <a th:href="@{/order/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a> 
                 </div> 
               </form> 
             </div> 

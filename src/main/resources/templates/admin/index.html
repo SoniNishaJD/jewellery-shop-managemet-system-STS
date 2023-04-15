@@ -53,8 +53,7 @@
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" th:src="@{/admin/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60"
-        width="60">
+      <img class="animation__shake" th:src="@{/admin/dist/img/sj.jpg}" alt="Logo" height="60" width="60">
     </div>
 
     <!-- Navbar -->
@@ -91,7 +90,7 @@
         </li>
 
         <!-- Messages Dropdown Menu -->
-   
+
       </ul>
     </nav>
     <!-- /.navbar -->
@@ -130,827 +129,230 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Banner 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/banner/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Banner</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/banner/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Banner</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Banner Image 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/bannerImage/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Banner Image</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/bannerImage/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Banner Image</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Banner Type 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/bannerType/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Banner Type</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/bannerType/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Banner Type</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Blog 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/blog/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Blog</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/blog/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Blog</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Blog Category 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/blogCategory/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Blog Category</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/blogCategory/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Blog Category</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Brand 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/brand/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Brand</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/brand/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Brand</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Cart 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/cart/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Cart</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/cart/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Cart</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Category 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/category/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Category</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/category/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Category</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Cities 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/cities/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Cities</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/cities/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Cities</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Company Detail 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/companyDetail/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Company Detail</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/companyDetail/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Company Detail</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Contact Us 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/contactUs/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Contact Us</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/contactUs/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Contact Us</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Country 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/country/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Country</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/country/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Country</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Currency 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/currency/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Currency</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/currency/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Currency</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Faq 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/faq/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Faq</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/faq/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Faq</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Feedback 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/feedback/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Feedback</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/feedback/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Feedback</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Language 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/language/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Language</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/language/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Language</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Link 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/link/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Link</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/link/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Link</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Main Category 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/mainCategory/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Main Category</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/mainCategory/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Main Category</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Newsletter 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/newsletter/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Newsletter</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/newsletter/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Newsletter</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Order 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/order/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Order</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/order/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Order</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Order Detail 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/orderDetail/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Order Detail</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/orderDetail/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Order Detail</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Pages 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/pages/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Pages</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/pages/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Pages</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Product 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/product/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Product</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/product/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Product</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Product Detail 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/productDetail/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Product Detail</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/productDetail/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Product Detail</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Product Image 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/productImage/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Product Image</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/productImage/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Product Image</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Rate Master 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/rateMaster/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Rate Master</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/rateMaster/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Rate Master</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Review 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/review/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Review</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/review/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Review</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Service 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/service/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Service</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/service/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Service</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Slider 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/slider/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Slider</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/slider/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Slider</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           State 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/state/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage State</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/state/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add State</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Style 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/style/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Style</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/style/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Style</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Today Rate 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/todayRate/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Today Rate</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/todayRate/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Today Rate</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           User 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/user/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage User</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/user/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add User</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-     <li class="nav-item"> 
-       <a href="#" class="nav-link" > 
-         <i class="nav-icon fas fa-tachometer-alt"></i> 
-         <p> 
-           Wishlist 
-           <i class="right fas fa-angle-left"></i> 
-         </p> 
-       </a> 
-       <ul class="nav nav-treeview"> 
-         <li class="nav-item"> 
-           <a href="/wishlist/index" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Manage Wishlist</p> 
-           </a> 
-         </li> 
-         <li class="nav-item"> 
-           <a href="/wishlist/create" class="nav-link"> 
-             <i class="far fa-circle nav-icon"></i> 
-             <p> Add Wishlist</p> 
-           </a> 
-         </li> 
-          
-       </ul> 
-     </li> 
-  </ul> 
- 
-            </ul>
-    	</nav>
+
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+            <li class="nav-item">
+              <a href="/mainCategory/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Main Category</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/category/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Category</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/brand/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Brand</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/product/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Product</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/productDetail/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Product Detail</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/productImage/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Product Image</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/rateMaster/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Rate Master</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/banner/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Banner</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/bannerImage/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Banner Image</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/bannerType/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Banner Type</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/slider/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Slider</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/country/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Country</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/state/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> State</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/cities/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Cities</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/companyDetail/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Company Detail</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/contactUs/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Contact Us</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/currency/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Currency</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/faq/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Faq</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/feedback/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Feedback</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/language/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Language</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/link/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Link</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/pages/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Pages</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/style/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Style</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/todayRate/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Today Rate</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/newsletter/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Newsletter</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/order/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Order</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/orderDetail/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Order Detail</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/review/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Review</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/ourService/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Our Service</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/user/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> User</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/wishlist/index" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Wishlist</p>
+              </a>
+            </li>
+
+          </ul>
+
+          </ul>
+        </nav>
         <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
@@ -963,7 +365,7 @@
       <strong>Copyright &copy; 2022-2023 <a href="#">Soni Nisha</a>.
       </strong> All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
-      
+
       </div>
     </footer>
 
@@ -987,9 +389,9 @@
   <script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
   <!-- ChartJS -->
   <script th:src="@{/admin/plugins/chart.js/Chart.min.js}"></script>
- <!--  <!-- Sparkline -->
+  <!--  <!-- Sparkline -->
   <script th:src="@{/admin/plugins/sparklines/sparkline.js}"></script> -->
- <!--  <!-- JQVMap -->
+  <!--  <!-- JQVMap -->
   <script th:src="@{/admin/plugins/jqvmap/jquery.vmap.min.js}"></script> -->
   <!-- <script th:src="@{/admin/plugins/jqvmap/maps/jquery.vmap.usa.js}"></script> -->
   <!-- jQuery Knob Chart -->
@@ -1026,12 +428,12 @@
   <script th:src="@{/admin/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
   <!-- AdminLTE App -->
   <!-- Page specific script -->
-  
+
   <!-- =======================entry js==================== -->
   <!-- jquery-validation -->
-  
+
   <!-- Page specific script -->
- <!--  <script>
+  <!--  <script>
     $(function () {
       $.validator.setDefaults({
         submitHandler: function () {
@@ -1085,8 +487,8 @@
  -->
 
 </body>
- <section layout:fragment= "script1">
- <script>
+<section layout:fragment="script1">
+  <script>
     $(function () {
       $("#example1").DataTable(
         {
@@ -1097,9 +499,10 @@
             "colvis"]
         }).buttons().container().appendTo(
           '#example1_wrapper .col-md-6:eq(0)');
-     
+
     });
   </script>
- 
- </section>
+
+</section>
+
 </html>

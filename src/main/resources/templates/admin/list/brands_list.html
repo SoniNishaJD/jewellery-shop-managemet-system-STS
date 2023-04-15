@@ -30,10 +30,11 @@
         <div class="container-fluid"> 
           <div class="row"> 
             <div class="col-12"> 
- 
+  
  
               <div class="card"> 
-                <div class="card-header"> 
+                <div class="card-header">
+<a th:href="@{/brand/create}" class="btn btn-primary btn-sm">ADD NEW BRAND</a>  
                 </div> 
                 <!-- /.card-header --> 
                 <div class="card-body"> 
@@ -44,8 +45,8 @@
 <th>Name</th>
 <th>Logo</th>
 <th>Status</th>
-<th>Image</th>
-<th style = "width:165px"> Actions </th> 
+
+<th style = "width:150px"> Actions </th> 
                       </tr> 
                     </thead> 
                     <tbody> 
@@ -54,9 +55,9 @@
 <td th:text= "${brand.name}"> </td>
 <td th:text= "${brand.logo}"> </td>
 <td th:text= "${brand.status}"> </td>
-<td th:text= "${brand.image}"> </td>
-<td> <a th:href="@{/brand/update/{id}(id=${brand.id})}" class="btn btn-primary">UPDATE</a> 
-						<a th:href="@{/brand/delete/{id}(id=${brand.id})}" class="btn btn-danger">DELETE</a> 
+
+<td> <a th:href="@{/brand/update/{id}(id=${brand.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/brand/delete/{id}(id=${brand.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

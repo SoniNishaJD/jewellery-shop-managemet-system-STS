@@ -30,10 +30,11 @@
         <div class="container-fluid"> 
           <div class="row"> 
             <div class="col-12"> 
- 
+  
  
               <div class="card"> 
-                <div class="card-header"> 
+                <div class="card-header">
+<a th:href="@{/state/create}" class="btn btn-primary btn-sm">ADD NEW STATE</a>  
                 </div> 
                 <!-- /.card-header --> 
                 <div class="card-body"> 
@@ -43,7 +44,7 @@
 <th>Id</th>
 <th>Country</th>
 <th>Name</th>
-<th style = "width:165px"> Actions </th> 
+<th style = "width:150px"> Actions </th> 
                       </tr> 
                     </thead> 
                     <tbody> 
@@ -51,8 +52,8 @@
 <td th:text= "${state.id}"> </td>
 <td th:text= "${state.country.name}"> </td>
 <td th:text= "${state.name}"> </td>
-<td> <a th:href="@{/state/update/{id}(id=${state.id})}" class="btn btn-primary">UPDATE</a> 
-						<a th:href="@{/state/delete/{id}(id=${state.id})}" class="btn btn-danger">DELETE</a> 
+<td> <a th:href="@{/state/update/{id}(id=${state.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/state/delete/{id}(id=${state.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

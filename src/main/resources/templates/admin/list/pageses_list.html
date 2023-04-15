@@ -30,10 +30,11 @@
         <div class="container-fluid"> 
           <div class="row"> 
             <div class="col-12"> 
- 
+  
  
               <div class="card"> 
-                <div class="card-header"> 
+                <div class="card-header">
+<a th:href="@{/pages/create}" class="btn btn-primary btn-sm">ADD NEW PAGES</a>  
                 </div> 
                 <!-- /.card-header --> 
                 <div class="card-body"> 
@@ -46,7 +47,7 @@
 <th>Page Description</th>
 <th>Page Banner</th>
 <th>Status</th>
-<th style = "width:165px"> Actions </th> 
+<th style = "width:150px"> Actions </th> 
                       </tr> 
                     </thead> 
                     <tbody> 
@@ -57,8 +58,8 @@
 <td th:text= "${pages.pageDescription}"> </td>
 <td th:text= "${pages.pageBanner}"> </td>
 <td th:text= "${pages.status}"> </td>
-<td> <a th:href="@{/pages/update/{id}(id=${pages.id})}" class="btn btn-primary">UPDATE</a> 
-						<a th:href="@{/pages/delete/{id}(id=${pages.id})}" class="btn btn-danger">DELETE</a> 
+<td> <a th:href="@{/pages/update/{id}(id=${pages.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/pages/delete/{id}(id=${pages.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

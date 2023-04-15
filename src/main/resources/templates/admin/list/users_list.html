@@ -30,10 +30,11 @@
         <div class="container-fluid"> 
           <div class="row"> 
             <div class="col-12"> 
- 
+  
  
               <div class="card"> 
-                <div class="card-header"> 
+                <div class="card-header">
+<a th:href="@{/user/create}" class="btn btn-primary btn-sm">ADD NEW USER</a>  
                 </div> 
                 <!-- /.card-header --> 
                 <div class="card-body"> 
@@ -49,7 +50,7 @@
 <th>Role</th>
 <th>Status</th>
 <th>Entry Date</th>
-<th style = "width:165px"> Actions </th> 
+<th style = "width:150px"> Actions </th> 
                       </tr> 
                     </thead> 
                     <tbody> 
@@ -63,8 +64,8 @@
 <td th:text= "${user.role}"> </td>
 <td th:text= "${user.status}"> </td>
 <td th:text= "${user.entryDate}"> </td>
-<td> <a th:href="@{/user/update/{id}(id=${user.id})}" class="btn btn-primary">UPDATE</a> 
-						<a th:href="@{/user/delete/{id}(id=${user.id})}" class="btn btn-danger">DELETE</a> 
+<td> <a th:href="@{/user/update/{id}(id=${user.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/user/delete/{id}(id=${user.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

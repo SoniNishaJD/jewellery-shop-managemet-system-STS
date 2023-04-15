@@ -47,7 +47,7 @@
                    
  <select th:field="${cart.user}" name="user" class="form-control col-md-3">  
   <option th:each="user:${listUsers}"  
-         th:text="${user.get()}"  
+         th:text="${user.getFirstName()}"  
          th:value="${user.getId()}"></option>  
  </select>  
                   </div> 
@@ -56,7 +56,7 @@
                    
  <select th:field="${cart.product}" name="product" class="form-control col-md-3">  
   <option th:each="product:${listProducts}"  
-         th:text="${product.get()}"  
+         th:text="${product.getName()}"  
          th:value="${product.getId()}"></option>  
  </select>  
                   </div> 
@@ -69,7 +69,8 @@
                 </div> 
                 <!-- /.card-body --> 
                 <div class="card-footer"> 
-                  <button type="submit" class="btn btn-primary">UPDATE</button> 
+                  <button type="submit" class="btn btn-primary btn-sm">UPDATE</button> 
+                  <a th:href="@{/cart/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a> 
                 </div> 
               </form> 
             </div> 
