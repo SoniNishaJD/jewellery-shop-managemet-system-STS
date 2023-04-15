@@ -24,15 +24,15 @@ public class BannerType {
 	private Integer id;
 
 	@Basic
-	@Column(name = "height", nullable = false)
-	private String height;
-
-	@Basic
 	@Column(name = "name", nullable = false, length = 255)
 	private String name;
 
 	@Basic
-	@Column(name = "width", nullable = false)
+	@Column(name = "height", nullable = false, length = 20)
+	private String height;
+
+	@Basic
+	@Column(name = "width", nullable = false, length = 20)
 	private String width;
 
 	@OneToMany(mappedBy = "bannerType", fetch = FetchType.LAZY)
@@ -46,20 +46,20 @@ public class BannerType {
 		this.id = id;
 	}
 
-	public String getHeight() {
-		return height;
-	}
-
-	public void setHeight(String height) {
-		this.height = height;
-	}
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getHeight() {
+		return height;
+	}
+
+	public void setHeight(String height) {
+		this.height = height;
 	}
 
 	public String getWidth() {
@@ -85,28 +85,28 @@ public class BannerType {
 		if (obj == null || getClass() != obj.getClass())
 			return false;
 		BannerType other = (BannerType) obj;
-		return Objects.equals(id, other.id) && Objects.equals(height, other.height) && Objects.equals(name, other.name)
+		return Objects.equals(id, other.id) && Objects.equals(name, other.name) && Objects.equals(height, other.height)
 				&& Objects.equals(width, other.width);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, height, name, width);
+		return Objects.hash(id, name, height, width);
 	}
 
 	public BannerType() {
 		super();
 	}
 
-	public BannerType(String height, String name, String width) {
+	public BannerType(String name, String height, String width) {
 		super();
-		this.height = height;
 		this.name = name;
+		this.height = height;
 		this.width = width;
 	}
 
 	@Override
 	public String toString() {
-		return "BannerType [id=" + id + ", height=" + height + ", name=" + name + ", width=" + width + "]";
+		return "BannerType [id=" + id + ", name=" + name + ", height=" + height + ", width=" + width + "]";
 	}
 }

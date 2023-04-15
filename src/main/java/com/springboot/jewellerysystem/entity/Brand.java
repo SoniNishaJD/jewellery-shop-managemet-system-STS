@@ -35,7 +35,6 @@ public class Brand {
 	@Column(name = "status", nullable = false)
 	private Integer status;
 
-
 	@OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
 	private Set<Product> product = new HashSet<>();
 
@@ -71,8 +70,6 @@ public class Brand {
 		this.status = status;
 	}
 
-	
-
 	public Set<Product> getProducts() {
 		return product;
 	}
@@ -89,7 +86,7 @@ public class Brand {
 			return false;
 		Brand other = (Brand) obj;
 		return Objects.equals(id, other.id) && Objects.equals(name, other.name) && Objects.equals(logo, other.logo)
-				&& Objects.equals(status, other.status) ;
+				&& Objects.equals(status, other.status);
 	}
 
 	@Override
@@ -106,11 +103,10 @@ public class Brand {
 		this.name = name;
 		this.logo = logo;
 		this.status = status;
-		
 	}
 
 	@Override
 	public String toString() {
-		return "Brand [id=" + id + ", name=" + name + ", logo=" + logo + ", status=" + status +  "]";
+		return "Brand [id=" + id + ", name=" + name + ", logo=" + logo + ", status=" + status + "]";
 	}
 }

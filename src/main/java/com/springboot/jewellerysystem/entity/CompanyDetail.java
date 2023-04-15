@@ -51,6 +51,10 @@ private String email;
 @Column(name="copy_right", nullable = false , length = 50)
 private String copyRight;
 
+@Basic
+@Column(name="home_page", nullable = false , length = 20)
+private String homePage;
+
 public Integer getId() { 
 	return id; 
 } 
@@ -107,22 +111,29 @@ public String getCopyRight() {
 public void setCopyRight(String copyRight) {
 	this.copyRight = copyRight;
 }
+public String getHomePage() { 
+	return homePage; 
+} 
+
+public void setHomePage(String homePage) {
+	this.homePage = homePage;
+}
   @Override
      public boolean equals(Object obj) {
          if (this == obj) return true;
          if (obj == null || getClass() != obj.getClass()) return false;
         CompanyDetail other = (CompanyDetail) obj;
-         return   Objects.equals(id, other.id)   &&   Objects.equals(name, other.name)   &&   Objects.equals(logo, other.logo)   &&   Objects.equals(helplineNo, other.helplineNo)   &&   Objects.equals(address, other.address)   &&   Objects.equals(phone, other.phone)   &&   Objects.equals(email, other.email)   &&   Objects.equals(copyRight, other.copyRight)  ;
+         return   Objects.equals(id, other.id)   &&   Objects.equals(name, other.name)   &&   Objects.equals(logo, other.logo)   &&   Objects.equals(helplineNo, other.helplineNo)   &&   Objects.equals(address, other.address)   &&   Objects.equals(phone, other.phone)   &&   Objects.equals(email, other.email)   &&   Objects.equals(copyRight, other.copyRight)   &&   Objects.equals(homePage, other.homePage)  ;
      }
  
      @Override
      public int hashCode() {
-         return Objects.hash(id, name, logo, helplineNo, address, phone, email, copyRight);
+         return Objects.hash(id, name, logo, helplineNo, address, phone, email, copyRight, homePage);
      }
 public CompanyDetail() { 
 super();
  }
-public CompanyDetail(String name, String logo, String helplineNo, String address, String phone, String email, String copyRight ){
+public CompanyDetail(String name, String logo, String helplineNo, String address, String phone, String email, String copyRight, String homePage ){
  super();
  this.name = name; 
 this.logo = logo; 
@@ -131,9 +142,10 @@ this.address = address;
 this.phone = phone; 
 this.email = email; 
 this.copyRight = copyRight; 
+this.homePage = homePage; 
 }
 @Override 
 public String toString() {
-return "CompanyDetail [id=" + id + ", name=" + name + ", logo=" + logo + ", helplineNo=" + helplineNo + ", address=" + address + ", phone=" + phone + ", email=" + email + ", copyRight=" + copyRight + "]" ; 
+return "CompanyDetail [id=" + id + ", name=" + name + ", logo=" + logo + ", helplineNo=" + helplineNo + ", address=" + address + ", phone=" + phone + ", email=" + email + ", copyRight=" + copyRight + ", homePage=" + homePage + "]" ; 
  } 
 }

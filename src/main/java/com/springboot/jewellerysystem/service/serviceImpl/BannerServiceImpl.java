@@ -33,8 +33,7 @@ return bannerDao.save(banner);
 
   @Override
  	    public void removeBanner(Integer id) {
- 	        this.bannerDao.deleteById(id);
- 	        System.out.println(id);
+ 	        bannerDao.deleteById(id);
  	    }
 
 }
