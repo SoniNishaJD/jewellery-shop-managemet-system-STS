@@ -1,7 +1,7 @@
 (function ($) {
     'use strict';
     /*----------------------------------------*/
-    /* Hiraola's Newsletter Popup
+    /* Jewellery's Newsletter Popup
 /*----------------------------------------*/
     setTimeout(function () {
         $('.popup_wrapper').css({
@@ -13,7 +13,7 @@
         });
     }, 5000);
     /*----------------------------------------*/
-    /*  Hiraola's Sticky Menu Activation
+    /*  Jewellery's Sticky Menu Activation
 /*----------------------------------------*/
     $(window).on('scroll', function () {
         if ($(this).scrollTop() > 300) {
@@ -23,7 +23,7 @@
         }
     });
     /*----------------------------------------*/
-    /*  Hiraola's Main Slider
+    /*  Jewellery's Main Slider
 /*----------------------------------------*/
     $('.main-slider').slick({
         infinite: true,
@@ -72,12 +72,12 @@
         $this.parents('.open').removeClass('open');
     });
     /*----------------------------------------*/
-    /*  Hiraola's Offcanvas
+    /*  Jewellery's Offcanvas
 /*----------------------------------------*/
     /*Variables*/
     var $offcanvasNav = $(
-            '.offcanvas-menu, .offcanvas-minicart_menu, .offcanvas-search_menu, .mobile-menu'
-        ),
+        '.offcanvas-menu, .offcanvas-minicart_menu, .offcanvas-search_menu, .mobile-menu'
+    ),
         $offcanvasNavWrap = $(
             '.offcanvas-menu_wrapper, .offcanvas-minicart_wrapper, .offcanvas-search_wrapper, .mobile-menu_wrapper'
         ),
@@ -220,9 +220,9 @@
 /*----------------------------------------*/
     $('.nice-select').niceSelect();
     /*----------------------------------------*/
-    /*  Hiraola's Product Slider
+    /*  Jewellery's Product Slider
 /*----------------------------------------*/
-    $('.hiraola-product_slider').slick({
+    $('.jewellery-product_slider').slick({
         infinite: true,
         arrows: true,
         dots: false,
@@ -267,9 +267,9 @@
         ],
     });
     /*----------------------------------------*/
-    /*  Hiraola's Product Slider Two
+    /*  Jewellery's Product Slider Two
 /*----------------------------------------*/
-    $('.hiraola-product_slider-2').slick({
+    $('.jewellery-product_slider-2').slick({
         infinite: true,
         arrows: true,
         dots: false,
@@ -314,9 +314,9 @@
         ],
     });
     /*----------------------------------------*/
-    /*  Hiraola's Product Slider Three
+    /*  Jewellery's Product Slider Three
 /*----------------------------------------*/
-    $('.hiraola-product_slider-3').slick({
+    $('.jewellery-product_slider-3').slick({
         infinite: true,
         arrows: true,
         dots: false,
@@ -361,9 +361,9 @@
         ],
     });
     /*----------------------------------------*/
-    /*  Hiraola's Special Product Slider
+    /*  Jewellery's Special Product Slider
 /*----------------------------------------*/
-    $('.hiraola-special-product_slider').slick({
+    $('.jewellery-special-product_slider').slick({
         infinite: true,
         arrows: true,
         dots: false,
@@ -408,9 +408,9 @@
         ],
     });
     /*----------------------------------------*/
-    /*  Hiraola's Trending Product Slider
+    /*  Jewellery's Trending Product Slider
 /*----------------------------------------*/
-    $('.hiraola-trending-product_slider').slick({
+    $('.jewellery-trending-product_slider').slick({
         infinite: true,
         arrows: false,
         dots: false,
@@ -455,9 +455,9 @@
         ],
     });
     /*----------------------------------------*/
-    /*  Hiraola's Blog Slider
+    /*  Jewellery's Blog Slider
 /*----------------------------------------*/
-    $('.hiraola-blog_slider').slick({
+    $('.jewellery-blog_slider').slick({
         infinite: true,
         arrows: false,
         dots: false,
@@ -502,9 +502,9 @@
         ],
     });
     /*----------------------------------------*/
-    /*  Hiraola's Single Blog Slider
+    /*  Jewellery's Single Blog Slider
 /*----------------------------------------*/
-    $('.hiraola-single-blog_slider').slick({
+    $('.jewellery-single-blog_slider').slick({
         infinite: true,
         arrows: false,
         dots: false,
@@ -550,9 +550,9 @@
         ],
     });
     /*----------------------------------------*/
-    /*  Hiraola's Testimonial Slider
+    /*  Jewellery's Testimonial Slider
 /*----------------------------------------*/
-    $('.hiraola-testimonial_slider').slick({
+    $('.jewellery-testimonial_slider').slick({
         infinite: true,
         arrows: true,
         dots: false,
@@ -605,7 +605,7 @@
         ],
     });
     /*----------------------------------------*/
-    /*  Hiraola's Testimonial Slider Two
+    /*  Jewellery's Testimonial Slider Two
 /*----------------------------------------*/
     $('.testimonial-img_slider').slick({
         infinite: true,
@@ -672,9 +672,9 @@
         dots: true,
     });
     /*----------------------------------------*/
-    /*  Hiraola's Brand Product Slider
+    /*  Jewellery's Brand Product Slider
 /*----------------------------------------*/
-    $('.hiraola-brand-product_slider').slick({
+    $('.jewellery-brand-product_slider').slick({
         infinite: true,
         arrows: false,
         dots: false,
@@ -718,9 +718,9 @@
             },
         ],
     });
-    /*  Hiraola's Product Tab Slider Two
+    /*  Jewellery's Product Tab Slider Two
 /*----------------------------------------*/
-    $('.hiraola-product-tab_slider-2').slick({
+    $('.jewellery-product-tab_slider-2').slick({
         infinite: true,
         arrows: true,
         dots: false,
@@ -765,9 +765,9 @@
         ],
     });
     /*----------------------------------------*/
-    /*  Hiraola's Product Tab Slider Three
+    /*  Jewellery's Product Tab Slider Three
 /*----------------------------------------*/
-    $('.hiraola-product-tab_slider-3').slick({
+    $('.jewellery-product-tab_slider-3').slick({
         infinite: true,
         arrows: true,
         dots: false,
@@ -812,7 +812,7 @@
         ],
     });
     /*----------------------------------------*/
-    /*  Hiraola's List Product Slider
+    /*  Jewellery's List Product Slider
 /*----------------------------------------*/
     $('.list-product_slider').slick({
         infinite: true,
@@ -860,9 +860,9 @@
         ],
     });
     /*----------------------------------------*/
-    /* Hiraola's Countdown
+    /* Jewellery's Countdown
 /*----------------------------------------*/
-    $('.hiraola-countdown').countdown('2022/12/01', function (event) {
+    $('.jewellery-countdown').countdown('2022/12/01', function (event) {
         $(this).html(
             event.strftime(
                 '<div class="count"><span class="count-amount">%D</span><span class="count-period">Days</span></div><div class="count"><span class="count-amount">%H</span><span class="count-period">Hrs</span></div><div class="count"><span class="count-amount">%M</span><span class="count-period">Mins</span></div><div class="count"><span class="count-amount">%S</span><span class="count-period">Secs</span></div>'
@@ -871,9 +871,9 @@
     });
 
     /*---------------------------------------------*/
-    /*  Hiraola's Brand Slider
+    /*  Jewellery's Brand Slider
 /*----------------------------------------------*/
-    $('.hiraola-brand_slider').slick({
+    $('.jewellery-brand_slider').slick({
         infinite: true,
         arrows: true,
         dots: false,
@@ -924,7 +924,7 @@
         ],
     });
     /*----------------------------------
-	/* 	Instafeed active 
+    /* 	Instafeed active 
 ------------------------------------*/
     if ($('#Instafeed').length) {
         var feed = new Instafeed({
@@ -941,7 +941,7 @@
     }
 
     /*----------------------------------------*/
-    /*  Hiraola's Scroll To Top
+    /*  Jewellery's Scroll To Top
 /*----------------------------------------*/
     $.scrollUp({
         scrollText: '<i class="fa fa-chevron-up"></i>',
@@ -1021,7 +1021,7 @@
     });
 
     /*---------------------------------------------*/
-    /*  Hiraola'sCounterUp
+    /*  Jewellery'sCounterUp
 /*----------------------------------------------*/
     $('.count').counterUp({
         delay: 10,
@@ -1029,7 +1029,7 @@
     });
 
     /*----------------------------------------*/
-    /*  Hiraola's Product View Mode
+    /*  Jewellery's Product View Mode
 /*----------------------------------------*/
     function porductViewMode() {
         $(window).on({
@@ -1163,7 +1163,7 @@
     });
 
     /*-------------------------------------------------*/
-    /* Hiraola's Sticky Sidebar
+    /* Jewellery's Sticky Sidebar
 /*-------------------------------------------------*/
     $('#sticky-sidebar').theiaStickySidebar({
         // Settings
@@ -1171,7 +1171,7 @@
     });
 
     /*-------------------------------------------------*/
-    /* Hiraola's Bootstraps 4 Tooltip
+    /* Jewellery's Bootstraps 4 Tooltip
 /*-------------------------------------------------*/
     $(function () {
         $('[data-bs-toggle="tooltip"]').tooltip();
@@ -1193,17 +1193,17 @@
         });
         amountprice.val(
             '$' +
-                sliderrange.slider('values', 0) +
-                ' - $' +
-                sliderrange.slider('values', 1)
+            sliderrange.slider('values', 0) +
+            ' - $' +
+            sliderrange.slider('values', 1)
         );
     });
     /*----------------------------------------*/
-    /*  Hiraola's Slick Carousel
+    /*  Jewellery's Slick Carousel
  /*----------------------------------------*/
     var $html = $('html');
     var $body = $('body');
-    var $elementCarousel = $('.hiraola-slick-slider');
+    var $elementCarousel = $('.jewellery-slick-slider');
     // Check if element exists
     $.fn.elExists = function () {
         return this.length > 0;
@@ -1233,8 +1233,8 @@
                     : '';
 
             var $spaceBetween = $options.spaceBetween
-                    ? parseInt($options.spaceBetween, 10)
-                    : 0,
+                ? parseInt($options.spaceBetween, 10)
+                : 0,
                 $spaceBetween_xl = $options.spaceBetween_xl
                     ? parseInt($options.spaceBetween_xl, 10)
                     : 0,
@@ -1281,27 +1281,27 @@
                     $arrows === true
                         ? $options.prevArrow
                             ? '<span class="' +
-                              $options.prevArrow.buttonClass +
-                              '"><i class="' +
-                              $options.prevArrow.iconClass +
-                              '"></i></span>'
+                            $options.prevArrow.buttonClass +
+                            '"><i class="' +
+                            $options.prevArrow.iconClass +
+                            '"></i></span>'
                             : '<button class="tty-slick-text-btn tty-slick-text-prev"><i class="ion-ios-arrow-back"></i></span>'
                         : '',
                 $nextArrow =
                     $arrows === true
                         ? $options.nextArrow
                             ? '<span class="' +
-                              $options.nextArrow.buttonClass +
-                              '"><i class="' +
-                              $options.nextArrow.iconClass +
-                              '"></i></span>'
+                            $options.nextArrow.buttonClass +
+                            '"><i class="' +
+                            $options.nextArrow.iconClass +
+                            '"></i></span>'
                             : '<button class="tty-slick-text-btn tty-slick-text-next"><i class="ion-ios-arrow-forward"></i></span>'
                         : '',
                 $rows = $options.rows ? parseInt($options.rows, 10) : 1,
                 $rtl =
                     $options.rtl ||
-                    $html.attr('dir="rtl"') ||
-                    $body.attr('dir="rtl"')
+                        $html.attr('dir="rtl"') ||
+                        $body.attr('dir="rtl"')
                         ? true
                         : false,
                 $slidesToShow = $options.slidesToShow
@@ -1313,9 +1313,9 @@
 
             /*Responsive Variable, Array & Loops*/
             var $responsiveSetting =
-                    typeof $this.data('slick-responsive') !== 'undefined'
-                        ? $this.data('slick-responsive')
-                        : '',
+                typeof $this.data('slick-responsive') !== 'undefined'
+                    ? $this.data('slick-responsive')
+                    : '',
                 $responsiveSettingLength = $responsiveSetting.length,
                 $responsiveArray = [];
             for (var i = 0; i < $responsiveSettingLength; i++) {
@@ -1543,7 +1543,7 @@
         ],
     });
     /*----------------------------------------*/
-    /*  Hiraola's Color List
+    /*  Jewellery's Color List
  /*----------------------------------------*/
 
     $('.color-list a').on('click', function (e) {
@@ -1625,8 +1625,8 @@
         ],
     });
     /*--------------------------
-        Hiraola's Product Zoom
-	---------------------------- */
+        Jewellery's Product Zoom
+    ---------------------------- */
     $('.zoompro').elevateZoom({
         gallery: 'gallery',
         galleryActiveClass: 'active',
@@ -1676,8 +1676,8 @@
         ],
     });
     /*------------------------------------
-	        DateCountdown active 1
-	    ------------------------------------- */
+            DateCountdown active 1
+        ------------------------------------- */
     $('.DateCountdown').TimeCircles({
         direction: 'Counter-clockwise',
         fg_width: 0.009,
@@ -1727,49 +1727,49 @@
     /*--------------------------------
     Ajax Contact Form
 -------------------------------- */
-$(function () {
-    // Get the form.
-    var form = $('#contact-form');
-    // Get the messages div.
-    var formMessages = $('.form-message');
-    // Set up an event listener for the contact form.
-    $(form).submit(function (e) {
-        // Stop the browser from submitting the form.
-        e.preventDefault();
-        // Serialize the form data.
-        var formData = $(form).serialize();
-        // Submit the form using AJAX.
-        $.ajax({
-            type: 'POST',
-            url: $(form).attr('action'),
-            data: formData,
-        })
-            .done(function (response) {
-                // Make sure that the formMessages div has the 'success' class.
-                $(formMessages).removeClass('error');
-                $(formMessages).addClass('success');
-
-                // Set the message text.
-                $(formMessages).text(response);
-
-                // Clear the form.
-                $('#contact-form input,#contact-form textarea').val('');
+    $(function () {
+        // Get the form.
+        var form = $('#contact-form');
+        // Get the messages div.
+        var formMessages = $('.form-message');
+        // Set up an event listener for the contact form.
+        $(form).submit(function (e) {
+            // Stop the browser from submitting the form.
+            e.preventDefault();
+            // Serialize the form data.
+            var formData = $(form).serialize();
+            // Submit the form using AJAX.
+            $.ajax({
+                type: 'POST',
+                url: $(form).attr('action'),
+                data: formData,
             })
-            .fail(function (data) {
-                // Make sure that the formMessages div has the 'error' class.
-                $(formMessages).removeClass('success');
-                $(formMessages).addClass('error');
+                .done(function (response) {
+                    // Make sure that the formMessages div has the 'success' class.
+                    $(formMessages).removeClass('error');
+                    $(formMessages).addClass('success');
 
-                // Set the message text.
-                if (data.responseText !== '') {
-                    $(formMessages).text(data.responseText);
-                } else {
-                    $(formMessages).text(
-                        'Oops! An error occured and your message could not be sent.'
-                    );
-                }
-            });
+                    // Set the message text.
+                    $(formMessages).text(response);
+
+                    // Clear the form.
+                    $('#contact-form input,#contact-form textarea').val('');
+                })
+                .fail(function (data) {
+                    // Make sure that the formMessages div has the 'error' class.
+                    $(formMessages).removeClass('success');
+                    $(formMessages).addClass('error');
+
+                    // Set the message text.
+                    if (data.responseText !== '') {
+                        $(formMessages).text(data.responseText);
+                    } else {
+                        $(formMessages).text(
+                            'Oops! An error occured and your message could not be sent.'
+                        );
+                    }
+                });
+        });
     });
-});
 
 })(jQuery);

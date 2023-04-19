@@ -21,7 +21,7 @@ public class DashboardController {
 
 	
 	
-	@GetMapping(value = "/")
+	@GetMapping(value = "/admin")
 	public String getDashboard(Model m) {
 		
 		int p_count =  productService.getAllProduct().size();

@@ -1,19 +1,23 @@
 package com.springboot.jewellerysystem.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springboot.jewellerysystem.entity.Category;
 import com.springboot.jewellerysystem.entity.MainCategory;
 import com.springboot.jewellerysystem.service.CategoryService;
 import com.springboot.jewellerysystem.service.MainCategoryService;
+import com.springboot.jewellerysystem.util.FileUploadUtil;
 
 @Controller
 @RequestMapping(value = "category")
@@ -60,7 +64,14 @@ public class CategoryController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(Category category) {
+	public String save(Category category, @RequestParam("file")MultipartFile file) throws IOException {
+		
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		category.setImage(fileName);
+		String uploadDir = "assets/images/category";
+		FileUploadUtil.saveFile(uploadDir, fileName, file);
+
+		
 		categoryService.createOrUpdateCategory(category);
 		return "redirect:/category/index";
 	}

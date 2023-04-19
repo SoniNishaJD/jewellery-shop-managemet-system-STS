@@ -97,7 +97,10 @@ public class MainCategory {
 	public MainCategory() {
 		super();
 	}
-
+	public MainCategory(int id) {
+		super();
+		this.id = id;
+	}
 	public MainCategory(String name, String image, Integer status) {
 		super();
 		this.name = name;

@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "product")
@@ -302,5 +303,13 @@ public class Product {
 				+ salesPrice + ", groseWeight=" + groseWeight + ", netWeight=" + netWeight + ", isFixedLabour="
 				+ isFixedLabour + ", labour=" + labour + ", otherCharges=" + otherCharges + ", productDescription="
 				+ productDescription + ", status=" + status + "]";
+	}
+	
+	@Transient
+	public String getImagePath() {
+		if (image == null )
+			return null;
+
+		return "/assets1/images/products/" + image;
 	}
 }

@@ -1,14 +1,22 @@
 package com.springboot.jewellerysystem.controller;
 
+import com.springboot.jewellerysystem.entity.Banner;
+import com.springboot.jewellerysystem.entity.BannerImage;
 import com.springboot.jewellerysystem.entity.CompanyDetail; 
-import com.springboot.jewellerysystem.service.CompanyDetailService; 
+import com.springboot.jewellerysystem.service.CompanyDetailService;
+import com.springboot.jewellerysystem.util.FileUploadUtil;
+
 import org.springframework.stereotype.Controller; 
-import org.springframework.ui.Model; 
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.PostMapping; 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
-import org.springframework.web.bind.annotation.RequestParam; 
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List; 
 @Controller 
 @RequestMapping(value = "companyDetail") 
@@ -41,11 +49,20 @@ public class CompanyDetailController {
     public String updateCompanyDetail(@PathVariable(value = "id") Integer id, Model model) { 
         CompanyDetail companyDetail = companyDetailService.loadCompanyDetailById(id); 
         model.addAttribute("companyDetail", companyDetail); 
+        List<CompanyDetail> companyDetails = companyDetailService.getAllCompanyDetail();
+    	model.addAttribute("listCompanyDetails", companyDetails);
         return "admin/edit/companyDetail_edit"; 
     }
- 
+    
     @PostMapping(value = "/save") 
-    public String save(CompanyDetail companyDetail) { 
+    public String save(CompanyDetail companyDetail, @RequestParam("file")MultipartFile file) throws IOException {
+    	
+    	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		companyDetail.setLogo(fileName);
+		String uploadDir = "assets/images/companyDetail";
+		FileUploadUtil.saveFile(uploadDir, fileName, file);
+
+    	
         companyDetailService.createOrUpdateCompanyDetail(companyDetail); 
         return "redirect:/companyDetail/index"; 
     }

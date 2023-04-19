@@ -1,19 +1,25 @@
 package com.springboot.jewellerysystem.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springboot.jewellerysystem.entity.Banner;
 import com.springboot.jewellerysystem.entity.BannerImage;
 import com.springboot.jewellerysystem.service.BannerImageService;
 import com.springboot.jewellerysystem.service.BannerService;
+import com.springboot.jewellerysystem.util.FileUploadUtil;
+
+
 
 @Controller
 @RequestMapping(value = "bannerImage")
@@ -60,7 +66,13 @@ public class BannerImageController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(BannerImage bannerImage) {
+	public String save(BannerImage bannerImage, @RequestParam("file")MultipartFile file) throws IOException {
+		
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		bannerImage.setBannerImage(fileName);
+		String uploadDir = "assets/images/bannerImage";
+		FileUploadUtil.saveFile(uploadDir, fileName, file);
+		
 		bannerImageService.createOrUpdateBannerImage(bannerImage);
 		return "redirect:/bannerImage/index";
 	}
