@@ -3,14 +3,14 @@ package com.springboot.jewellerysystem.service;
 import com.springboot.jewellerysystem.entity.ContactUs;
 import java.util.List;
 
-public interface ContactUsService { 
+public interface ContactUsService {
 
-  List<ContactUs> getAllContactUs();
+	List<ContactUs> getAllContactUs();
 
-ContactUs loadContactUsById(Integer id );
+	ContactUs loadContactUsById(Integer id);
 
-ContactUs createOrUpdateContactUs(ContactUs contactUs);
+	ContactUs createOrUpdateContactUs(ContactUs contactUs);
 
-void removeContactUs(Integer id);
+	void removeContactUs(Integer id);
 
-} 
+}

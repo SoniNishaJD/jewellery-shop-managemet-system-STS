@@ -688,37 +688,23 @@
                                 </div>
 
                                 <div class="widget-short_desc">
-                                    <p>We are a team of designers and developers that create high quality HTML Template
-                                        &
-                                        Woocommerce, Shopify Theme.
+                                    <p>You may need to contact the Jewellery shop directly. You can usually
+                                        find their contact information on their website or through a quick online
+                                        search.
                                     </p>
                                 </div>
                                 <div class="jewellery-social_link">
                                     <ul>
-                                        <li class="facebook">
-                                            <a href="https://www.facebook.com" data-bs-toggle="tooltip" target="_blank"
-                                                title="Facebook">
-                                                <i class="fab fa-facebook"></i>
+
+
+                                        <li th:each="link:${listLink}" th:class="${link.linkType}">
+                                            <a th:href="@{${link.url}}" data-bs-toggle="tooltip" target="_blank"
+                                                th:title="${link.linkType}">
+                                                <i th:class="'fab fa-'+${link.linkType}"></i>
                                             </a>
                                         </li>
-                                        <li class="twitter">
-                                            <a href="https://twitter.com" data-bs-toggle="tooltip" target="_blank"
-                                                title="Twitter">
-                                                <i class="fab fa-twitter-square"></i>
-                                            </a>
-                                        </li>
-                                        <li class="google-plus">
-                                            <a href="https://www.plus.google.com/discover" data-bs-toggle="tooltip"
-                                                target="_blank" title="Google Plus">
-                                                <i class="fab fa-google-plus"></i>
-                                            </a>
-                                        </li>
-                                        <li class="instagram">
-                                            <a href="https://rss.com" data-bs-toggle="tooltip" target="_blank"
-                                                title="Instagram">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </li>
+
+
                                     </ul>
                                 </div>
                             </div>
@@ -728,14 +714,14 @@
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div class="footer-widgets_title">
-                                            <h6>Product</h6>
+                                            <h6>Get to know us</h6>
                                         </div>
                                         <div class="footer-widgets">
                                             <ul>
-                                                <li><a href="#">Prices drop</a></li>
-                                                <li><a href="#">New products</a></li>
-                                                <li><a href="#">Best sales</a></li>
-                                                <li><a href="#">Contact us</a></li>
+                                                <li><a th:href="@{/contact}">FAQ</a></li>
+                                                <li><a th:href="@{/contact}">Blog</a></li>
+                                                <li><a th:href="@{/contact}">Shop Map</a></li>
+                                                <li><a th:href="@{/contact}">Contact us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -747,17 +733,16 @@
                                             <div class="widgets-essential_stuff">
                                                 <ul>
                                                     <li class="jewellery-address"><i
-                                                            class="ion-ios-location"></i><span>Address:</span> The Barn,
-                                                        Ullenhall, Henley
-                                                        in
-                                                        Arden B578 5CC, England</li>
+                                                            class="ion-ios-location"></i><span>Address:</span><span
+                                                            th:text="${companyDetail.getAddress()}"></span> </li>
                                                     <li class="jewellery-phone"><i
-                                                            class="ion-ios-telephone"></i><span>Call
-                                                            Us:</span> <a href="tel://+123123321345">+123 321 345</a>
+                                                            class="ion-ios-telephone"></i><span>Contact
+                                                            Us:</span> <span
+                                                            th:text="${companyDetail.getHelplineNo()}"></span>
                                                     </li>
                                                     <li class="jewellery-email"><i
-                                                            class="ion-android-mail"></i><span>Email:</span> <a
-                                                            href="mailto://info@yourdomain.com">info@yourdomain.com</a>
+                                                            class="ion-android-mail"></i><span>Email:</span>
+                                                        <span th:text="${companyDetail.getEmail()}"></span>
                                                     </li>
                                                 </ul>
                                             </div>

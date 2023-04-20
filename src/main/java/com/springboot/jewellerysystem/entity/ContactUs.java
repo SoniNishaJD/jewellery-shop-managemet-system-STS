@@ -9,7 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "contact_us")
@@ -40,10 +46,18 @@ public class ContactUs {
 	@Column(name = "message", nullable = false, length = 255)
 	private String message;
 
-	@Basic
+	@Basic	
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@CreationTimestamp
 	@Column(name = "enquiry_date", nullable = false)
-	private Date enquiryDate;
+	public Date enquiryDate;
 
+	@PrePersist
+	private void onCreate() {
+		enquiryDate = new Date();
+	}
+	
 	@Basic
 	@Column(name = "is_read", nullable = false, length = 1)
 	private String isRead;

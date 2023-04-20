@@ -40,17 +40,18 @@
                                 fill out the form below, and one of our representatives will get back to you.</p>
                             <div class="single-contact-block">
                                 <h4><i class="fa fa-fax"></i> Address</h4>
-                                <p>Visnagar, near Golwad, Maya Bazar, Visnagar, Gujarat 384315</p>
+                                <p><span th:text="${companyDetail.getAddress()}"></span></p>
+                                <!-- Visnagar, near Golwad, Maya Bazar, Visnagar, Gujarat 384315</p> -->
                             </div>
                             <div class="single-contact-block">
                                 <h4><i class="fa fa-phone"></i> Phone</h4>
-                                <p>Mobile: 9428 663 300</p>
-                                <p>Hotline: 9016 610 800</p>
+                                <p>Mobile: <span th:text="${companyDetail.getPhone()}"></span></p>
+                                <p>Helpline: <span th:text="${companyDetail.getHelplineNo()}"></span></p>
                             </div>
                             <div class="single-contact-block last-child">
                                 <h4><i class="fa fa-envelope-o"></i> Email</h4>
-                                <p>yourmail@domain.com</p>
-                                <p>support@hastech.company</p>
+                                <p><span th:text="${companyDetail.getEmail()}"></span></p>
+
                             </div>
                         </div>
                     </div>
@@ -58,23 +59,26 @@
                         <div class="contact-form-content">
                             <h3 class="contact-page-title">Tell Us Your Message</h3>
                             <div class="contact-form">
-                                <form id="contact-form"
-                                    action="https://whizthemes.com/mail-php/mamunur/jewellery/jewellery.php">
+                                <form id="contact-form" th:action="@{/contact/save}" method="post">
                                     <div class="form-group">
-                                        <label>Your Name <span class="required">*</span></label>
-                                        <input type="text" name="con_name" required>
+                                        <label>Your First Name <span class="required">*</span></label>
+                                        <input type="text" name="firstName" required th:field="${contactUs.firstName}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Your Last Name <span class="required">*</span></label>
+                                        <input type="text" name="lastName" required th:field="${contactUs.lastName}">
                                     </div>
                                     <div class="form-group">
                                         <label>Your Email <span class="required">*</span></label>
-                                        <input type="email" name="con_email" required>
+                                        <input type="email" name="email" required th:field="${contactUs.email}">
                                     </div>
                                     <div class="form-group">
-                                        <label>Subject</label>
-                                        <input type="text" name="con_subject">
+                                        <label>Your Phone</label>
+                                        <input type="text" name="phone" th:field="${contactUs.phone}">
                                     </div>
                                     <div class="form-group form-group-2">
                                         <label>Your Message</label>
-                                        <textarea name="con_message"></textarea>
+                                        <textarea name="message" th:field="${contactUs.message}"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" value="submit" id="submit"

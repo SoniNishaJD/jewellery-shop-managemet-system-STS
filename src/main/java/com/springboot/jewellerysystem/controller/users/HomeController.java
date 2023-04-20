@@ -6,12 +6,19 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.springboot.jewellerysystem.entity.Category;
+import com.springboot.jewellerysystem.entity.CompanyDetail;
+import com.springboot.jewellerysystem.entity.ContactUs;
+import com.springboot.jewellerysystem.entity.Link;
 import com.springboot.jewellerysystem.entity.MainCategory;
 import com.springboot.jewellerysystem.entity.OurService;
 import com.springboot.jewellerysystem.entity.Product;
 import com.springboot.jewellerysystem.service.CategoryService;
+import com.springboot.jewellerysystem.service.CompanyDetailService;
+import com.springboot.jewellerysystem.service.ContactUsService;
+import com.springboot.jewellerysystem.service.LinkService;
 import com.springboot.jewellerysystem.service.OurServiceService;
 import com.springboot.jewellerysystem.service.ProductService;
 
@@ -24,15 +31,31 @@ public class HomeController {
 	
 	private OurServiceService ourServiceService;
 	
+	private CompanyDetailService companyDetailService;
+	
+	private ContactUsService contactUsService;
+	
+	private LinkService linkService;
+	
+	
+	
+	
+	
 	
 	
 	public HomeController(CategoryService categoryService, ProductService productService,
-			OurServiceService ourServiceService) {
+			OurServiceService ourServiceService, CompanyDetailService companyDetailService,
+			ContactUsService contactUsService, LinkService linkService) {
 		super();
 		this.categoryService = categoryService;
 		this.productService = productService;
 		this.ourServiceService = ourServiceService;
+		this.companyDetailService = companyDetailService;
+		this.contactUsService = contactUsService;
+		this.linkService = linkService;
 	}
+
+
 
 
 
@@ -77,7 +100,12 @@ public class HomeController {
 		List<Category> listCategory2 = categoryService.getAllCategory().subList(0, 10);
 		m.addAttribute("listCategory2",listCategory2);
 		
+		List<Link> listLink = linkService.getAllLink();
+		m.addAttribute("listLink" , listLink);
 		
+		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
+		m.addAttribute("companyDetail", companyDetail);
+	
 		
 		return "user/index";
 	}
@@ -88,8 +116,22 @@ public class HomeController {
 	}
 	
 	@GetMapping("/contact")
-	public String showContact() {
+	public String showContact(Model m,ContactUs contactUs) {
+		
+		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
+		m.addAttribute("companyDetail", companyDetail);
+	
+		
 		return "user/contact";
+	}
+	
+	@PostMapping("/contact/save")
+	public String saveContact(ContactUs contactUs) {
+		
+		contactUsService.createOrUpdateContactUs(contactUs);
+		
+		
+		return "redirect:/user/index";
 	}
 	
 	@GetMapping("/cart")
