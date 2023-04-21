@@ -16,7 +16,7 @@ import com.springboot.jewellerysystem.service.OrderService;
 import com.springboot.jewellerysystem.service.UserService;
 
 @Controller
-@RequestMapping(value = "order")
+@RequestMapping(value = "admin/order")
 public class OrderController {
 	private OrderService orderService;
 	private UserService userService;

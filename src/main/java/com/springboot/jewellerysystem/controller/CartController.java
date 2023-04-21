@@ -18,7 +18,7 @@ import com.springboot.jewellerysystem.service.ProductService;
 import com.springboot.jewellerysystem.service.UserService;
 
 @Controller
-@RequestMapping(value = "cart")
+@RequestMapping(value = "admin/cart")
 public class CartController {
 	private CartService cartService;
 	private UserService userService;

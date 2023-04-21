@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List; 
 @Controller 
-@RequestMapping(value = "brand") 
+@RequestMapping(value = "admin/brand") 
 public class BrandController { 
  private BrandService brandService; 
     public BrandController(BrandService brandService) { 
@@ -60,7 +60,7 @@ public class BrandController {
     	
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		brand.setLogo(fileName);
-		String uploadDir = "assets/images/brand";
+		String uploadDir = "assets1/images/brand";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 
     	

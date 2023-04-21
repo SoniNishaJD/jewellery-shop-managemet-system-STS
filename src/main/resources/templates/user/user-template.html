@@ -119,35 +119,21 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="header-logo">
-                                <a href="index.html">
-                                    <img th:src="@{assets/images/menu/logo/1.png}" alt="Jewellery's Header Logo">
+                                <a th:href="@{/}">
+                                    <img th:src="@{${companyDetail.imagePath}}" alt="Jewellery's Header Logo">
                                 </a>
                             </div>
                         </div>
                         <div class="col-lg-9">
                             <div class="hm-form_area">
-                                <form action="#" class="hm-searchbox">
-                                    <select class="nice-select select-search-category">
+                                <form th:action="@{/shop}" class="hm-searchbox">
+                                    <select class="nice-select select-search-category" name="category">
                                         <option value="0">All</option>
-                                        <option value="10">Rings</option>
-                                        <option value="17">Pendents</option>
-                                        <option value="20">Earrings</option>
-                                        <option value="21">Mangalsutra</option>
-                                        <option value="22">Nacklace</option>
-                                        <option value="23">Necklace Set</option>
-                                        <option value="24">Bangles</option>
-                                        <option value="25">Bracelets</option>
-                                        <option value="26">Nose Pins</option>
-                                        <option value="27">Pendent & Earring Set</option>
-                                        <option value="28">Kids Bangles</option>
-                                        <option value="18">Kids Anklets</option>
-                                        <option value="29">Kids Bracelets</option>
-                                        <option value="30">Kids Rings</option>
-                                        <option value="31">Kids Chain</option>
-                                        <option value="32">Kids Earring </option>
-                                        <option value="33">Maang Tikka</option>
+                                        <option th:each="category:${listCategory}" th:value="${category.id}"
+                                            th:text="${category.name}"></option>
+
                                     </select>
-                                    <input type="text" placeholder="Enter your Jewellery Type ...">
+                                    <input type="text" placeholder="Enter your Jewellery Type ..." name="search">
                                     <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
                                 </form>
                             </div>
@@ -160,8 +146,8 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-4 d-lg-none d-block">
                             <div class="header-logo">
-                                <a href="index.html">
-                                    <img th:src="@{assets/images/menu/logo/2.png}" alt="Jewellery's Header Logo">
+                                <a href="@{/}">
+                                    <img th:src="@{${companyDetail.imagePath}}" alt="Jewellery's Header Logo">
                                 </a>
                             </div>
                         </div>
@@ -683,7 +669,7 @@
 
                                 <div class="footer-widgets_logo">
                                     <a href="#">
-                                        <img th:src="@{assets/images/footer/logo/1.png}" alt="Jewellery's Footer Logo">
+                                        <img th:src="@{${companyDetail.imagePath}}" alt="Jewellery's Footer Logo">
                                     </a>
                                 </div>
 

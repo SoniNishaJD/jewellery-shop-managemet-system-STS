@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
 @Controller 
-@RequestMapping(value = "faq") 
+@RequestMapping(value = "admin/faq") 
 public class FaqController { 
  private FaqService faqService; 
     public FaqController(FaqService faqService) { 

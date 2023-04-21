@@ -18,7 +18,7 @@ import com.springboot.jewellerysystem.service.UserService;
 import com.springboot.jewellerysystem.service.WishlistService;
 
 @Controller
-@RequestMapping(value = "wishlist")
+@RequestMapping(value = "admin/wishlist")
 public class WishlistController {
 	private WishlistService wishlistService;
 	private ProductService productService;

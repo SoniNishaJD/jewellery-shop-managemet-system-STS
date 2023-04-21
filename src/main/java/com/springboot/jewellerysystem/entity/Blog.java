@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "blog")
@@ -152,5 +153,12 @@ public class Blog {
 	public String toString() {
 		return "Blog [id=" + id + ", title=" + title + ", shortDescription=" + shortDescription + ", description="
 				+ description + ", image=" + image + ", entryDate=" + entryDate + ", status=" + status + "]";
+	}
+	@Transient
+	public String getImagePath() {
+		if (image == null )
+			return null;
+
+		return "/assets1/images/blog/" + image;
 	}
 }

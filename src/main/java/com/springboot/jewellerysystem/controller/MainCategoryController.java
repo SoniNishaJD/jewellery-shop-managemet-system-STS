@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List; 
 @Controller 
-@RequestMapping(value = "mainCategory") 
+@RequestMapping(value = "admin/mainCategory") 
 public class MainCategoryController { 
  private MainCategoryService mainCategoryService; 
     public MainCategoryController(MainCategoryService mainCategoryService) { 
@@ -55,7 +55,7 @@ public class MainCategoryController {
       
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		mainCategory.setImage(fileName);
-		String uploadDir = "assets/images/mainCategory";
+		String uploadDir = "assets1/images/mainCategory";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 
     	

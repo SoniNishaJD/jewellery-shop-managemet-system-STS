@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
 @Controller 
-@RequestMapping(value = "currency") 
+@RequestMapping(value = "admin/currency") 
 public class CurrencyController { 
  private CurrencyService currencyService; 
     public CurrencyController(CurrencyService currencyService) { 

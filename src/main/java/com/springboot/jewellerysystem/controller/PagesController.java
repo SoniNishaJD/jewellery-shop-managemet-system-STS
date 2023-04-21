@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List; 
 @Controller 
-@RequestMapping(value = "pages") 
+@RequestMapping(value = "admin/pages") 
 public class PagesController { 
  private PagesService pagesService; 
     public PagesController(PagesService pagesService) { 
@@ -55,7 +55,7 @@ public class PagesController {
     	
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		pages.setPageBanner(fileName);
-		String uploadDir = "assets/images/pages";
+		String uploadDir = "assets1/images/pages";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
     	
         pagesService.createOrUpdatePages(pages); 

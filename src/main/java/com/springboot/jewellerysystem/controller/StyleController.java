@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List; 
 @Controller 
-@RequestMapping(value = "style") 
+@RequestMapping(value = "admin/style") 
 public class StyleController { 
  private StyleService styleService; 
     public StyleController(StyleService styleService) { 
@@ -55,7 +55,7 @@ public class StyleController {
     	
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		style.setImage(fileName);
-		String uploadDir = "assets/images/style";
+		String uploadDir = "assets1/images/style";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
     	
         styleService.createOrUpdateStyle(style); 

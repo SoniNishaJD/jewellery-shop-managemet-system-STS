@@ -20,7 +20,7 @@ import com.springboot.jewellerysystem.service.BlogService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
 
 @Controller
-@RequestMapping(value = "blog")
+@RequestMapping(value = "admin/blog")
 public class BlogController {
 	private BlogService blogService;
 	private BlogCategoryService blogCategoryService;

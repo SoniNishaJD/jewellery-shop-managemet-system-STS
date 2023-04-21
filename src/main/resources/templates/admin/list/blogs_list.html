@@ -34,7 +34,7 @@
  
               <div class="card"> 
                 <div class="card-header">
-<a th:href="@{/blog/create}" class="btn btn-primary btn-sm">ADD NEW BLOG</a>  
+<a th:href="@{/admin/blog/create}" class="btn btn-primary btn-sm">ADD NEW BLOG</a>  
                 </div> 
                 <!-- /.card-header --> 
                 <div class="card-body"> 
@@ -59,11 +59,11 @@
 <td th:text= "${blog.title}"> </td>
 <td th:text= "${blog.shortDescription}"> </td>
 <td th:text= "${blog.description}"> </td>
-<td th:text= "${blog.image}"> </td>
+<td > <img th:src=@{${blog.imagePath}} style="width:60px"/></td>
 <td th:text= "${blog.entryDate}"> </td>
-<td th:text= "${blog.status}"> </td>
-<td> <a th:href="@{/blog/update/{id}(id=${blog.id})}" class="btn btn-success btn-sm">UPDATE</a> 
-						<a th:href="@{/blog/delete/{id}(id=${blog.id})}" class="btn btn-danger btn-sm">DELETE</a> 
+<td th:text="${blog.status==1} ? 'ACTIVE' : 'NOT ACTIVE'"> </td>
+<td> <a th:href="@{/admin/blog/update/{id}(id=${blog.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/admin/blog/delete/{id}(id=${blog.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

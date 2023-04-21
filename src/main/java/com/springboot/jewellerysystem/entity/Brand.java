@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "brand")
@@ -108,5 +109,13 @@ public class Brand {
 	@Override
 	public String toString() {
 		return "Brand [id=" + id + ", name=" + name + ", logo=" + logo + ", status=" + status + "]";
+	}
+	
+	@Transient
+	public String getImagePath() {
+		if (logo == null )
+			return null;
+
+		return "/assets1/images/brand/" + logo;
 	}
 }

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "banner_image")
@@ -95,5 +96,15 @@ public class BannerImage {
 	@Override
 	public String toString() {
 		return "BannerImage [id=" + id + ", bannerImage=" + bannerImage + ", bannerLink=" + bannerLink + "]";
+
 	}
+	@Transient
+	public String getImagePath() {
+		if (bannerImage == null )
+			return null;
+
+		return "/assets1/images/bannerImage/" + bannerImage;
+	}
+
+
 }

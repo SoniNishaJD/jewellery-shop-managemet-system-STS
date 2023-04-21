@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List; 
 @Controller 
-@RequestMapping(value = "slider") 
+@RequestMapping(value = "admin/slider") 
 public class SliderController { 
  private SliderService sliderService; 
     public SliderController(SliderService sliderService) { 
@@ -55,7 +55,7 @@ public class SliderController {
     	
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		slider.setImage(fileName);
-		String uploadDir = "assets/images/slider";
+		String uploadDir = "assets1/images/slider";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
     	
         sliderService.createOrUpdateSlider(slider); 

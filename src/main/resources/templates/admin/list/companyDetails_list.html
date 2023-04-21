@@ -34,7 +34,7 @@
  
               <div class="card"> 
                 <div class="card-header">
-<a th:href="@{/companyDetail/create}" class="btn btn-primary btn-sm">ADD NEW COMPANYDETAIL</a>  
+<a th:href="@{/admin/companyDetail/create}" class="btn btn-primary btn-sm">ADD NEW COMPANYDETAIL</a>  
                 </div> 
                 <!-- /.card-header --> 
                 <div class="card-body"> 
@@ -57,15 +57,15 @@
                       <tr th:each="companyDetail : ${listCompanyDetails}">
 <td th:text= "${companyDetail.id}"> </td>
 <td th:text= "${companyDetail.name}"> </td>
-<td th:text= "${companyDetail.logo}"> </td>
+<td ><img th:src=@{${companyDetail.imagePath}} style="width:60px"/> </td>
 <td th:text= "${companyDetail.helplineNo}"> </td>
 <td th:text= "${companyDetail.address}"> </td>
 <td th:text= "${companyDetail.phone}"> </td>
 <td th:text= "${companyDetail.email}"> </td>
 <td th:text= "${companyDetail.copyRight}"> </td>
 <td th:text= "${companyDetail.homePage}"> </td>
-<td> <a th:href="@{/companyDetail/update/{id}(id=${companyDetail.id})}" class="btn btn-success btn-sm">UPDATE</a> 
-						<a th:href="@{/companyDetail/delete/{id}(id=${companyDetail.id})}" class="btn btn-danger btn-sm">DELETE</a> 
+<td> <a th:href="@{/admin/companyDetail/update/{id}(id=${companyDetail.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/admin/companyDetail/delete/{id}(id=${companyDetail.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

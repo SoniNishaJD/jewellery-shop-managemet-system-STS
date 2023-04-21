@@ -22,7 +22,7 @@ import com.springboot.jewellerysystem.util.FileUploadUtil;
 
 
 @Controller
-@RequestMapping(value = "bannerImage")
+@RequestMapping(value = "admin/bannerImage")
 public class BannerImageController {
 	private BannerImageService bannerImageService;
 	private BannerService bannerService;
@@ -70,7 +70,7 @@ public class BannerImageController {
 		
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		bannerImage.setBannerImage(fileName);
-		String uploadDir = "assets/images/bannerImage";
+		String uploadDir = "assets1/images/bannerImage";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 		
 		bannerImageService.createOrUpdateBannerImage(bannerImage);

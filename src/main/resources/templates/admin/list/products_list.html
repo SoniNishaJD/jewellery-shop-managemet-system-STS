@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="admin/index">
+
 <head>
-<title>Product List</title>
+	<title>Product List</title>
 </head>
+
 <body>
 
 	<div layout:fragment="content1">
@@ -37,7 +38,7 @@
 
 							<div class="card">
 								<div class="card-header">
-									<a th:href="@{/product/create}" class="btn btn-primary btn-sm">ADD
+									<a th:href="@{/admin/product/create}" class="btn btn-primary btn-sm">ADD
 										NEW PRODUCT</a>
 								</div>
 								<!-- /.card-header -->
@@ -68,7 +69,7 @@
 												<td th:text="${product.brand.name}"></td>
 												<td th:text="${product.category.name}"></td>
 												<td th:text="${product.name}"></td>
-												<td><img th:src="@{${product.PhotosImagePath}}" style="width:70px"/></td>
+												<td><img th:src="@{${product.imagePath}}" style="width:70px" /></td>
 												<td th:text="${product.mrp}"></td>
 												<td th:text="${product.salesPrice}"></td>
 												<td th:text="${product.groseWeight}"></td>
@@ -77,12 +78,11 @@
 												<td th:text="${product.labour}"></td>
 												<td th:text="${product.otherCharges}"></td>
 												<td th:text="${product.productDescription}"></td>
-												<td th:text="${product.status}"></td>
-												<td><a
-													th:href="@{/product/update/{id}(id=${product.id})}"
-													class="btn btn-success btn-sm">UPDATE</a> <a
-													th:href="@{/product/delete/{id}(id=${product.id})}"
-													class="btn btn-danger btn-sm">DELETE</a></td>
+												<td th:text="${product.status==1} ? 'ACTIVE' : 'NOT ACTIVE'" ></td>
+												<td><a th:href="@{/admin/product/update/{id}(id=${product.id})}"
+														class="btn btn-success btn-sm">UPDATE</a> <a
+														th:href="@{/admin/product/delete/{id}(id=${product.id})}"
+														class="btn btn-danger btn-sm">DELETE</a></td>
 											</tr>
 										</tbody>
 										<tfoot>

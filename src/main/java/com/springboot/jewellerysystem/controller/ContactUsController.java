@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
 @Controller 
-@RequestMapping(value = "contactUs") 
+@RequestMapping(value = "admin/contactUs") 
 public class ContactUsController { 
  private ContactUsService contactUsService; 
     public ContactUsController(ContactUsService contactUsService) { 

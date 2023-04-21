@@ -34,7 +34,7 @@
  
               <div class="card"> 
                 <div class="card-header">
-<a th:href="@{/cities/create}" class="btn btn-primary btn-sm">ADD NEW CITIES</a>  
+<a th:href="@{/admin/cities/create}" class="btn btn-primary btn-sm">ADD NEW CITIES</a>  
                 </div> 
                 <!-- /.card-header --> 
                 <div class="card-body"> 
@@ -44,7 +44,7 @@
 <th>Id</th>
 <th>State</th>
 <th>Name</th>
-<th>Status</th>
+
 <th style = "width:150px"> Actions </th> 
                       </tr> 
                     </thead> 
@@ -53,9 +53,9 @@
 <td th:text= "${cities.id}"> </td>
 <td th:text= "${cities.state.name}"> </td>
 <td th:text= "${cities.name}"> </td>
-<td th:text= "${cities.status}"> </td>
-<td> <a th:href="@{/cities/update/{id}(id=${cities.id})}" class="btn btn-success btn-sm">UPDATE</a> 
-						<a th:href="@{/cities/delete/{id}(id=${cities.id})}" class="btn btn-danger btn-sm">DELETE</a> 
+
+<td> <a th:href="@{/admin/cities/update/{id}(id=${cities.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/admin/cities/delete/{id}(id=${cities.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

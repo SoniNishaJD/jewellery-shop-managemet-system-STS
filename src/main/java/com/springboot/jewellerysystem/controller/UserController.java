@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam; 
 import java.util.List; 
 @Controller 
-@RequestMapping(value = "user") 
+@RequestMapping(value = "admin/user") 
 public class UserController { 
  private UserService userService; 
     public UserController(UserService userService) { 

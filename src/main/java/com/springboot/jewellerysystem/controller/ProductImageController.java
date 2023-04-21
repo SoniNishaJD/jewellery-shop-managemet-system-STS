@@ -20,7 +20,7 @@ import com.springboot.jewellerysystem.service.ProductService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
 
 @Controller
-@RequestMapping(value = "productImage")
+@RequestMapping(value = "admin/productImage")
 public class ProductImageController {
 	private ProductImageService productImageService;
 	private ProductService productService;
@@ -68,7 +68,7 @@ public class ProductImageController {
 		
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		productImage.setImage(fileName);
-		String uploadDir = "assets/images/productImage";
+		String uploadDir = "assets1/images/productImage";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 		
 		productImageService.createOrUpdateProductImage(productImage);

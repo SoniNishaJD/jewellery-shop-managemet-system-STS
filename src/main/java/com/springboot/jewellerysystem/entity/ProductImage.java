@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "product_image")
@@ -95,5 +96,13 @@ public class ProductImage {
 	@Override
 	public String toString() {
 		return "ProductImage [id=" + id + ", image=" + image + ", status=" + status + "]";
+	}
+
+@Transient
+	public String getImagePath() {
+		if (image == null )
+			return null;
+
+		return "/assets1/images/products/" + image;
 	}
 }

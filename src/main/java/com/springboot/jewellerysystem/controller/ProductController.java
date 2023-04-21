@@ -22,7 +22,7 @@ import com.springboot.jewellerysystem.service.ProductService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
 
 @Controller
-@RequestMapping(value = "product")
+@RequestMapping(value = "admin/product")
 public class ProductController {
 	private ProductService productService;
 	private BrandService brandService;

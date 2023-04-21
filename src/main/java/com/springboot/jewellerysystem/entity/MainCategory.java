@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "main_category")
@@ -111,5 +112,13 @@ public class MainCategory {
 	@Override
 	public String toString() {
 		return "MainCategory [id=" + id + ", name=" + name + ", image=" + image + ", status=" + status + "]";
+	}
+	
+	@Transient
+	public String getImagePath() {
+		if (image == null )
+			return null;
+
+		return "/assets1/images/mainCategory/" + image;
 	}
 }

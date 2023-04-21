@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "category")
@@ -122,5 +123,12 @@ public class Category {
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", image=" + image + ", status=" + status + "]";
+	}
+	@Transient
+	public String getImagePath() {
+		if (image == null )
+			return null;
+
+		return "/assets1/images/category/" + image;
 	}
 }

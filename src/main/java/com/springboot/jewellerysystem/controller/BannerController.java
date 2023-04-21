@@ -16,7 +16,7 @@ import com.springboot.jewellerysystem.service.BannerService;
 import com.springboot.jewellerysystem.service.BannerTypeService;
 
 @Controller
-@RequestMapping(value = "banner")
+@RequestMapping(value = "admin/banner")
 public class BannerController {
 	private BannerService bannerService;
 	private BannerTypeService bannerTypeService;

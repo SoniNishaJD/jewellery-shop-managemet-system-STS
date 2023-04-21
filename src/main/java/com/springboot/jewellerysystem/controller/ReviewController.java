@@ -16,7 +16,7 @@ import com.springboot.jewellerysystem.service.ProductService;
 import com.springboot.jewellerysystem.service.ReviewService;
 
 @Controller
-@RequestMapping(value = "review")
+@RequestMapping(value = "admin/review")
 public class ReviewController {
 	private ReviewService reviewService;
 	private ProductService productService;

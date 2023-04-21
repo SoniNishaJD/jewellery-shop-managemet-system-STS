@@ -1,5 +1,7 @@
 package com.springboot.jewellerysystem.entity;
 
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,12 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="slider")
@@ -148,4 +145,13 @@ this.status = status;
 public String toString() {
 return "Slider [id=" + id + ", image=" + image + ", text1=" + text1 + ", text2=" + text2 + ", text3=" + text3 + ", text4=" + text4 + ", btnText=" + btnText + ", btnLink=" + btnLink + ", status=" + status + "]" ; 
  } 
+
+@Transient
+	public String getImagePath() {
+		if (image == null )
+			return null;
+
+		return "/assets1/images/slider/" + image;
+	}
+
 }

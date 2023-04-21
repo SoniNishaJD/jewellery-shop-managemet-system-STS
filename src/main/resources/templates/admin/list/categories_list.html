@@ -54,10 +54,10 @@
 <td th:text= "${category.id}"> </td>
 <td th:text= "${category.mainCategory.name}"> </td>
 <td th:text= "${category.name}"> </td>
-<td th:text= "${category.image}"> </td>
-<td th:text= "${category.status}"> </td>
-<td> <a th:href="@{/category/update/{id}(id=${category.id})}" class="btn btn-success btn-sm">UPDATE</a> 
-						<a th:href="@{/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm">DELETE</a> 
+<td ><img th:src=@{${category.imagePath}} style="width:60px"/> </td>
+<td th:text="${category.status==1} ? 'ACTIVE' : 'NOT ACTIVE'"> </td>
+<td> <a th:href="@{/admin/category/update/{id}(id=${category.id})}" class="btn btn-success btn-sm">UPDATE</a> 
+						<a th:href="@{/admin/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm">DELETE</a> 
 					</td>  
                       </tr> 
                     </tbody> 

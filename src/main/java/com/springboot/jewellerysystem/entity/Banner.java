@@ -40,6 +40,8 @@ private Integer status;
 @OneToMany(mappedBy = "banner", fetch = FetchType.LAZY)
 private Set<BannerImage> bannerImage = new HashSet<>();
 
+
+
 public Integer getId() { 
 	return id; 
 } 

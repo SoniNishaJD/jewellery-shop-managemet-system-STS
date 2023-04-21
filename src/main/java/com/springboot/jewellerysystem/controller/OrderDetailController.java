@@ -18,7 +18,7 @@ import com.springboot.jewellerysystem.service.OrderService;
 import com.springboot.jewellerysystem.service.ProductService;
 
 @Controller
-@RequestMapping(value = "orderDetail")
+@RequestMapping(value = "admin/orderDetail")
 public class OrderDetailController {
 	private OrderDetailService orderDetailService;
 	private ProductService productService;

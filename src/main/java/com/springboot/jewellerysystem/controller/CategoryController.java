@@ -20,7 +20,7 @@ import com.springboot.jewellerysystem.service.MainCategoryService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
 
 @Controller
-@RequestMapping(value = "category")
+@RequestMapping(value = "admin/category")
 public class CategoryController {
 	private CategoryService categoryService;
 	private MainCategoryService mainCategoryService;
@@ -68,7 +68,7 @@ public class CategoryController {
 		
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		category.setImage(fileName);
-		String uploadDir = "assets/images/category";
+		String uploadDir = "assets1/images/category";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 
 		

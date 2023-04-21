@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List; 
 @Controller 
-@RequestMapping(value = "ourService") 
+@RequestMapping(value = "admin/ourService") 
 public class OurServiceController { 
  private OurServiceService ourServiceService; 
     public OurServiceController(OurServiceService ourServiceService) { 
@@ -55,7 +55,7 @@ public class OurServiceController {
     	
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		ourService.setImage(fileName);
-		String uploadDir = "assets/images/ourService";
+		String uploadDir = "assets1/images/ourService";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
     	
         ourServiceService.createOrUpdateOurService(ourService); 

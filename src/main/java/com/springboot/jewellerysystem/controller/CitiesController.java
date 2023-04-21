@@ -16,7 +16,7 @@ import com.springboot.jewellerysystem.service.CitiesService;
 import com.springboot.jewellerysystem.service.StateService;
 
 @Controller
-@RequestMapping(value = "cities")
+@RequestMapping(value = "admin/cities")
 public class CitiesController {
 	private CitiesService citiesService;
 	private StateService stateService;
