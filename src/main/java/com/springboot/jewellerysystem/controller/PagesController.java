@@ -54,9 +54,12 @@ public class PagesController {
     public String save(Pages pages, @RequestParam("file")MultipartFile file) throws IOException {
     	
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    	
+    	if(fileName.length() > 3) {
 		pages.setPageBanner(fileName);
 		String uploadDir = "assets1/images/pages";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
+    	}
     	
         pagesService.createOrUpdatePages(pages); 
         return "redirect:/pages/index"; 

@@ -58,6 +58,7 @@ public class BannerImageController {
 	@GetMapping(value = "/update/{id}")
 	public String updateBannerImage(@PathVariable(value = "id") Integer id, Model model) {
 		BannerImage bannerImage = bannerImageService.loadBannerImageById(id);
+		
 		model.addAttribute("bannerImage", bannerImage);
 		List<Banner> banners = bannerService.getAllBanner();
 		model.addAttribute("listBanners", banners);
@@ -69,9 +70,12 @@ public class BannerImageController {
 	public String save(BannerImage bannerImage, @RequestParam("file")MultipartFile file) throws IOException {
 		
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		bannerImage.setBannerImage(fileName);
-		String uploadDir = "assets1/images/bannerImage";
-		FileUploadUtil.saveFile(uploadDir, fileName, file);
+		
+		if(fileName.length() > 3) {
+			bannerImage.setBannerImage(fileName);		
+			String uploadDir = "assets1/images/bannerImage";
+			FileUploadUtil.saveFile(uploadDir, fileName, file);
+		}
 		
 		bannerImageService.createOrUpdateBannerImage(bannerImage);
 		return "redirect:/bannerImage/index";

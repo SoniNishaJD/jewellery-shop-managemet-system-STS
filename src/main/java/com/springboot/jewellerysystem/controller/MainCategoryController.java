@@ -54,10 +54,12 @@ public class MainCategoryController {
     public String save(MainCategory mainCategory, @RequestParam("file")MultipartFile file) throws IOException { 
       
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    	
+    	if(fileName.length() > 3) {
 		mainCategory.setImage(fileName);
 		String uploadDir = "assets1/images/mainCategory";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
-
+    	}
     	
     	mainCategoryService.createOrUpdateMainCategory(mainCategory); 
         return "redirect:/mainCategory/index"; 

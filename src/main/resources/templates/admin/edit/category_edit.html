@@ -64,8 +64,10 @@
                       <label for="image">Image</label>
                       <input type="file" accept="image/png, image/jpeg" name="file" class="form-control" id="file"
                         placeholder="Enter Image " >
+                        
                         <input type="hidden" th:value="${category.getImage()}">
-                        <img th:src="@{${category.imagePath}}" style="width:70px">
+                        <img th:src="${category.imagePath}" style="width:70px">
+                        
                     </div>
                     <div class="form-group">
                       <label for="status">Status</label>
@@ -80,7 +82,7 @@
                   <!-- /.card-body -->
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm">UPDATE</button>
-                    <a th:href="@{/category/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a>
+                    <a th:href="@{/admin/category/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a>
                   </div>
                 </form>
               </div>

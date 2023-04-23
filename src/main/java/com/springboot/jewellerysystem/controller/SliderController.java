@@ -54,9 +54,12 @@ public class SliderController {
     public String save(Slider slider, @RequestParam("file")MultipartFile file) throws IOException { 
     	
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    	
+    	if(fileName.length() > 3) {
 		slider.setImage(fileName);
 		String uploadDir = "assets1/images/slider";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
+    	}
     	
         sliderService.createOrUpdateSlider(slider); 
         return "redirect:/slider/index"; 

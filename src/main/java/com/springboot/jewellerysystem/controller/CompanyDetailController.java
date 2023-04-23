@@ -60,10 +60,12 @@ public class CompanyDetailController {
 	public String save(CompanyDetail companyDetail, @RequestParam("file") MultipartFile file) throws IOException {
 
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		if (fileName.length() > 3) {
 		companyDetail.setLogo(fileName);
 		String uploadDir = "assets1/images/companyDetail";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
-
+		}
+		
 		companyDetailService.createOrUpdateCompanyDetail(companyDetail);
 		return "redirect:/companyDetail/index";
 	}

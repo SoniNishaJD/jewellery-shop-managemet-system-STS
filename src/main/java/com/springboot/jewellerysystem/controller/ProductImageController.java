@@ -67,9 +67,12 @@ public class ProductImageController {
 	public String save(ProductImage productImage, @RequestParam("file")MultipartFile file) throws IOException {
 		
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		
+		if(fileName.length() > 3) {
 		productImage.setImage(fileName);
 		String uploadDir = "assets1/images/productImage";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
+		}
 		
 		productImageService.createOrUpdateProductImage(productImage);
 		return "redirect:/productImage/index";

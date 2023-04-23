@@ -54,9 +54,12 @@ public class StyleController {
     public String save(Style style, @RequestParam("file")MultipartFile file) throws IOException {
     	
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    	
+    	if(fileName.length() > 3) {
 		style.setImage(fileName);
 		String uploadDir = "assets1/images/style";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
+    	}
     	
         styleService.createOrUpdateStyle(style); 
         return "redirect:/style/index"; 

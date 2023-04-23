@@ -78,10 +78,12 @@ public class ProductController {
 	public String save(Product product, @RequestParam("file")MultipartFile file) throws IOException {
 		
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		
+		if(fileName.length() > 3) {
 		product.setImage(fileName);
 		String uploadDir = "assets1/images/product";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
-
+		}
 		
 		productService.createOrUpdateProduct(product);
 		return "redirect:/product/index";
