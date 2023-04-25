@@ -46,7 +46,7 @@ public class BannerController {
 	@GetMapping(value = "/delete/{id}")
 	public String deleteBanner(@PathVariable(value = "id") Integer id, String keyword) {
 		bannerService.removeBanner(id);
-		return "redirect:/banner/index?keyword=" + keyword;
+		return "redirect:/admin/banner/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update/{id}")
@@ -62,7 +62,7 @@ public class BannerController {
 	@PostMapping(value = "/save")
 	public String save(Banner banner) {
 		bannerService.createOrUpdateBanner(banner);
-		return "redirect:/banner/index";
+		return "redirect:/admin/banner/index";
 	}
 
 }

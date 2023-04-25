@@ -34,7 +34,7 @@ public class CountryController {
     @GetMapping(value = "/delete/{id}") 
     public String deleteCountry(@PathVariable(value = "id") Integer id, String keyword) { 
         countryService.removeCountry(id); 
-        return "redirect:/country/index?keyword=" + keyword; 
+        return "redirect:/admin/country/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
@@ -47,7 +47,7 @@ public class CountryController {
     @PostMapping(value = "/save") 
     public String save(Country country) { 
         countryService.createOrUpdateCountry(country); 
-        return "redirect:/country/index"; 
+        return "redirect:/admin/country/index"; 
     }
  
 } 

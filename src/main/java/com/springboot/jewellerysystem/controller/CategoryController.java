@@ -50,7 +50,7 @@ public class CategoryController {
 	@GetMapping(value = "/delete/{id}")
 	public String deleteCategory(@PathVariable(value = "id") Integer id, String keyword) {
 		categoryService.removeCategory(id);
-		return "redirect:/category/index?keyword=" + keyword;
+		return "redirect:/admin/category/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update/{id}")

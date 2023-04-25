@@ -46,7 +46,7 @@ public class CitiesController {
 	@GetMapping(value = "/delete/{id}")
 	public String deleteCities(@PathVariable(value = "id") Integer id, String keyword) {
 		citiesService.removeCities(id);
-		return "redirect:/cities/index?keyword=" + keyword;
+		return "redirect:/admin/cities/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update/{id}")
@@ -62,7 +62,7 @@ public class CitiesController {
 	@PostMapping(value = "/save")
 	public String save(Cities cities) {
 		citiesService.createOrUpdateCities(cities);
-		return "redirect:/cities/index";
+		return "redirect:/admin/cities/index";
 	}
 
 }

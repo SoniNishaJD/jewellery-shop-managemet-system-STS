@@ -40,7 +40,7 @@ public class SliderController {
     @GetMapping(value = "/delete/{id}") 
     public String deleteSlider(@PathVariable(value = "id") Integer id, String keyword) { 
         sliderService.removeSlider(id); 
-        return "redirect:/slider/index?keyword=" + keyword; 
+        return "redirect:/admin/slider/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
@@ -62,7 +62,7 @@ public class SliderController {
     	}
     	
         sliderService.createOrUpdateSlider(slider); 
-        return "redirect:/slider/index"; 
+        return "redirect:/admin/slider/index"; 
     }
  
 } 

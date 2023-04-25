@@ -40,7 +40,7 @@ public class MainCategoryController {
     @GetMapping(value = "/delete/{id}") 
     public String deleteMainCategory(@PathVariable(value = "id") Integer id, String keyword) { 
         mainCategoryService.removeMainCategory(id); 
-        return "redirect:/mainCategory/index?keyword=" + keyword; 
+        return "redirect:/admin/mainCategory/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
@@ -62,7 +62,7 @@ public class MainCategoryController {
     	}
     	
     	mainCategoryService.createOrUpdateMainCategory(mainCategory); 
-        return "redirect:/mainCategory/index"; 
+        return "redirect:/admin/mainCategory/index"; 
     }
  
 } 

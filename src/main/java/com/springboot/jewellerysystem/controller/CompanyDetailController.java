@@ -44,7 +44,7 @@ public class CompanyDetailController {
 	@GetMapping(value = "/delete/{id}")
 	public String deleteCompanyDetail(@PathVariable(value = "id") Integer id, String keyword) {
 		companyDetailService.removeCompanyDetail(id);
-		return "redirect:/companyDetail/index?keyword=" + keyword;
+		return "redirect:/admin/companyDetail/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update/{id}")
@@ -67,7 +67,7 @@ public class CompanyDetailController {
 		}
 		
 		companyDetailService.createOrUpdateCompanyDetail(companyDetail);
-		return "redirect:/companyDetail/index";
+		return "redirect:/admin/companyDetail/index";
 	}
 
 }

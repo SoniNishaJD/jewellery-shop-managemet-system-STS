@@ -40,7 +40,7 @@ public class StyleController {
     @GetMapping(value = "/delete/{id}") 
     public String deleteStyle(@PathVariable(value = "id") Integer id, String keyword) { 
         styleService.removeStyle(id); 
-        return "redirect:/style/index?keyword=" + keyword; 
+        return "redirect:/admin/style/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
@@ -62,7 +62,7 @@ public class StyleController {
     	}
     	
         styleService.createOrUpdateStyle(style); 
-        return "redirect:/style/index"; 
+        return "redirect:/admin/style/index"; 
     }
  
 } 

@@ -40,7 +40,7 @@ public class OurServiceController {
     @GetMapping(value = "/delete/{id}") 
     public String deleteOurService(@PathVariable(value = "id") Integer id, String keyword) { 
         ourServiceService.removeOurService(id); 
-        return "redirect:/ourService/index?keyword=" + keyword; 
+        return "redirect:/admin/ourService/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
@@ -62,7 +62,7 @@ public class OurServiceController {
     	}
     	
         ourServiceService.createOrUpdateOurService(ourService); 
-        return "redirect:/ourService/index"; 
+        return "redirect:/admin/ourService/index"; 
     }
  
 } 

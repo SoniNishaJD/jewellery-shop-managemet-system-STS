@@ -34,7 +34,7 @@ public class ContactUsController {
     @GetMapping(value = "/delete/{id}") 
     public String deleteContactUs(@PathVariable(value = "id") Integer id, String keyword) { 
         contactUsService.removeContactUs(id); 
-        return "redirect:/contactUs/index?keyword=" + keyword; 
+        return "redirect:/admin/contactUs/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
@@ -47,7 +47,7 @@ public class ContactUsController {
     @PostMapping(value = "/save") 
     public String save(ContactUs contactUs) { 
         contactUsService.createOrUpdateContactUs(contactUs); 
-        return "redirect:/contactUs/index"; 
+        return "redirect:/admin/contactUs/index"; 
     }
  
 } 

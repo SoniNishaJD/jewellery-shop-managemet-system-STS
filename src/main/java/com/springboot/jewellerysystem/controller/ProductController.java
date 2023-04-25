@@ -58,7 +58,7 @@ public class ProductController {
 	@GetMapping(value = "/delete/{id}")
 	public String deleteProduct(@PathVariable(value = "id") Integer id, String keyword) {
 		productService.removeProduct(id);
-		return "redirect:/product/index?keyword=" + keyword;
+		return "redirect:/admin/product/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update/{id}")
@@ -86,7 +86,7 @@ public class ProductController {
 		}
 		
 		productService.createOrUpdateProduct(product);
-		return "redirect:/product/index";
+		return "redirect:/admin/product/index";
 	}
 
 }

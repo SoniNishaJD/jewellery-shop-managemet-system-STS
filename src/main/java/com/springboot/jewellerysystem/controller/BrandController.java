@@ -47,7 +47,7 @@ public class BrandController {
 	@GetMapping(value = "/delete/{id}")
 	public String deleteBrand(@PathVariable(value = "id") Integer id, String keyword) {
 		brandService.removeBrand(id);
-		return "redirect:/brand/index?keyword=" + keyword;
+		return "redirect:/admin/brand/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update/{id}")
@@ -69,7 +69,7 @@ public class BrandController {
 
 		}
 		brandService.createOrUpdateBrand(brand);
-		return "redirect:/brand/index";
+		return "redirect:/admin/brand/index";
 	}
 
 }

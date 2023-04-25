@@ -52,7 +52,7 @@ public class BannerImageController {
 	@GetMapping(value = "/delete/{id}")
 	public String deleteBannerImage(@PathVariable(value = "id") Integer id, String keyword) {
 		bannerImageService.removeBannerImage(id);
-		return "redirect:/bannerImage/index?keyword=" + keyword;
+		return "redirect:/admin/bannerImage/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update/{id}")
@@ -78,7 +78,7 @@ public class BannerImageController {
 		}
 		
 		bannerImageService.createOrUpdateBannerImage(bannerImage);
-		return "redirect:/bannerImage/index";
+		return "redirect:/admin/bannerImage/index";
 	}
 
 }

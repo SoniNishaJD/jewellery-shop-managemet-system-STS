@@ -50,7 +50,7 @@ public class BlogController {
 	@GetMapping(value = "/delete/{id}")
 	public String deleteBlog(@PathVariable(value = "id") Integer id, String keyword) {
 		blogService.removeBlog(id);
-		return "redirect:/blog/index?keyword=" + keyword;
+		return "redirect:/admin/blog/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update/{id}")
@@ -66,12 +66,13 @@ public class BlogController {
 	@PostMapping(value = "/save")
 	public String save(Blog blog, @RequestParam("file")MultipartFile file) throws IOException {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		if (fileName.length() > 3) {
 		blog.setImage(fileName);
 		String uploadDir = "assets/images/blog";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
-		
+		}
 		blogService.createOrUpdateBlog(blog);
-		return "redirect:/blog/index";
+		return "redirect:/admin/blog/index";
 	}
 	
 

@@ -50,7 +50,7 @@ public class ProductImageController {
 	@GetMapping(value = "/delete/{id}")
 	public String deleteProductImage(@PathVariable(value = "id") Integer id, String keyword) {
 		productImageService.removeProductImage(id);
-		return "redirect:/productImage/index?keyword=" + keyword;
+		return "redirect:/admin/productImage/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update/{id}")
@@ -75,7 +75,7 @@ public class ProductImageController {
 		}
 		
 		productImageService.createOrUpdateProductImage(productImage);
-		return "redirect:/productImage/index";
+		return "redirect:/admin/productImage/index";
 	}
 
 }

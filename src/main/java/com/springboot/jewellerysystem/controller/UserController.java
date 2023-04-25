@@ -34,7 +34,7 @@ public class UserController {
     @GetMapping(value = "/delete/{id}") 
     public String deleteUser(@PathVariable(value = "id") Integer id, String keyword) { 
         userService.removeUser(id); 
-        return "redirect:/user/index?keyword=" + keyword; 
+        return "redirect:/admin/user/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
@@ -47,7 +47,7 @@ public class UserController {
     @PostMapping(value = "/save") 
     public String save(User user) { 
         userService.createOrUpdateUser(user); 
-        return "redirect:/user/index"; 
+        return "redirect:/admin/user/index"; 
     }
  
 } 

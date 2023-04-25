@@ -138,13 +138,13 @@
                         <div class="jewellery-product_slider">
 
                             <!-- Begin Jewellery's Slide Item Area -->
-                            <div class="slide-item" th:each="product:${listProduct1}">
+                            <div class="slide-item" th:each="category:${listCategory}">
                                 <div class="single_product">
                                     <div class="product-img">
                                         <a href="single-product.html">
-                                            <img class="primary-img" th:src="@{${product.imagePath}}"
+                                            <img class="primary-img" th:src="@{${category.products[0].imagePath}}"
                                                 alt="Jewellery's Product Image">
-                                            <img class="secondary-img" th:src="@{${product.imagePath}}"
+                                            <img class="secondary-img" th:src="@{${category.products[0].imagePath}}"
                                                 alt="Jewellery's Product Image">
                                         </a>
                                         <span class="sticker">New</span>
@@ -168,9 +168,10 @@
                                     <div class="jewellery-product_content">
                                         <div class="product-desc_info">
                                             <h6><a class="product-name" href="single-product.html"
-                                                    th:text="${product.name}"></a></h6>
+                                                    th:text="${category.products[0].name}"></a></h6>
                                             <div class="price-box">
-                                                <span class="new-price">₹10120.80</span>
+                                                <span class="new-price"
+                                                    th:text="${category.products.size()}"></span>₹10120.80</span>
                                             </div>
                                             <div class="additional-add_action">
                                                 <ul>

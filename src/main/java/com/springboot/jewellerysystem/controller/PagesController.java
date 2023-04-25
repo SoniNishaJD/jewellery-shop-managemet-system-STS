@@ -40,7 +40,7 @@ public class PagesController {
     @GetMapping(value = "/delete/{id}") 
     public String deletePages(@PathVariable(value = "id") Integer id, String keyword) { 
         pagesService.removePages(id); 
-        return "redirect:/pages/index?keyword=" + keyword; 
+        return "redirect:/admin/pages/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
@@ -62,7 +62,7 @@ public class PagesController {
     	}
     	
         pagesService.createOrUpdatePages(pages); 
-        return "redirect:/pages/index"; 
+        return "redirect:/admin/pages/index"; 
     }
  
 } 

@@ -34,7 +34,7 @@ public class NewsletterController {
     @GetMapping(value = "/delete/{id}") 
     public String deleteNewsletter(@PathVariable(value = "id") Integer id, String keyword) { 
         newsletterService.removeNewsletter(id); 
-        return "redirect:/newsletter/index?keyword=" + keyword; 
+        return "redirect:/admin/newsletter/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
@@ -47,7 +47,7 @@ public class NewsletterController {
     @PostMapping(value = "/save") 
     public String save(Newsletter newsletter) { 
         newsletterService.createOrUpdateNewsletter(newsletter); 
-        return "redirect:/newsletter/index"; 
+        return "redirect:/admin/newsletter/index"; 
     }
  
 } 

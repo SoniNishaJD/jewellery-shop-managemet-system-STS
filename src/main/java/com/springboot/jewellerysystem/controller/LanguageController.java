@@ -34,7 +34,7 @@ public class LanguageController {
     @GetMapping(value = "/delete/{id}") 
     public String deleteLanguage(@PathVariable(value = "id") Integer id, String keyword) { 
         languageService.removeLanguage(id); 
-        return "redirect:/language/index?keyword=" + keyword; 
+        return "redirect:/admin/language/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
@@ -47,7 +47,7 @@ public class LanguageController {
     @PostMapping(value = "/save") 
     public String save(Language language) { 
         languageService.createOrUpdateLanguage(language); 
-        return "redirect:/language/index"; 
+        return "redirect:/admin/language/index"; 
     }
  
 } 
