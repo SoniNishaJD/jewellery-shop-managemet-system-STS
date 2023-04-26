@@ -12,7 +12,9 @@ public class MvcConfig  implements WebMvcConfigurer{
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        exposeDirectory("assets1/images", registry);
+		exposeDirectory("resources", registry);
+	       
+		exposeDirectory("assets1/images", registry);
        
         
     }

@@ -120,6 +120,11 @@ public class Category {
 		this.status = status;
 	}
 
+	public Category(int id) {
+		// TODO Auto-generated constructor stub
+	this.id=id;
+	}
+
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", image=" + image + ", status=" + status + "]";
