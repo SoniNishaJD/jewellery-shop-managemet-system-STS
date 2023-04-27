@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ</title>
+    <title>CART</title>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <div class="breadcrumb-area">
             <div class="container">
                 <div class="breadcrumb-content">
-                    <h2>Other</h2>
+                    <h2>CART</h2>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li class="active">Cart</li>
@@ -44,44 +44,32 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="jewellery-product-remove"><a href="javascript:void(0)"><i
-                                                        class="fa fa-trash" title="Remove"></i></a></td>
+
+                                        <tr th:each="cart:${carts}">
+                                            <td class="jewellery-product-remove"><a
+                                                    th:href="@{cart(del_id=${cart.id})}"><i class="fa fa-trash"
+                                                        title="Remove"></i></a></td>
                                             <td class="jewellery-product-thumbnail"><a href="javascript:void(0)"><img
-                                                        th:src="@{assets/images/product/small-size/2-1.jpg}"
+                                                        th:src="@{${cart.product.imagePath}}" style="height: 70px; "
                                                         alt="Jewellery's Cart Thumbnail"></a></td>
-                                            <td class="jewellery-product-name"><a href="javascript:void(0)">Juma rema
-                                                    pola</a></td>
-                                            <td class="jewellery-product-price"><span class="amount">$46.80</span></td>
+                                            <td class="jewellery-product-name"><a href="javascript:void(0)"
+                                                    th:text="${cart.product.name}"></a></td>
+                                            <td class="jewellery-product-price"><span class="amount"
+                                                    th:text="${cart.product.salesPrice}"></span></td>
                                             <td class="quantity">
                                                 <label>Quantity</label>
                                                 <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
+                                                    <input class="cart-plus-minus-box" th:value="${cart.qty}"
+                                                        type="text">
                                                     <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
                                                     <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
                                                 </div>
                                             </td>
-                                            <td class="product-subtotal"><span class="amount">$46.80</span></td>
+                                            <td class="product-subtotal"><span class="amount"
+                                                    th:text="${cart.qty} * ${cart.product.salesPrice}"></span></td>
                                         </tr>
-                                        <tr>
-                                            <td class="jewellery-product-remove"><a href="javascript:void(0)"><i
-                                                        class="fa fa-trash" title="Remove"></i></a></td>
-                                            <td class="jewellery-product-thumbnail"><a href="javascript:void(0)"><img
-                                                        th:src="@{assets/images/product/small-size/2-2.jpg}"
-                                                        alt="Jewellery's Cart Thumbnail"></a></td>
-                                            <td class="jewellery-product-name"><a href="javascript:void(0)">Bag Goodscol
-                                                    model</a></td>
-                                            <td class="jewellery-product-price"><span class="amount">$71.80</span></td>
-                                            <td class="quantity">
-                                                <label>Quantity</label>
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
-                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal"><span class="amount">$71.80</span></td>
-                                        </tr>
+
+
                                     </tbody>
                                 </table>
                             </div>
@@ -105,10 +93,10 @@
                                     <div class="cart-page-total">
                                         <h2>Cart totals</h2>
                                         <ul>
-                                            <li>Subtotal <span>$118.60</span></li>
-                                            <li>Total <span>$118.60</span></li>
+                                            <li>Subtotal <span th:text="${total}"></span></li>
+                                            <li>Total <span th:text="${total}"></span></li>
                                         </ul>
-                                        <a href="javascript:void(0)">Proceed to checkout</a>
+                                        <a th:href="@{checkout}">Proceed to checkout</a>
                                     </div>
                                 </div>
                             </div>

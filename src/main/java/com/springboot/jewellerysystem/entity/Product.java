@@ -88,7 +88,7 @@ public class Product {
 	private Set<ProductDetail> productDetail = new HashSet<>();
 
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-	private Set<ProductImage> productImage = new HashSet<>();
+	private Set<ProductImage> productImages = new HashSet<>();
 
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	private Set<Review> review = new HashSet<>();
@@ -233,11 +233,11 @@ public class Product {
 	}
 
 	public Set<ProductImage> getProductImages() {
-		return productImage;
+		return productImages;
 	}
 
-	public void setProductImages(Set<ProductImage> productImage) {
-		this.productImage = productImage;
+	public void setProductImages(Set<ProductImage> productImages) {
+		this.productImages = productImages;
 	}
 
 	public Set<Review> getReviews() {

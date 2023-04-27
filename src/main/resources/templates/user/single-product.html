@@ -34,48 +34,24 @@
                         <div class="col-lg-5 col-md-5">
                             <div class="sp-img_area">
                                 <div class="zoompro-border">
-                                    <img class="zoompro" th:src="@{assets/images/single-product/large-size/1.jpg}"
-                                        th:data-zoom-image="@{assets/images/single-product/large-size/1.jpg}"
-                                        alt="Jewellery's Product Image" />
+                                    <img class="zoompro" th:src="@{${product.imagePath}}"
+                                        th:data-zoom-image="@{${product.imagePath}}" alt="Jewellery's Product Image" />
                                 </div>
                                 <div id="gallery" class="sp-img_slider">
-                                    <a class="active" th:data-image="@{assets/images/single-product/large-size/1.jpg}"
-                                        th:data-zoom-image="@{assets/images/single-product/large-size/1.jpg}">
-                                        <img th:src="@{assets/images/single-product/small-size/1.jpg}"
-                                            alt="Jewellery's Product Image">
+                                    <a th:each="productImage,itr:${product.productImages}"
+                                        th:class="${itr.index}==0 ? 'active' : ''"
+                                        th:data-image="@{${productImage.imagePath}}"
+                                        th:data-zoom-image="@{${productImage.imagePath}}">
+                                        <img th:src="@{${productImage.imagePath}}" alt="Jewellery's Product Image">
                                     </a>
-                                    <a th:data-image="@{assets/images/single-product/large-size/2.jpg}"
-                                        th:data-zoom-image="@{assets/images/single-product/large-size/2.jpg}">
-                                        <img th:src="@{assets/images/single-product/small-size/2.jpg}"
-                                            alt="Jewellery's Product Image">
-                                    </a>
-                                    <a th:th:data-image="@{assets/images/single-product/large-size/3.jpg}"
-                                        th:data-zoom-image="@{assets/images/single-product/large-size/3.jpg}">
-                                        <img th:src="@{assets/images/single-product/small-size/3.jpg}"
-                                            alt="Jewellery's Product Image">
-                                    </a>
-                                    <a th:th:data-image="@{assets/images/single-product/large-size/4.jpg}"
-                                        th:data-zoom-image="@{assets/images/single-product/large-size/4.jpg}">
-                                        <img th:src="@{assets/images/single-product/small-size/4.jpg}"
-                                            alt="Jewellery's Product Image">
-                                    </a>
-                                    <a th:data-image="@{assets/images/single-product/large-size/5.jpg}"
-                                        th:data-zoom-image="@{assets/images/single-product/large-size/5.jpg}">
-                                        <img th:src="@{assets/images/single-product/small-size/5.jpg}"
-                                            alt="Jewellery's Product Image">
-                                    </a>
-                                    <a th:data-image="@{assets/images/single-product/large-size/6.jpg}"
-                                        th:data-zoom-image="@{assets/images/single-product/large-size/6.jpg}">
-                                        <img th:src="@{assets/images/single-product/small-size/6.jpg}"
-                                            alt="Jewellery's Product Image">
-                                    </a>
+
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-7">
                             <div class="sp-content">
                                 <div class="sp-heading">
-                                    <h5><a href="#">JWDA Penant Lamp Brshed Steel</a></h5>
+                                    <h5><a href="#" th:text="${product.name}"></a></h5>
                                 </div>
                                 <span class="reference">Reference: demo_1</span>
                                 <div class="rating-box">
@@ -89,22 +65,16 @@
                                 </div>
                                 <div class="sp-essential_stuff">
                                     <ul>
-                                        <li>EX Tax: <a href="javascript:void(0)"><span>£453.35</span></a></li>
-                                        <li>Brands <a href="javascript:void(0)">Buxton</a></li>
+                                        <li>MRP: <a href="javascript:void(0)"><span th:text="${product.mrp}"></span></a>
+                                        </li>
+                                        <li>Brands: <a href="javascript:void(0)" th:text="${product.brand.name}"></a>
+                                        </li>
                                         <li>Product Code: <a href="javascript:void(0)">Product 16</a></li>
                                         <li>Reward Points: <a href="javascript:void(0)">600</a></li>
                                         <li>Availability: <a href="javascript:void(0)">In Stock</a></li>
                                     </ul>
                                 </div>
-                                <div class="product-size_box">
-                                    <span>Size</span>
-                                    <select class="myniceselect nice-select">
-                                        <option value="1">S</option>
-                                        <option value="2">M</option>
-                                        <option value="3">L</option>
-                                        <option value="4">XL</option>
-                                    </select>
-                                </div>
+
                                 <div class="quantity">
                                     <label>Quantity</label>
                                     <div class="cart-plus-minus">

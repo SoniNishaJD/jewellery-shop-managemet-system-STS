@@ -38,7 +38,7 @@ private String name;
 private Integer status;
 
 @OneToMany(mappedBy = "banner", fetch = FetchType.LAZY)
-private Set<BannerImage> bannerImage = new HashSet<>();
+private Set<BannerImage> bannerImages = new HashSet<>();
 
 
 
@@ -71,11 +71,11 @@ public void setBannerType(BannerType bannerType) {
 	this.bannerType = bannerType;
 }
 public Set<BannerImage> getBannerImages() { 
-	return bannerImage; 
+	return bannerImages; 
 } 
 
-public void setBannerImages(Set<BannerImage> bannerImage) {
-	this.bannerImage = bannerImage;
+public void setBannerImages(Set<BannerImage> bannerImages) {
+	this.bannerImages = bannerImages;
 }
   @Override
      public boolean equals(Object obj) {

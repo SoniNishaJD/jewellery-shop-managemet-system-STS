@@ -86,6 +86,20 @@ public class Wishlist {
 		super();
 	}
 
+	public Wishlist(Integer id, Product product, User user, Date entryDate) {
+		super();
+		this.id = id;
+		this.product = product;
+		this.user = user;
+		this.entryDate = entryDate;
+	}
+	public Wishlist(Product product, User user, Date entryDate) {
+		super();
+		
+		this.product = product;
+		this.user = user;
+		this.entryDate = entryDate;
+	}
 	public Wishlist(Date entryDate) {
 		super();
 		this.entryDate = entryDate;

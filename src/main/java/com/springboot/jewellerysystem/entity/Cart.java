@@ -85,6 +85,20 @@ public class Cart {
 		super();
 	}
 
+	public Cart(Integer id, User user, Product product, Integer qty) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.product = product;
+		this.qty = qty;
+	}
+	public Cart( User user, Product product, Integer qty) {
+		super();
+		
+		this.user = user;
+		this.product = product;
+		this.qty = qty;
+	}
 	public Cart(Integer qty) {
 		super();
 		this.qty = qty;
