@@ -70,20 +70,22 @@
                                             </a>
                                             <div class="add-actions">
                                                 <ul>
-                                                    <li><a class="jewellery-add_cart" href="cart.html"
+                                                    <li><a class="jewellery-add_cart"
+                                                            th:href="@{cart(add_id=${product.id})}"
                                                             data-bs-toggle="tooltip" data-placement="top"
                                                             title="Add To Cart"><i class="ion-bag"></i></a>
                                                     </li>
-                                                    <li><a class="jewellery-add_compare" href="compare.html"
+                                                    <li><a class="jewellery-add_compare"
+                                                            th:href="@{compare(add_id=${product.id})}"
                                                             data-bs-toggle="tooltip" data-placement="top"
                                                             title="Compare This Product"><i
                                                                 class="ion-ios-shuffle-strong"></i></a>
                                                     </li>
                                                     <li class="quick-view-btn" data-bs-toggle="modal"
                                                         data-bs-target="#exampleModalCenter"><a
-                                                            href="javascript:void(0)" data-bs-toggle="tooltip"
-                                                            data-placement="top" title="Quick View"><i
-                                                                class="ion-eye"></i></a></li>
+                                                            th:href="@{/productDetails(id=${products.id})}"
+                                                            data-bs-toggle="tooltip" data-placement="top"
+                                                            title="Quick View"><i class="ion-eye"></i></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -153,19 +155,22 @@
                                             </div>
                                             <div class="add-actions">
                                                 <ul>
-                                                    <li><a class="jewellery-add_cart" href="cart.html"
+                                                    <li><a class="jewellery-add_cart"
+                                                            th:href="@{cart(add_id=${product.id})}"
                                                             data-bs-toggle="tooltip" data-placement="top"
                                                             title="Add To Cart">Add To Cart</a></li>
-                                                    <li><a class="jewellery-add_compare" href="compare.html"
+                                                    <li><a class="jewellery-add_compare"
+                                                            th:href="@{compare(add_id=${product.id})}"
                                                             data-bs-toggle="tooltip" data-placement="top"
                                                             title="Compare This Product"><i
                                                                 class="ion-ios-shuffle-strong"></i></a></li>
                                                     <li class="quick-view-btn" data-bs-toggle="modal"
                                                         data-bs-target="#exampleModalCenter"><a
-                                                            href="javascript:void(0)" data-bs-toggle="tooltip"
-                                                            data-placement="top" title="Quick View"><i
-                                                                class="ion-eye"></i></a></li>
-                                                    <li><a class="jewellery-add_compare" href="wishlist.html"
+                                                            th:href="@{/productDetail(id=${product.id})}"
+                                                            data-bs-toggle="tooltip" data-placement="top"
+                                                            title="Quick View"><i class="ion-eye"></i></a></li>
+                                                    <li><a class="jewellery-add_compare"
+                                                            th:href="@{wishlist(add_id=${product.id})}"
                                                             data-bs-toggle="tooltip" data-placement="top"
                                                             title="Add To Wishlist"><i
                                                                 class="ion-android-favorite-outline"></i></a>

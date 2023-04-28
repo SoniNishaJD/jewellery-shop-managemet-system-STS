@@ -43,6 +43,7 @@
 
 <body class="template-color-1">
 
+
     <div class="main-wrapper">
         <!-- Begin Jewellery's Newsletter Popup Area -->
         <div class="popup_wrapper">
@@ -90,22 +91,15 @@
                                     <ul>
                                         <li><a href="#">Today's Gold Rate <i class="fa fa-chevron-down"></i></a>
                                             <ul class="ht-dropdown">
-                                                <li class="active"><a href="javascript:void(0)">22 KT (916)-</a></li>
-                                                <li><a href="javascript:void(0)">18 KT (750)-</a>
-                                                <li><a href="javascript:void(0)">Update on:-</a>
-                                                </li>
-                                            </ul>
-                                            </a>
+                                                <li th:each="rate,itr:${todayRates}"
+                                                    th:class="${itr==0}? 'active' : '' "><a href="#"
+                                                        th:text="${rate.name} +'-'+ ${rate.price}">22 KT (916)-</a></li>
+
                                         </li>
-                                        <li><a href="javascript:void(0)">Languages <i
-                                                    class="fa fa-chevron-down"></i></a>
-                                            <ul class="ht-dropdown">
-                                                <li class="active"><a href="javascript:void(0)">English</a></li>
-                                                <li><a href="javascript:void(0)">Hindi</a>
-                                                <li><a href="javascript:void(0)">Gujarati</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                    </ul>
+                                    </a>
+                                    </li>
+
 
                                     </ul>
                                 </div>
@@ -166,100 +160,19 @@
 
                                             </ul>
                                         </li>
-                                        <li class="megamenu-holder"><a href="shop-left-sidebar.html">DAIMOND</a>
-                                            <ul class="hm-megamenu">
-                                                <li><span class="megamenu-title">Casual Wear</span>
-                                                    <ul>
-                                                        <li><a href="shop-3-column.html">Grid Fullwidth</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Left Sidebar</a></li>
-                                                        <li><a href="shop-right-sidebar.html">Right Sidebar</a></li>
-                                                        <li><a href="shop-list-fullwidth.html">List Fullwidth</a></li>
-                                                        <li><a href="shop-list-left-sidebar.html">List Left Sidebar</a>
-                                                        </li>
-                                                        <li><a href="shop-list-right-sidebar.html">List Right
-                                                                Sidebar</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><span class="megamenu-title">Party Wear</span>
-                                                    <ul>
-                                                        <li><a href="single-product-gallery-left.html">Gallery Left</a>
-                                                        </li>
-                                                        <li><a href="single-product-gallery-right.html">Gallery
-                                                                Right</a>
-                                                        </li>
-                                                        <li><a href="single-product-tab-style-left.html">Tab Style
-                                                                Left</a>
-                                                        </li>
-                                                        <li><a href="single-product-tab-style-right.html">Tab Style
-                                                                Right</a>
-                                                        </li>
-                                                        <li><a href="single-product-sticky-left.html">Sticky Left</a>
-                                                        </li>
-                                                        <li><a href="single-product-sticky-right.html">Sticky Right</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><span class="megamenu-title">Regular Wear</span>
-                                                    <ul>
-                                                        <li><a href="single-product.html">Single Product</a></li>
-                                                        <li><a href="single-product-sale.html">Single Product Sale</a>
-                                                        </li>
-                                                        <li><a href="single-product-group.html">Single Product Group</a>
-                                                        </li>
-                                                        <li><a href="single-product-variable.html">Single Product
-                                                                Variable</a>
-                                                        </li>
-                                                        <li><a href="single-product-affiliate.html">Single Product
-                                                                Affiliate</a>
-                                                        </li>
-                                                        <li><a href="single-product-slider.html">Single Product
-                                                                Slider</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item_img"></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="blog-left-sidebar.html">PLATINUM</a>
-                                            <ul class="hm-dropdown">
-                                                <li><a href="blog-left-sidebar.html">Shop By Style</a>
-                                                    <ul class="hm-dropdown hm-sub_dropdown">
-                                                        <li><a href="blog-2-column.html">Brands</a></li>
-                                                        <li><a href="blog-3-column.html">Casual</a></li>
-                                                        <li><a href="blog-left-sidebar.html">Eternity</a></li>
-                                                        <li><a href="blog-right-sidebar.html">Solitaire</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="blog-list-left-sidebar.html">Shop By Ocassion</a>
-                                                    <ul class="hm-dropdown hm-sub_dropdown">
-                                                        <li><a href="blog-list-fullwidth.html">Daily Wear</a></li>
-                                                        <li><a href="blog-list-left-sidebar.html">Office Wear</a>
-                                                        </li>
-                                                        <li><a href="blog-list-right-sidebar.html">Casual Wear</a>
-                                                        <li><a href="#">Party Wear</a></li>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="blog-details-left-sidebar.html">Shop By Metal</a>
-                                            <ul class="hm-dropdown hm-sub_dropdown">
-                                                <li><a href="blog-details-left-sidebar.html">Platinum</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="blog-gallery-format.html">Blog Format</a>
-                                            <ul class="hm-dropdown hm-sub_dropdown">
-                                                <li><a href="blog-gallery-format.html">Gallery Format</a></li>
-                                                <li><a href="blog-audio-format.html">Audio Format</a></li>
-                                                <li><a href="blog-video-format.html">Video Format</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    </li>
 
-                                    <li><a th:href="@{/about}">About Us</a></li>
-                                    <li><a th:href="@{contact}">Contact</a></li>
-                                    <li><a href="shop-left-sidebar.html">Jewellery</a></li>
+                                        <li><a href="#">OUR BRAND</a>
+                                            <ul class="hm-dropdown">
+                                                <li th:each="brand:${listBrand}">
+                                                    <a th:href="@{/shop(brand_id=${brand.id})}"><span
+                                                            th:text="${brand.getName()}" th:remove="tag"></span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li><a th:href="@{/about}">About Us</a></li>
+                                        <li><a th:href="@{contact}">Contact</a></li>
+                                        <li><a th:href="@{/shop}">Jewellery</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -268,7 +181,7 @@
                             <div class="header-right_area">
                                 <ul>
                                     <li>
-                                        <a href="wishlist.html" class="wishlist-btn">
+                                        <a th:href="@{/wishlist}" class="wishlist-btn">
                                             <i class="ion-android-favorite-outline"></i>
                                         </a>
                                     </li>
@@ -297,56 +210,31 @@
                             <h4>Shopping Cart</h4>
                         </div>
                         <ul class="minicart-list">
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="javascript:void(0)"><i
+                            <li class="minicart-product" th:each="cart:${carts}">
+                                <a class="product-item_remove" th:href="@{cart(del_id=${cart.id})}"><i
                                         class="ion-android-close"></i></a>
                                 <div class="product-item_img">
-                                    <img th:src="@{assets/images/product/small-size/2-1.jpg}"
-                                        alt="Jewellery's Product Image">
+                                    <img th:src="@{${cart.product.imagePath}}" alt="Jewellery's Product Image">
                                 </div>
                                 <div class="product-item_content">
-                                    <a class="product-item_title" href="shop-left-sidebar.html">Magni dolorum vel</a>
-                                    <span class="product-item_quantity">1 x ₹11120.80</span>
+                                    <a class="product-item_title" th:href="@{/shop}" th:text="${cart.product.name}"></a>
+                                    <span class="product-item_quantity"
+                                        th:text="${cart.qty}+' x ' +${cart.product.salesPrice}"> </span>
                                 </div>
+
                             </li>
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="javascript:void(0)"><i
-                                        class="ion-android-close"></i></a>
-                                <div class="product-item_img">
-                                    <img th:src="@{assets/images/product/small-size/2-2.jpg}"
-                                        alt="Jewellery's Product Image">
-                                </div>
-                                <div class="product-item_content">
-                                    <a class="product-item_title" href="shop-left-sidebar.html">Eius accusantium
-                                        omnis</a>
-                                    <span class="product-item_quantity">1 x ₹11120.80</span>
-                                </div>
-                            </li>
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="javascript:void(0)"><i
-                                        class="ion-android-close"></i></a>
-                                <div class="product-item_img">
-                                    <img th:src="@{assets/images/product/small-size/2-3.jpg}"
-                                        alt="Jewellery's Product Image">
-                                </div>
-                                <div class="product-item_content">
-                                    <a class="product-item_title" href="shop-left-sidebar.html">Aperiam adipisci
-                                        dolorem</a>
-                                    <span class="product-item_quantity">1 x ₹10120.80</span>
-                                </div>
-                            </li>
+
                         </ul>
                     </div>
                     <div class="minicart-item_total">
                         <span>Subtotal</span>
-                        <span class="ammount">₹36000.00</span>
+                        <span class="ammount" th:text="'₹ '+${total}"></span>
                     </div>
                     <div class="minicart-btn_area">
-                        <a href="cart.html"
-                            class="jewellery-btn jewellery-btn_dark jewellery-btn_fullwidth">Minicart</a>
+                        <a th:href="@{/cart}" class="jewellery-btn jewellery-btn_dark jewellery-btn_fullwidth">Cart</a>
                     </div>
                     <div class="minicart-btn_area">
-                        <a href="checkout.html"
+                        <a th:href="@{/checkout}"
                             class="jewellery-btn jewellery-btn_dark jewellery-btn_fullwidth">Checkout</a>
                     </div>
                 </div>
@@ -838,22 +726,11 @@
                                     "swipe": false,
                                     "asNavFor": ".sp-img_slider-nav"
                                 }'>
-                                        <div class="single-slide red">
+                                        <div class="single-slide red" >
                                             <img th:src="@{assets/images/single-product/large-size/1.jpg}"
                                                 alt="Jewellery's Product Image">
                                         </div>
-                                        <div class="single-slide orange">
-                                            <img th:src="@{assets/images/single-product/large-size/2.jpg}"
-                                                alt="Jewellery's Product Image">
-                                        </div>
-                                        <div class="single-slide brown">
-                                            <img th:src="@{assets/images/single-product/large-size/3.jpg}"
-                                                alt="Jewellery's Product Image">
-                                        </div>
-                                        <div class="single-slide umber">
-                                            <img th:src="@{assets/images/single-product/large-size/4.jpg}"
-                                                alt="Jewellery's Product Image">
-                                        </div>
+                                        
                                     </div>
                                     <div class="sp-img_slider-nav slick-slider-nav jewellery-slick-slider arrow-type-two"
                                         data-slick-options='{

@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.springboot.jewellerysystem.dao.ProductDAO;
+import com.springboot.jewellerysystem.entity.Brand;
 import com.springboot.jewellerysystem.entity.Category;
 import com.springboot.jewellerysystem.entity.Product;
 import com.springboot.jewellerysystem.service.ProductService;
@@ -42,6 +43,12 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getAllProductByCategory(Category category) {
 		
 		return productDao.findByCategory(category);
+	}
+
+	@Override
+	public List<Product> getAllProductByBrand(Brand brand) {
+		
+		return productDao.findByBrand(brand);
 	}
 
 }

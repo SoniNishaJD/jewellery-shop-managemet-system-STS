@@ -1,5 +1,6 @@
 package com.springboot.jewellerysystem.service;
 
+import com.springboot.jewellerysystem.entity.Brand;
 import com.springboot.jewellerysystem.entity.Category;
 import com.springboot.jewellerysystem.entity.MainCategory;
 import com.springboot.jewellerysystem.entity.Product;
@@ -17,4 +18,5 @@ public interface ProductService {
 	
 	List<Product> getAllProductByCategory(Category category);
 
+	List<Product> getAllProductByBrand(Brand brand);
 }

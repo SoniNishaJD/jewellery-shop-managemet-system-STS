@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="admin/index">
+
 <head>
-<title>CompanyDetail List</title>
+	<title>CompanyDetail List</title>
 </head>
+
 <body>
 
 	<div layout:fragment="content1">
@@ -37,8 +38,8 @@
 
 							<div class="card">
 								<div class="card-header">
-									<a th:href="@{/admin/companyDetail/create}"
-										class="btn btn-primary btn-sm">ADD NEW COMPANYDETAIL</a>
+									<a th:href="@{/admin/companyDetail/create}" class="btn btn-primary btn-sm">ADD NEW
+										COMPANYDETAIL</a>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
@@ -61,19 +62,20 @@
 											<tr th:each="companyDetail : ${listCompanyDetails}">
 												<td th:text="${companyDetail.id}"></td>
 												<td th:text="${companyDetail.name}"></td>
-												<td><img th:src=@{${companyDetail.imagePath}}
-													style="width: 60px" /></td>
+												<td><img th:src=@{${companyDetail.imagePath}} style="width: 60px" />
+												</td>
 												<td th:text="${companyDetail.helplineNo}"></td>
 												<td th:text="${companyDetail.address}"></td>
 												<td th:text="${companyDetail.phone}"></td>
 												<td th:text="${companyDetail.email}"></td>
 												<td th:text="${companyDetail.copyRight}"></td>
 												<td th:text="${companyDetail.homePage}"></td>
-												<td><a
-													th:href="@{/admin/companyDetail/update/{id}(id=${companyDetail.id})}"
-													class="btn btn-success btn-sm">UPDATE</a> <a
-													th:href="@{/admin/companyDetail/delete/{id}(id=${companyDetail.id})}"
-													class="btn btn-danger btn-sm">DELETE</a></td>
+												<td><a th:href="@{/admin/companyDetail/update/{id}(id=${companyDetail.id})}"
+														class="btn btn-success btn-sm">UPDATE</a> <a
+														th:href="@{/admin/companyDetail/delete/{id}(id=${companyDetail.id})}"
+														class="btn btn-danger btn-sm"
+														onClick="return confirm('Do you want to delete?')">DELETE</a>
+												</td>
 											</tr>
 										</tbody>
 										<tfoot>

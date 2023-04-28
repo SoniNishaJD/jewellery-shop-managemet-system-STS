@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="admin/index">
+
 <head>
-<title>Category List</title>
+	<title>Category List</title>
 </head>
+
 <body>
 
 	<div layout:fragment="content1">
@@ -37,7 +38,7 @@
 
 							<div class="card">
 								<div class="card-header">
-									<a th:href="@{/category/create}" class="btn btn-primary btn-sm">ADD
+									<a th:href="@{/admin/category/create}" class="btn btn-primary btn-sm">ADD
 										NEW CATEGORY</a>
 								</div>
 								<!-- /.card-header -->
@@ -58,16 +59,15 @@
 												<td th:text="${category.id}"></td>
 												<td th:text="${category.mainCategory.name}"></td>
 												<td th:text="${category.name}"></td>
-												<td><img th:src=@{${category.imagePath}}
-													style="width: 60px" /></td>
-												<td
-													th:text="${category.status==1} ? 'ACTIVE' : 'NOT ACTIVE'">
+												<td><img th:src=@{${category.imagePath}} style="width: 60px" /></td>
+												<td th:text="${category.status==1} ? 'ACTIVE' : 'NOT ACTIVE'">
 												</td>
-												<td><a
-													th:href="@{/admin/category/update/{id}(id=${category.id})}"
-													class="btn btn-success btn-sm">UPDATE</a> <a
-													th:href="@{/admin/category/delete/{id}(id=${category.id})}"
-													class="btn btn-danger btn-sm">DELETE</a></td>
+												<td><a th:href="@{/admin/category/update/{id}(id=${category.id})}"
+														class="btn btn-success btn-sm">UPDATE</a> <a
+														th:href="@{/admin/category/delete/{id}(id=${category.id})}"
+														class="btn btn-danger btn-sm"
+														onClick="return confirm('Do you want to delete?')">DELETE</a>
+												</td>
 											</tr>
 										</tbody>
 										<tfoot>

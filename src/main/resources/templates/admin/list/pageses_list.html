@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="admin/index">
+
 <head>
-<title>Pages List</title>
+	<title>Pages List</title>
 </head>
+
 <body>
 
 	<div layout:fragment="content1">
@@ -37,8 +38,7 @@
 
 							<div class="card">
 								<div class="card-header">
-									<a th:href="@{/admin/pages/create}"
-										class="btn btn-primary btn-sm">ADD NEW PAGES</a>
+									<a th:href="@{/admin/pages/create}" class="btn btn-primary btn-sm">ADD NEW PAGES</a>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
@@ -60,15 +60,15 @@
 												<td th:text="${pages.pageType}"></td>
 												<td th:text="${pages.pageTitle}"></td>
 												<td th:text="${pages.pageDescription}"></td>
-												<td><img th:src=@{${pages.imagePath}}
-													style="width: 60px" /></td>
+												<td><img th:src=@{${pages.imagePath}} style="width: 60px" /></td>
 												<td th:text="${pages.status==1} ? 'ACTIVE' : 'NOT ACTIVE'">
 												</td>
-												<td><a
-													th:href="@{/admin/pages/update/{id}(id=${pages.id})}"
-													class="btn btn-success btn-sm">UPDATE</a> <a
-													th:href="@{/admin/pages/delete/{id}(id=${pages.id})}"
-													class="btn btn-danger btn-sm">DELETE</a></td>
+												<td><a th:href="@{/admin/pages/update/{id}(id=${pages.id})}"
+														class="btn btn-success btn-sm">UPDATE</a> <a
+														th:href="@{/admin/pages/delete/{id}(id=${pages.id})}"
+														class="btn btn-danger btn-sm"
+														onClick="return confirm('Do you want to delete?')">DELETE</a>
+												</td>
 											</tr>
 										</tbody>
 										<tfoot>

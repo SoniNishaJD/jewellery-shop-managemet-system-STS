@@ -106,6 +106,10 @@ public class Brand {
 		this.status = status;
 	}
 
+	public Brand(int brand_id) {
+		this.id = brand_id;
+	}
+
 	@Override
 	public String toString() {
 		return "Brand [id=" + id + ", name=" + name + ", logo=" + logo + ", status=" + status + "]";

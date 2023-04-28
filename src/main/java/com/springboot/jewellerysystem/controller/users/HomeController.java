@@ -14,29 +14,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.springboot.jewellerysystem.entity.Banner;
 import com.springboot.jewellerysystem.entity.Blog;
 import com.springboot.jewellerysystem.entity.BlogCategory;
+import com.springboot.jewellerysystem.entity.Brand;
 import com.springboot.jewellerysystem.entity.Cart;
 import com.springboot.jewellerysystem.entity.Cart;
 import com.springboot.jewellerysystem.entity.Category;
 import com.springboot.jewellerysystem.entity.CompanyDetail;
+import com.springboot.jewellerysystem.entity.Compare;
 import com.springboot.jewellerysystem.entity.ContactUs;
 import com.springboot.jewellerysystem.entity.Faq;
 import com.springboot.jewellerysystem.entity.Link;
 import com.springboot.jewellerysystem.entity.MainCategory;
 import com.springboot.jewellerysystem.entity.OurService;
 import com.springboot.jewellerysystem.entity.Product;
+import com.springboot.jewellerysystem.entity.TodayRate;
 import com.springboot.jewellerysystem.entity.User;
 import com.springboot.jewellerysystem.entity.Wishlist;
 import com.springboot.jewellerysystem.service.BannerService;
 import com.springboot.jewellerysystem.service.BlogCategoryService;
 import com.springboot.jewellerysystem.service.BlogService;
+import com.springboot.jewellerysystem.service.BrandService;
 import com.springboot.jewellerysystem.service.CartService;
 import com.springboot.jewellerysystem.service.CategoryService;
 import com.springboot.jewellerysystem.service.CompanyDetailService;
+import com.springboot.jewellerysystem.service.CompareService;
 import com.springboot.jewellerysystem.service.ContactUsService;
 import com.springboot.jewellerysystem.service.FaqService;
 import com.springboot.jewellerysystem.service.LinkService;
 import com.springboot.jewellerysystem.service.OurServiceService;
 import com.springboot.jewellerysystem.service.ProductService;
+import com.springboot.jewellerysystem.service.TodayRateService;
 import com.springboot.jewellerysystem.service.UserService;
 import com.springboot.jewellerysystem.service.WishlistService;
 import com.springboot.jewellerysystem.util.Helper;
@@ -66,14 +72,18 @@ public class HomeController {
 	private WishlistService wishlistService;
 	private BannerService bannerService;
 	private CartService cartService;
-
-	public HomeController(CategoryService categoryService, ProductService productService,
+	private BrandService brandService;
+	private CompareService compareService;
+	private TodayRateService todayRateService;
+	
+	
+	public HomeController(UserService userService, CategoryService categoryService, ProductService productService,
 			OurServiceService ourServiceService, CompanyDetailService companyDetailService,
 			ContactUsService contactUsService, LinkService linkService, FaqService faqService, BlogService blogService,
-			BlogCategoryService blogCategoryService, WishlistService wishlistService,BannerService bannerService,
-			CartService cartService,UserService userService
-			) {
+			BlogCategoryService blogCategoryService, WishlistService wishlistService, BannerService bannerService,
+			CartService cartService, BrandService brandService, CompareService compareService, TodayRateService todayRateService) {
 		super();
+		this.userService = userService;
 		this.categoryService = categoryService;
 		this.productService = productService;
 		this.ourServiceService = ourServiceService;
@@ -86,9 +96,11 @@ public class HomeController {
 		this.wishlistService = wishlistService;
 		this.bannerService = bannerService;
 		this.cartService = cartService;
-		this.userService = userService;
+		this.brandService = brandService;
+		this.compareService = compareService;
+		this.todayRateService = todayRateService;
 	}
-	
+
 
 
 	@GetMapping({"/","/home"})
@@ -165,10 +177,25 @@ public class HomeController {
 		List<Link> listLink = linkService.getAllLink();
 		m.addAttribute("listLink" , listLink);
 		
+		List<Brand> listBrand = brandService.getAllBrand();
+		m.addAttribute("listBrand" , listBrand);
+		
 		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
 		m.addAttribute("companyDetail", companyDetail);
 	
+		List<TodayRate> todayRates = todayRateService.getAllTodayRate();
+		m.addAttribute("todayRates", todayRates);
 		
+		List<Cart> carts =  cartService.getAllCart();
+	 	m.addAttribute("carts",carts);
+	 	float total = 0;
+		for(int i=0;i<carts.size();i++)
+	 	{
+	 		total += carts.get(i).getQty()*carts.get(i).getProduct().getSalesPrice();
+	 	}
+	 	m.addAttribute("total", total);
+	 	
+	 		 	
 		return "user/index";
 	}
 	
@@ -272,11 +299,11 @@ public class HomeController {
 		m.addAttribute("companyDetail", companyDetail);
 		
 	 	List<Cart> carts =  cartService.getAllCart();
-	 	float total=0;
 	 	m.addAttribute("carts",carts);
+	 	float total=0;
 	 	for(int i=0;i<carts.size();i++)
 	 	{
-	 		total = carts.get(i).getQty()*carts.get(i).getProduct().getSalesPrice();
+	 		total += carts.get(i).getQty()*carts.get(i).getProduct().getSalesPrice();
 	 	}
 	 	m.addAttribute("total", total);
 		return "user/cart";
@@ -286,21 +313,48 @@ public class HomeController {
 	
 	
 	@GetMapping("/compare")
-	public String showCompare() {
+	public String showCompare(@RequestParam(value="add_id",defaultValue = "0")int add_id,@RequestParam(value="del_id",defaultValue = "0")int del_id, Model m) {
+		if(add_id >0) {
+			Product product = productService.loadProductById(add_id);
+			User user = userService.loadUserById(1);
+			Compare compare = new Compare(product,user);
+			
+			compareService.createOrUpdateCompare(compare);
+		}
+		if(del_id >0) {
+					
+			compareService.removeCompare(del_id);
+		}
+		List<Compare> compares = compareService.getAllCompare();
+		m.addAttribute("compares",compares);
+		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
+		m.addAttribute("listCategory",listCategory);
+		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
+		m.addAttribute("companyDetail", companyDetail);
+		
 		return "user/compare";
 	}
 	
+	
 	@GetMapping(value="/shop")
-	public String showShopPage(@RequestParam int cat_id, Model m) {
-		
-		
-		List<Product> productList = productService.getAllProductByCategory(new Category(cat_id));
-		m.addAttribute("productList", productList);
+	public String showShopPage(@RequestParam (value = "cat_id",defaultValue = "0")int cat_id,@RequestParam(value = "brand_id",defaultValue = "0") int brand_id, Model m) {
+		List<Product> productList  = new ArrayList<>();
+		if(cat_id >0) {
+		 productList = productService.getAllProductByCategory(new Category(cat_id));
+		}else if(brand_id>0) {
+			 productList = productService.getAllProductByBrand(new Brand(brand_id));
+		}else {
+			productList = productService.getAllProduct();
+		}
+			m.addAttribute("productList", productList);
 		
 		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
 		m.addAttribute("listCategory",listCategory);
 		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
 		m.addAttribute("companyDetail", companyDetail);
+		
+		List<Brand> listBrand = brandService.getAllBrand();
+		m.addAttribute("listBrand" , listBrand);
 		
 		return "user/shop";
 	}
@@ -319,17 +373,21 @@ public class HomeController {
 	}
 	
 	@GetMapping("/wishlist")
-	public String showWishlist(@RequestParam(value="id",defaultValue = "0")int id, Model m) {
+	public String showWishlist(@RequestParam(value="add_id",defaultValue = "0")int add_id,@RequestParam(value="del_id",defaultValue = "0")int del_id, Model m) {
 		
-		if(id >0) {
-			Product product = productService.loadProductById(id);
+		if(add_id >0) {
+			Product product = productService.loadProductById(add_id);
 			User user = userService.loadUserById(1);
 			Wishlist wishlist = new Wishlist(product,user, new Date());
-		
+			
 			wishlistService.createOrUpdateWishlist(wishlist);
 		}
-		List<Wishlist> listWishlist = wishlistService.getAllWishlist();
-		m.addAttribute("listWishlist",listWishlist);
+		if(del_id >0) {
+					
+			wishlistService.removeWishlist(del_id);
+		}
+		List<Wishlist> wishlists = wishlistService.getAllWishlist();
+		m.addAttribute("wishlists",wishlists);
 		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
 		m.addAttribute("listCategory",listCategory);
 		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
@@ -346,7 +404,7 @@ public class HomeController {
 	 	m.addAttribute("carts",carts);
 	 	for(int i=0;i<carts.size();i++)
 	 	{
-	 		total = carts.get(i).getQty()*carts.get(i).getProduct().getSalesPrice();
+	 		total += carts.get(i).getQty()*carts.get(i).getProduct().getSalesPrice();
 	 	}
 	 	m.addAttribute("total", total);
 	 	List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
@@ -362,6 +420,4 @@ public class HomeController {
 		return "user/my-account";
 	}
 	
-	
-
 }

@@ -67,8 +67,8 @@
                         <td th:text="${contactUs.isRead==1} ? 'YES' : 'NO'"> </td>
                         <td> <a th:href="@{/admin/contactUs/update/{id}(id=${contactUs.id})}"
                             class="btn btn-success btn-sm">UPDATE</a>
-                          <a th:href="@{/admin/contactUs/delete/{id}(id=${contactUs.id})}"
-                            class="btn btn-danger btn-sm">DELETE</a>
+                          <a th:href="@{/admin/contactUs/delete/{id}(id=${contactUs.id})}" class="btn btn-danger btn-sm"
+                            onClick="return confirm('Do you want to delete?')">DELETE</a>
                         </td>
                       </tr>
                     </tbody>

@@ -61,7 +61,8 @@
 
                         <td> <a th:href="@{/admin/brand/update/{id}(id=${brand.id})}"
                             class="btn btn-success btn-sm">UPDATE</a>
-                          <a th:href="@{/admin/brand/delete/{id}(id=${brand.id})}" class="btn btn-danger btn-sm">DELETE</a>
+                          <a th:href="@{/admin/brand/delete/{id}(id=${brand.id})}" class="btn btn-danger btn-sm"
+                            onClick="return confirm('Do you want to delete?')">DELETE</a>
                         </td>
                       </tr>
                     </tbody>

@@ -57,8 +57,10 @@
                         <td th:text="${link.linkType}"> </td>
                         <td th:text="${link.url}"> </td>
                         <td th:text="${link.status==1} ? 'ACTIVE' : 'NOT ACTIVE'"> </td>
-                        <td> <a th:href="@{/admin/link/update/{id}(id=${link.id})}" class="btn btn-success btn-sm">UPDATE</a>
-                          <a th:href="@{/admin/link/delete/{id}(id=${link.id})}" class="btn btn-danger btn-sm">DELETE</a>
+                        <td> <a th:href="@{/admin/link/update/{id}(id=${link.id})}"
+                            class="btn btn-success btn-sm">UPDATE</a>
+                          <a th:href="@{/admin/link/delete/{id}(id=${link.id})}" class="btn btn-danger btn-sm"
+                            onClick="return confirm('Do you want to delete?')">DELETE</a>
                         </td>
                       </tr>
                     </tbody>

@@ -78,11 +78,13 @@
 												<td th:text="${product.labour}"></td>
 												<td th:text="${product.otherCharges}"></td>
 												<td th:text="${product.productDescription}"></td>
-												<td th:text="${product.status==1} ? 'ACTIVE' : 'NOT ACTIVE'" ></td>
+												<td th:text="${product.status==1} ? 'ACTIVE' : 'NOT ACTIVE'"></td>
 												<td><a th:href="@{/admin/product/update/{id}(id=${product.id})}"
 														class="btn btn-success btn-sm">UPDATE</a> <a
 														th:href="@{/admin/product/delete/{id}(id=${product.id})}"
-														class="btn btn-danger btn-sm">DELETE</a></td>
+														class="btn btn-danger btn-sm"
+														onClick="return confirm('Do you want to delete?')">DELETE</a>
+												</td>
 											</tr>
 										</tbody>
 										<tfoot>
