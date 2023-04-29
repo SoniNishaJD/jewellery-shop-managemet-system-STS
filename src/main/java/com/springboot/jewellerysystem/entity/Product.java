@@ -129,6 +129,7 @@ public class Product {
 	}
 
 	public Float getSalesPrice() {
+		
 		return salesPrice;
 	}
 

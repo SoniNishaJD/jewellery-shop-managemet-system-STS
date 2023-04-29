@@ -16,7 +16,7 @@
         <div class="breadcrumb-area">
             <div class="container">
                 <div class="breadcrumb-content">
-                    <h2>Other</h2>
+                    <h2>My-Account</h2>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li class="active">My Account</li>
@@ -54,7 +54,7 @@
                                         aria-selected="false">Account Details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="account-logout-tab" href="login-register.html" role="tab"
+                                    <a class="nav-link" id="account-logout-tab" th:href="@{/logout}" role="tab"
                                         aria-selected="false">Logout</a>
                                 </li>
                             </ul>
@@ -64,7 +64,7 @@
                                 <div class="tab-pane fade show active" id="account-dashboard" role="tabpanel"
                                     aria-labelledby="account-dashboard-tab">
                                     <div class="myaccount-dashboard">
-                                        <p>Hello <b>Edwin Adams</b> (not Edwin Adams? <a href="login-register.html">Sign
+                                        <p>Hello <b>Nish Soni</b> (not Nisha Soni ? <a th:href="@{/logout}">Sign
                                                 out</a>)</p>
                                         <p>From your account dashboard you can view your recent orders, manage your
                                             shipping and
@@ -87,26 +87,17 @@
                                                         <th>TOTAL</th>
                                                         <th></th>
                                                     </tr>
-                                                    <tr>
-                                                        <td><a class="account-order-id"
-                                                                href="javascript:void(0)">#5364</a></td>
-                                                        <td>Mar 27, 2022</td>
+                                                    <tr th:each="order : ${orderList}">
+                                                        <td><a class="account-order-id" href="javascript:void(0)"
+                                                                th:text="{order.orderId}">#5364</a></td>
+                                                        <td th:text="${order.date}">Mar 27, 2022</td>
                                                         <td>On Hold</td>
                                                         <td>£162.00 for 2 items</td>
                                                         <td><a href="javascript:void(0)"
                                                                 class="jewellery-btn jewellery-btn_dark jewellery-btn_sm"><span>View</span></a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td><a class="account-order-id"
-                                                                href="javascript:void(0)">#5356</a></td>
-                                                        <td>Mar 27, 2022</td>
-                                                        <td>On Hold</td>
-                                                        <td>£162.00 for 2 items</td>
-                                                        <td><a href="javascript:void(0)"
-                                                                class="jewellery-btn jewellery-btn_dark jewellery-btn_sm"><span>View</span></a>
-                                                        </td>
-                                                    </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>

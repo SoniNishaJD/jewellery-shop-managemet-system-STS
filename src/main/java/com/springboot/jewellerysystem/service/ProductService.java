@@ -17,6 +17,7 @@ public interface ProductService {
 	void removeProduct(Integer id);
 	
 	List<Product> getAllProductByCategory(Category category);
+	List<Product> getAllProductByCategoryAndName(Category category,String name);
 
 	List<Product> getAllProductByBrand(Brand brand);
 }

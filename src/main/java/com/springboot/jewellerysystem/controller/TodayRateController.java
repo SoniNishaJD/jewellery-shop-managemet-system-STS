@@ -1,6 +1,8 @@
 package com.springboot.jewellerysystem.controller;
 
-import com.springboot.jewellerysystem.entity.TodayRate; 
+import com.springboot.jewellerysystem.entity.Product;
+import com.springboot.jewellerysystem.entity.TodayRate;
+import com.springboot.jewellerysystem.service.ProductService;
 import com.springboot.jewellerysystem.service.TodayRateService; 
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model; 
@@ -14,8 +16,10 @@ import java.util.List;
 @RequestMapping(value = "admin/todayRate") 
 public class TodayRateController { 
  private TodayRateService todayRateService; 
-    public TodayRateController(TodayRateService todayRateService) { 
+ private ProductService productService;
+    public TodayRateController(TodayRateService todayRateService, ProductService productService) { 
         this.todayRateService = todayRateService; 
+        this.productService = productService;
     }
  
     @GetMapping(value = "/index") 
@@ -47,6 +51,15 @@ public class TodayRateController {
     @PostMapping(value = "/save") 
     public String save(TodayRate todayRate) { 
         todayRateService.createOrUpdateTodayRate(todayRate); 
+        
+        //\\//\\//\\
+        List<Product> xlist = productService.getAllProduct();
+		for(Product p : xlist) {
+			TodayRate  rt= todayRateService.loadTodayRateById(1);
+			p.setSalesPrice(p.getGroseWeight()*rt.getPrice()/10);
+			productService.createOrUpdateProduct(p);
+		}
+		//\\//\\//\\
         return "redirect:/admin/todayRate/index"; 
     }
  

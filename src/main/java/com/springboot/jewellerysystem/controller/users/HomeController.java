@@ -1,9 +1,9 @@
 package com.springboot.jewellerysystem.controller.users;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,6 @@ import com.springboot.jewellerysystem.entity.Banner;
 import com.springboot.jewellerysystem.entity.Blog;
 import com.springboot.jewellerysystem.entity.BlogCategory;
 import com.springboot.jewellerysystem.entity.Brand;
-import com.springboot.jewellerysystem.entity.Cart;
 import com.springboot.jewellerysystem.entity.Cart;
 import com.springboot.jewellerysystem.entity.Category;
 import com.springboot.jewellerysystem.entity.CompanyDetail;
@@ -45,7 +44,6 @@ import com.springboot.jewellerysystem.service.ProductService;
 import com.springboot.jewellerysystem.service.TodayRateService;
 import com.springboot.jewellerysystem.service.UserService;
 import com.springboot.jewellerysystem.service.WishlistService;
-import com.springboot.jewellerysystem.util.Helper;
 
 @Controller
 public class HomeController {
@@ -105,15 +103,20 @@ public class HomeController {
 
 	@GetMapping({"/","/home"})
 	public String showHome(Model m) {
-		
-		
-		
+//		//\\//\\//\\
+//		List<Product> xlist = productService.getAllProduct();
+//		for(Product p : xlist) {
+//			TodayRate  rt= todayRateService.loadTodayRateById(1);
+//			p.setSalesPrice(p.getGroseWeight()*rt.getPrice()/10);
+//			productService.createOrUpdateProduct(p);
+//		}
+//		//\\//\\//\\
 		
 		List<Category> tabCategory1= new ArrayList<>();// =helper.getCategoryList(new int[]{1,2,3,4},categoryService);
 		List<Category> tabCategory2= new ArrayList<>();//helper.getCategoryList(new int[]{5,11,12,14},categoryService);
 		List<Category> tabCategory3= new ArrayList<>();//helper.getCategoryList(new int[]{7,10,6,8},categoryService);
 		Category category = new Category();
-		Helper helper = new Helper();
+		
 		
 		category =categoryService.loadCategoryById(1);		
 		tabCategory1.add(category);
@@ -203,8 +206,36 @@ public class HomeController {
 	public String showAbout(Model m) {
 		
 		
+		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
+		m.addAttribute("listCategory",listCategory);
+		
+		List<OurService> listOurService = ourServiceService.getAllOurService();
+		m.addAttribute("listOurService",listOurService);
+		
+		List<Category> listCategory2 = categoryService.getAllCategory().subList(0, 10);
+		m.addAttribute("listCategory2",listCategory2);
+		
+		List<Link> listLink = linkService.getAllLink();
+		m.addAttribute("listLink" , listLink);
+		
+		List<Brand> listBrand = brandService.getAllBrand();
+		m.addAttribute("listBrand" , listBrand);
+		
 		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
 		m.addAttribute("companyDetail", companyDetail);
+	
+		List<TodayRate> todayRates = todayRateService.getAllTodayRate();
+		m.addAttribute("todayRates", todayRates);
+		
+		List<Cart> carts =  cartService.getAllCart();
+	 	m.addAttribute("carts",carts);
+	 	float total = 0;
+		for(int i=0;i<carts.size();i++)
+	 	{
+	 		total += carts.get(i).getQty()*carts.get(i).getProduct().getSalesPrice();
+	 	}
+	 	m.addAttribute("total", total);
+	 	
 	
 		return "user/about-us";
 	}
@@ -215,8 +246,33 @@ public class HomeController {
 		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
 		m.addAttribute("listCategory",listCategory);
 		
+		List<OurService> listOurService = ourServiceService.getAllOurService();
+		m.addAttribute("listOurService",listOurService);
+		
+		List<Category> listCategory2 = categoryService.getAllCategory().subList(0, 10);
+		m.addAttribute("listCategory2",listCategory2);
+		
+		List<Link> listLink = linkService.getAllLink();
+		m.addAttribute("listLink" , listLink);
+		
+		List<Brand> listBrand = brandService.getAllBrand();
+		m.addAttribute("listBrand" , listBrand);
+		
 		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
 		m.addAttribute("companyDetail", companyDetail);
+	
+		List<TodayRate> todayRates = todayRateService.getAllTodayRate();
+		m.addAttribute("todayRates", todayRates);
+		
+		List<Cart> carts =  cartService.getAllCart();
+	 	m.addAttribute("carts",carts);
+	 	float total = 0;
+		for(int i=0;i<carts.size();i++)
+	 	{
+	 		total += carts.get(i).getQty()*carts.get(i).getProduct().getSalesPrice();
+	 	}
+	 	m.addAttribute("total", total);
+	 	
 	
 		
 		return "user/contact";
@@ -228,7 +284,7 @@ public class HomeController {
 		contactUsService.createOrUpdateContactUs(contactUs);
 		
 		
-		return "redirect:/home";
+		return "redirect: /home?success";
 	}
 	
 	@GetMapping("/faq")
@@ -236,8 +292,36 @@ public class HomeController {
 		
 		List<Faq> listFaq = faqService.getAllFaq();
 		m.addAttribute("listFaq", listFaq);
+		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
+		m.addAttribute("listCategory",listCategory);
+		
+		List<OurService> listOurService = ourServiceService.getAllOurService();
+		m.addAttribute("listOurService",listOurService);
+		
+		List<Category> listCategory2 = categoryService.getAllCategory().subList(0, 10);
+		m.addAttribute("listCategory2",listCategory2);
+		
+		List<Link> listLink = linkService.getAllLink();
+		m.addAttribute("listLink" , listLink);
+		
+		List<Brand> listBrand = brandService.getAllBrand();
+		m.addAttribute("listBrand" , listBrand);
+		
 		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
 		m.addAttribute("companyDetail", companyDetail);
+	
+		List<TodayRate> todayRates = todayRateService.getAllTodayRate();
+		m.addAttribute("todayRates", todayRates);
+		
+		List<Cart> carts =  cartService.getAllCart();
+	 	m.addAttribute("carts",carts);
+	 	float total = 0;
+		for(int i=0;i<carts.size();i++)
+	 	{
+	 		total += carts.get(i).getQty()*carts.get(i).getProduct().getSalesPrice();
+	 	}
+	 	m.addAttribute("total", total);
+	 	
 		
 		return "user/faq";
 	}
@@ -254,8 +338,33 @@ public class HomeController {
 		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
 		m.addAttribute("listCategory",listCategory);
 		
+		List<OurService> listOurService = ourServiceService.getAllOurService();
+		m.addAttribute("listOurService",listOurService);
+		
+		List<Category> listCategory2 = categoryService.getAllCategory().subList(0, 10);
+		m.addAttribute("listCategory2",listCategory2);
+		
+		List<Link> listLink = linkService.getAllLink();
+		m.addAttribute("listLink" , listLink);
+		
+		List<Brand> listBrand = brandService.getAllBrand();
+		m.addAttribute("listBrand" , listBrand);
+		
 		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
 		m.addAttribute("companyDetail", companyDetail);
+	
+		List<TodayRate> todayRates = todayRateService.getAllTodayRate();
+		m.addAttribute("todayRates", todayRates);
+		
+		List<Cart> carts =  cartService.getAllCart();
+	 	m.addAttribute("carts",carts);
+	 	float total = 0;
+		for(int i=0;i<carts.size();i++)
+	 	{
+	 		total += carts.get(i).getQty()*carts.get(i).getProduct().getSalesPrice();
+	 	}
+	 	m.addAttribute("total", total);
+	 	
 		
 		return "user/blog";
 	}
@@ -271,8 +380,33 @@ public class HomeController {
 		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
 		m.addAttribute("listCategory",listCategory);
 		
+		List<OurService> listOurService = ourServiceService.getAllOurService();
+		m.addAttribute("listOurService",listOurService);
+		
+		List<Category> listCategory2 = categoryService.getAllCategory().subList(0, 10);
+		m.addAttribute("listCategory2",listCategory2);
+		
+		List<Link> listLink = linkService.getAllLink();
+		m.addAttribute("listLink" , listLink);
+		
+		List<Brand> listBrand = brandService.getAllBrand();
+		m.addAttribute("listBrand" , listBrand);
+		
 		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
 		m.addAttribute("companyDetail", companyDetail);
+	
+		List<TodayRate> todayRates = todayRateService.getAllTodayRate();
+		m.addAttribute("todayRates", todayRates);
+		
+		List<Cart> carts =  cartService.getAllCart();
+	 	m.addAttribute("carts",carts);
+	 	float total = 0;
+		for(int i=0;i<carts.size();i++)
+	 	{
+	 		total += carts.get(i).getQty()*carts.get(i).getProduct().getSalesPrice();
+	 	}
+	 	m.addAttribute("total", total);
+	 	
 		
 		return "user/blog-detail";
 	}
@@ -293,19 +427,35 @@ public class HomeController {
 		}
 		
 		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
-		m.addAttribute("listCategory",listCategory);	
+		m.addAttribute("listCategory",listCategory);
+		
+		List<OurService> listOurService = ourServiceService.getAllOurService();
+		m.addAttribute("listOurService",listOurService);
+		
+		List<Category> listCategory2 = categoryService.getAllCategory().subList(0, 10);
+		m.addAttribute("listCategory2",listCategory2);
+		
+		List<Link> listLink = linkService.getAllLink();
+		m.addAttribute("listLink" , listLink);
+		
+		List<Brand> listBrand = brandService.getAllBrand();
+		m.addAttribute("listBrand" , listBrand);
 		
 		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
 		m.addAttribute("companyDetail", companyDetail);
+	
+		List<TodayRate> todayRates = todayRateService.getAllTodayRate();
+		m.addAttribute("todayRates", todayRates);
 		
-	 	List<Cart> carts =  cartService.getAllCart();
+		List<Cart> carts =  cartService.getAllCart();
 	 	m.addAttribute("carts",carts);
-	 	float total=0;
-	 	for(int i=0;i<carts.size();i++)
+	 	float total = 0;
+		for(int i=0;i<carts.size();i++)
 	 	{
 	 		total += carts.get(i).getQty()*carts.get(i).getProduct().getSalesPrice();
 	 	}
 	 	m.addAttribute("total", total);
+	 	
 		return "user/cart";
 		
 	}
@@ -317,9 +467,11 @@ public class HomeController {
 		if(add_id >0) {
 			Product product = productService.loadProductById(add_id);
 			User user = userService.loadUserById(1);
-			Compare compare = new Compare(product,user);
+			if(compareService.getAllCompareByProduct(product).size() <= 0) {
+			Compare compare = new Compare(product,user);	
 			
 			compareService.createOrUpdateCompare(compare);
+			}
 		}
 		if(del_id >0) {
 					
@@ -335,18 +487,20 @@ public class HomeController {
 		return "user/compare";
 	}
 	
-	
+
 	@GetMapping(value="/shop")
-	public String showShopPage(@RequestParam (value = "cat_id",defaultValue = "0")int cat_id,@RequestParam(value = "brand_id",defaultValue = "0") int brand_id, Model m) {
+	public String showShopPage(@RequestParam (value = "search",defaultValue = "")String search, @RequestParam (value = "cat_id",defaultValue = "0")int cat_id,@RequestParam(value = "brand_id",defaultValue = "0") int brand_id, Model m) {
 		List<Product> productList  = new ArrayList<>();
 		if(cat_id >0) {
-		 productList = productService.getAllProductByCategory(new Category(cat_id));
+		 //productList = productService.getAllProductByCategory(new Category(cat_id));
+		 productList = productService.getAllProductByCategoryAndName(new Category(cat_id),search);
 		}else if(brand_id>0) {
 			 productList = productService.getAllProductByBrand(new Brand(brand_id));
 		}else {
 			productList = productService.getAllProduct();
 		}
-			m.addAttribute("productList", productList);
+		
+		m.addAttribute("productList", productList);
 		
 		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
 		m.addAttribute("listCategory",listCategory);
@@ -358,6 +512,29 @@ public class HomeController {
 		
 		return "user/shop";
 	}
+	
+	
+	@PostMapping(value="/shop")
+	public String showShopSearchPage(@RequestParam (value = "search",defaultValue = "")String search, @RequestParam (value = "cat_id",defaultValue = "0")int cat_id,@RequestParam(value = "brand_id",defaultValue = "0") int brand_id, Model m) {
+		List<Product> productList  = new ArrayList<>();
+		if(cat_id >0) {
+		 productList = productService.getAllProductByCategoryAndName(new Category(cat_id),search);
+		}else {
+			productList = productService.getAllProduct();
+		}
+		
+		
+		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
+		m.addAttribute("listCategory",listCategory);
+		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
+		m.addAttribute("companyDetail", companyDetail);
+		
+		List<Brand> listBrand = brandService.getAllBrand();
+		m.addAttribute("listBrand" , listBrand);
+		
+		return "user/shop";
+	}
+	
 	
 	@GetMapping("/productDetail")
 	public String showProductDetail(@RequestParam("id")int id, Model m ) {

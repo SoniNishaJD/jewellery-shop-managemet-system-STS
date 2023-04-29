@@ -79,7 +79,7 @@
                                     <ul>
                                         <li>
                                             <span>Telephone Enquiry:</span>
-                                            <a href="callto://+91-8238609160">+91-8238609160</a>
+                                            <a th:href="@{'callto://' + ${companyDetail.phone}}">+91-8238609160</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -120,8 +120,8 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="hm-form_area">
-                                <form th:action="@{/shop}" class="hm-searchbox">
-                                    <select class="nice-select select-search-category" name="category">
+                                <form th:action="@{/shop}" class="hm-searchbox" method="get">
+                                    <select class="nice-select select-search-category" name="cat_id">
                                         <option value="0">All</option>
                                         <option th:each="category:${listCategory}" th:value="${category.id}"
                                             th:text="${category.name}"></option>
@@ -726,11 +726,11 @@
                                     "swipe": false,
                                     "asNavFor": ".sp-img_slider-nav"
                                 }'>
-                                        <div class="single-slide red" >
+                                        <div class="single-slide red">
                                             <img th:src="@{assets/images/single-product/large-size/1.jpg}"
                                                 alt="Jewellery's Product Image">
                                         </div>
-                                        
+
                                     </div>
                                     <div class="sp-img_slider-nav slick-slider-nav jewellery-slick-slider arrow-type-two"
                                         data-slick-options='{
