@@ -1,6 +1,7 @@
 package com.springboot.jewellerysystem.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -71,6 +72,9 @@ public class BlogController {
 		String uploadDir = "assets/images/blog";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 		}
+		if(blog.getEntryDate() == null) {
+    		blog.setEntryDate(new Date());
+    	}
 		blogService.createOrUpdateBlog(blog);
 		return "redirect:/admin/blog/index";
 	}

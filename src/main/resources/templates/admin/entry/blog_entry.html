@@ -66,12 +66,12 @@
                     </div>
                     <div class="form-group">
                       <label for="image">Image</label>
-                      <input type="file" accept="image/png, image/jpeg" name="file" class="form-control" id="file" placeholder="Enter Image "
-                        >
+                      <input type="file" accept="image/png, image/jpeg" name="file" class="form-control" id="file"
+                        placeholder="Enter Image ">
                     </div>
                     <div class="form-group">
-                      <label for="entryDate">Entry Date</label>
-                      <input type="text" name="entryDate" class="form-control" id="entryDate"
+                      <label for="entryDate"></label>
+                      <input type="hidden" class="form-control" id="entryDate"
                         placeholder="Enter Entry Date " th:field="${blog.entryDate}">
                     </div>
                     <div class="form-group">
@@ -86,8 +86,9 @@
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                    <a th:href="@{/blog/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a>
+                    <button type="submit" class="btn btn-primary btn-sm">SUBMIT</button>
+                    <a th:href="@{/admin/blog/index}"><button type="button"
+                        class="btn btn-dark btn-sm">BACK</button></a>
                   </div>
                 </form>
               </div>
@@ -113,10 +114,11 @@
       $(function () {
         $.validator.setDefaults({
           submitHandler: function () {
+            document.getElementById("quickForm").submit();
             alert("Form successful submitted!");
           }
         });
-        $('#quickForm1')
+        $('#quickForm')
           .validate({
             rules: {
               blogCategory: {

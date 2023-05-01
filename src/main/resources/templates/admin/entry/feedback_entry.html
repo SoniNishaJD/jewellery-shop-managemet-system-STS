@@ -47,8 +47,8 @@
                         placeholder="Enter Category " th:field="${feedback.category}">
                     </div>
                     <div class="form-group">
-                      <label for="date">Date</label>
-                      <input type="text" name="date" class="form-control" id="date" placeholder="Enter Date "
+                      <label for="date"></label>
+                      <input type="hidden"  class="form-control" id="date" placeholder="Enter Date "
                         th:field="${feedback.date}">
                     </div>
                     <div class="form-group">
@@ -71,8 +71,8 @@
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                    <a th:href="@{/feedback/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a>
+                    <button type="submit" class="btn btn-primary btn-sm">SUBMIT</button>
+                    <a th:href="@{/admin/feedback/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a>
                   </div>
                 </form>
               </div>
@@ -98,10 +98,11 @@
       $(function () {
         $.validator.setDefaults({
           submitHandler: function () {
+            document.getElementById("quickForm").submit();
             alert("Form successful submitted!");
           }
         });
-        $('#quickForm1')
+        $('#quickForm')
           .validate({
             rules: {
               category: {

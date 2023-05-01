@@ -56,7 +56,18 @@ public class TodayRateController {
         List<Product> xlist = productService.getAllProduct();
 		for(Product p : xlist) {
 			TodayRate  rt= todayRateService.loadTodayRateById(1);
-			p.setSalesPrice(p.getGroseWeight()*rt.getPrice()/10);
+			
+			float lab = p.getLabour();
+			float wt = p.getGroseWeight();
+			String is_fixed = p.getIsFixedLabour();
+			
+			float price = p.getGroseWeight()*rt.getPrice()/10;	
+			if(is_fixed == "N")
+			{
+				lab = wt * p.getLabour();
+			}
+			p.setSalesPrice(price + lab);
+			 
 			productService.createOrUpdateProduct(p);
 		}
 		//\\//\\//\\

@@ -49,7 +49,6 @@ public class ContactUs {
 	@Basic	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
-	@CreationTimestamp
 	@Column(name = "enquiry_date", nullable = false)
 	public Date enquiryDate;
 

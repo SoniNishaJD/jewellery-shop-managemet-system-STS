@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping; 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
-import org.springframework.web.bind.annotation.RequestParam; 
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Date;
 import java.util.List; 
 @Controller 
 @RequestMapping(value = "admin/feedback") 
@@ -46,6 +48,9 @@ public class FeedbackController {
  
     @PostMapping(value = "/save") 
     public String save(Feedback feedback) { 
+    	if(feedback.getDate() == null) {
+    		feedback.setDate(new Date());
+    	}
         feedbackService.createOrUpdateFeedback(feedback); 
         return "redirect:/admin/feedback/index"; 
     }

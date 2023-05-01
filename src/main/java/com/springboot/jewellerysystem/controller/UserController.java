@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping; 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
-import org.springframework.web.bind.annotation.RequestParam; 
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Date;
 import java.util.List; 
 @Controller 
 @RequestMapping(value = "admin/user") 
@@ -46,6 +48,9 @@ public class UserController {
  
     @PostMapping(value = "/save") 
     public String save(User user) { 
+    	if(user.getEntryDate() == null) {
+    		user.setEntryDate(new Date());
+    	}
         userService.createOrUpdateUser(user); 
         return "redirect:/admin/user/index"; 
     }

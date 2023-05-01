@@ -48,8 +48,8 @@
                     </div>
                     <div class="form-group">
                       <label for="logo">Logo</label>
-                      <input type="file" accept="image/png, image/jpeg" name="file" class="form-control" id="file" placeholder="Enter Logo "
-                       >
+                      <input type="file" accept="image/png, image/jpeg" name="file" class="form-control" id="file"
+                        placeholder="Enter Logo ">
                     </div>
                     <div class="form-group">
                       <label for="status">Status</label>
@@ -61,8 +61,9 @@
 
                     <!-- /.card-body -->
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                      <a th:href="@{/brand/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a>
+                      <button type="submit" class="btn btn-primary btn-sm">SUBMIT</button>
+                      <a th:href="@{/admin/brand/index}"><button type="button"
+                          class="btn btn-dark btn-sm">BACK</button></a>
                     </div>
                 </form>
               </div>
@@ -88,10 +89,11 @@
       $(function () {
         $.validator.setDefaults({
           submitHandler: function () {
+            document.getElementById("quickForm").submit();
             alert("Form successful submitted!");
           }
         });
-        $('#quickForm1')
+        $('#quickForm')
           .validate({
             rules: {
               name: {

@@ -1,5 +1,6 @@
 package com.springboot.jewellerysystem.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -71,6 +72,9 @@ public class WishlistController {
 
 	@PostMapping(value = "/save")
 	public String save(Wishlist wishlist) {
+		if(wishlist.getEntryDate() == null) {
+    		wishlist.setEntryDate(new Date());
+    	}
 		wishlistService.createOrUpdateWishlist(wishlist);
 		return "redirect:/admin/wishlist/index";
 	}

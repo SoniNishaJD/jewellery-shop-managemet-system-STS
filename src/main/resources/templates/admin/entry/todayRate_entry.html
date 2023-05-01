@@ -56,8 +56,9 @@
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                    <a th:href="@{/todayRate/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a>
+                    <button type="submit" class="btn btn-primary btn-sm">SUBMIT</button>
+                    <a th:href="@{/admin/todayRate/index}"><button type="button"
+                        class="btn btn-dark btn-sm">BACK</button></a>
                   </div>
                 </form>
               </div>
@@ -83,6 +84,7 @@
       $(function () {
         $.validator.setDefaults({
           submitHandler: function () {
+            document.getElementById("quickForm").submit();
             alert("Form successful submitted!");
           }
         });

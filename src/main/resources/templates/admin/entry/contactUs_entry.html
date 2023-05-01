@@ -67,13 +67,11 @@
                         th:field="${contactUs.message}">
                     </div>
                     <div class="form-group">
-                      <label for="enquiryDate">Enquiry Date</label>
-                      <input type="text" name="enquiryDate" class="form-control" id="enquiryDate"
-                        placeholder="Enter Enquiry Date " th:field="${contactUs.enquiryDate}">
+                      <input type="hidden" th:field="${contactUs.enquiryDate}" class="form-control" id="enquiryDate"
+                        placeholder="Enter Enquiry Date " >
                     </div>
                     <div class="form-group">
-                      <label for="isRead">Is Read</label>
-                      <input type="text" name="isRead" class="form-control" id="isRead" placeholder="Enter Is Read "
+                      <input type="hidden" name="isRead" class="form-control" id="isRead" placeholder="Enter Is Read "
                         th:field="${contactUs.isRead}">
                     </div>
 
@@ -81,8 +79,8 @@
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                    <a th:href="@{/contactUs/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a>
+                    <button type="submit" class="btn btn-primary btn-sm">SUBMIT</button>
+                    <a th:href="@{/admin/contactUs/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a>
                   </div>
                 </form>
               </div>
@@ -108,10 +106,11 @@
       $(function () {
         $.validator.setDefaults({
           submitHandler: function () {
+            document.getElementById("quickForm").submit();
             alert("Form successful submitted!");
           }
         });
-        $('#quickForm1')
+        $('#quickForm')
           .validate({
             rules: {
               firstName: {
@@ -129,12 +128,7 @@
               message: {
                 required: true,
               },
-              enquiryDate: {
-                required: true,
-              },
-              isRead: {
-                required: true,
-              },
+             
             },
             messages: {
               firstName: {
@@ -152,12 +146,7 @@
               message: {
                 required: "Please enter a message",
               },
-              enquiryDate: {
-                required: "Please enter a enquiry date",
-              },
-              isRead: {
-                required: "Please enter a is read",
-              },
+              
             },
             errorElement: 'span',
             errorPlacement: function (error, element) {

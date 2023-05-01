@@ -39,7 +39,8 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form id="quickForm" method="post" th:action="@{/admin/productDetail/save}" enctype="multipart/form-data">
+                <form id="quickForm" method="post" th:action="@{/admin/productDetail/save}"
+                  enctype="multipart/form-data">
                   <div class="card-body">
                     <div class="form-group">
                       <label for="product">Product</label>
@@ -71,8 +72,8 @@
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                    <a th:href="@{/productDetail/index}"><button type="button"
+                    <button type="submit" class="btn btn-primary btn-sm">SUBMIT</button>
+                    <a th:href="@{/admin/productDetail/index}"><button type="button"
                         class="btn btn-dark btn-sm">BACK</button></a>
                   </div>
                 </form>
@@ -99,10 +100,11 @@
       $(function () {
         $.validator.setDefaults({
           submitHandler: function () {
+            document.getElementById("quickForm").submit();
             alert("Form successful submitted!");
           }
         });
-        $('#quickForm1')
+        $('#quickForm')
           .validate({
             rules: {
               product: {

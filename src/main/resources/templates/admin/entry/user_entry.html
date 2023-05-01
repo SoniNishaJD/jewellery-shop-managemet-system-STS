@@ -80,7 +80,7 @@
                     </div>
                     <div class="form-group">
                       <label for="entryDate">Entry Date</label>
-                      <input type="text" name="entryDate" class="form-control" id="entryDate"
+                     <input type="hidden" class="form-control" id="entryDate"
                         placeholder="Enter Entry Date " th:field="${user.entryDate}">
                     </div>
 
@@ -88,8 +88,9 @@
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                    <a th:href="@{/user/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a>
+                    <button type="submit" class="btn btn-primary btn-sm">SUBMIT</button>
+                    <a th:href="@{/admin/user/index}"><button type="button"
+                        class="btn btn-dark btn-sm">BACK</button></a>
                   </div>
                 </form>
               </div>
@@ -115,10 +116,11 @@
       $(function () {
         $.validator.setDefaults({
           submitHandler: function () {
+            document.getElementById("quickForm").submit();
             alert("Form successful submitted!");
           }
         });
-        $('#quickForm1')
+        $('#quickForm')
           .validate({
             rules: {
               firstName: {

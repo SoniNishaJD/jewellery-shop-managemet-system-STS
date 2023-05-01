@@ -58,11 +58,11 @@
                     <div class="form-group">
                       <label for="bannerImage">Banner Image</label>
                       <input type="file" accept="image/png, image/jpeg" name="file" class="form-control" id="file"
-                        placeholder="Enter Banner Image "  >
-                        
-                         <input type="hidden" th:value="${bannerImage.getBannerImage()}">
-                        <img th:src="${bannerImage.imagePath}" style="width:70px">
-                        
+                        placeholder="Enter Banner Image ">
+
+                      <input type="hidden" th:value="${bannerImage.getBannerImage()}">
+                      <img th:src="${bannerImage.imagePath}" style="width:70px">
+
                     </div>
                     <div class="form-group">
                       <label for="bannerLink">Banner Link</label>
@@ -96,6 +96,53 @@
     </div>
   </div>
   <section layout:fragment="script1">
+    <script th:src="@{/admin/plugins/jquery-validation/jquery.validate.min.js}"></script>
+    <script th:src="@{/admin/plugins/jquery-validation/additional-methods.min.js}"></script>
+    <script>
+      $(function () {
+        $.validator.setDefaults({
+          submitHandler: function () {
+            document.getElementById("quickForm").submit();
+            alert("Form successful submitted!");
+          }
+        });
+        $('#quickForm').validate({
+          rules: {
+            banner: {
+              required: true,
+            },
+            bannerImage: {
+              required: true,
+            },
+            bannerLink: {
+              required: true,
+            },
+          },
+          messages: {
+            banner: {
+              required: "Please enter a banner",
+            },
+            bannerImage: {
+              required: "Please enter a banner image",
+            },
+            bannerLink: {
+              required: "Please enter a banner link",
+            },
+          },
+          errorElement: 'span',
+          errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+          },
+          highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+          },
+          unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+          }
+        });
+      });
+    </script>
   </section>
 
 </body>
