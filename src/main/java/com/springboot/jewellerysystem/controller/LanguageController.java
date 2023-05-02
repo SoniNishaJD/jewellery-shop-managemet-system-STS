@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping; 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
-import org.springframework.web.bind.annotation.RequestParam; 
-import java.util.List; 
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/language") 
 public class LanguageController { 
@@ -32,8 +36,9 @@ public class LanguageController {
         return "admin/entry/language_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteLanguage(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteLanguage(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         languageService.removeLanguage(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/language/index?keyword=" + keyword; 
     }
  
@@ -45,8 +50,18 @@ public class LanguageController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(Language language) { 
-        languageService.createOrUpdateLanguage(language); 
+    public String save(Language language, HttpSession session) { 
+    	String msg = "inserted";
+		if(language.getId() != null && language.getId() != 0) {
+			msg = "updated";
+		}
+    	
+      Language l =  languageService.createOrUpdateLanguage(language); 
+        if(l != null) {
+    		session.setAttribute("msg", msg);
+    	}else {
+    		session.setAttribute("error","error");
+    	}
         return "redirect:/admin/language/index"; 
     }
  

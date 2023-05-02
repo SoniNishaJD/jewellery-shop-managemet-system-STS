@@ -3,6 +3,8 @@ package com.springboot.jewellerysystem.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -48,8 +50,9 @@ public class ProductImageController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String deleteProductImage(@PathVariable(value = "id") Integer id, String keyword) {
+	public String deleteProductImage(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
 		productImageService.removeProductImage(id);
+		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/productImage/index?keyword=" + keyword;
 	}
 
@@ -64,8 +67,11 @@ public class ProductImageController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(ProductImage productImage, @RequestParam("file")MultipartFile file) throws IOException {
-		
+	public String save(ProductImage productImage, @RequestParam("file")MultipartFile file, HttpSession session) throws IOException {
+		String msg = "inserted";
+		if(productImage.getId() != null && productImage.getId() != 0) {
+			msg = "updated";
+		}
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		
 		if(fileName.length() > 3) {
@@ -74,7 +80,13 @@ public class ProductImageController {
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 		}
 		
-		productImageService.createOrUpdateProductImage(productImage);
+		ProductImage p =	productImageService.createOrUpdateProductImage(productImage);
+		if(p != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
+
 		return "redirect:/admin/productImage/index";
 	}
 

@@ -3,6 +3,8 @@ package com.springboot.jewellerysystem.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,8 +54,9 @@ public class WishlistController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String deleteWishlist(@PathVariable(value = "id") Integer id, String keyword) {
+	public String deleteWishlist(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
 		wishlistService.removeWishlist(id);
+		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/wishlist/index?keyword=" + keyword;
 	}
 
@@ -71,11 +74,11 @@ public class WishlistController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(Wishlist wishlist) {
+	public String save(Wishlist wishlist, HttpSession httpSession) {
 		if(wishlist.getEntryDate() == null) {
     		wishlist.setEntryDate(new Date());
     	}
-		wishlistService.createOrUpdateWishlist(wishlist);
+		Wishlist w=	wishlistService.createOrUpdateWishlist(wishlist);
 		return "redirect:/admin/wishlist/index";
 	}
 

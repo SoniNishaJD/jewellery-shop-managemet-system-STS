@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/link") 
 public class LinkController { 
@@ -32,8 +34,9 @@ public class LinkController {
         return "admin/entry/link_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteLink(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteLink(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         linkService.removeLink(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/link/index?keyword=" + keyword; 
     }
  
@@ -45,8 +48,18 @@ public class LinkController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(Link link) { 
-        linkService.createOrUpdateLink(link); 
+    public String save(Link link, HttpSession session) { 
+    	String msg = "inserted";
+		if(link.getId() != null && link.getId() != 0) {
+			msg = "updated";
+		}
+    	
+		Link l =  linkService.createOrUpdateLink(link); 
+        if(l != null) {
+    		session.setAttribute("msg", msg);
+    	}else {
+    		session.setAttribute("error","error");
+    	}
         return "redirect:/admin/link/index"; 
     }
  

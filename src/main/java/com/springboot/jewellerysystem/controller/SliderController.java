@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/slider") 
 public class SliderController { 
@@ -38,8 +40,9 @@ public class SliderController {
         return "admin/entry/slider_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteSlider(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteSlider(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         sliderService.removeSlider(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/slider/index?keyword=" + keyword; 
     }
  
@@ -51,17 +54,26 @@ public class SliderController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(Slider slider, @RequestParam("file")MultipartFile file) throws IOException { 
-    	
+    public String save(Slider slider, @RequestParam("file")MultipartFile file, HttpSession session) throws IOException { 
+    	String msg = "inserted";
+		if(slider.getId() != null && slider.getId() != 0) {
+			msg = "updated";
+		}
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
     	
     	if(fileName.length() > 3) {
+    		
 		slider.setImage(fileName);
 		String uploadDir = "assets1/images/slider";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
     	}
     	
-        sliderService.createOrUpdateSlider(slider); 
+      Slider s =  sliderService.createOrUpdateSlider(slider); 
+        if(s != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
         return "redirect:/admin/slider/index"; 
     }
  

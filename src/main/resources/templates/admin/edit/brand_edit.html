@@ -57,7 +57,7 @@
                       <input type="file" accept="image/png, image/jpeg" name="file" class="form-control"
                         placeholder="Enter Logo ">
 
-                      <input type="hidden" th:value="${brand.getLogo()}">
+                      <input type="hidden" name="Logo" th:value="${brand.getLogo()}">
                       <img th:src="${brand.imagePath}" style="width:70px">
 
 

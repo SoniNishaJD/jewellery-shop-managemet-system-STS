@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/blogCategory") 
 public class BlogCategoryController { 
@@ -32,8 +34,9 @@ public class BlogCategoryController {
         return "admin/entry/blogCategory_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteBlogCategory(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteBlogCategory(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         blogCategoryService.removeBlogCategory(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/blogCategory/index?keyword=" + keyword; 
     }
  
@@ -45,8 +48,17 @@ public class BlogCategoryController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(BlogCategory blogCategory) { 
-        blogCategoryService.createOrUpdateBlogCategory(blogCategory); 
+    public String save(BlogCategory blogCategory, HttpSession session) { 
+    	String msg = "inserted";
+		if(blogCategory .getId() != null && blogCategory.getId() != 0) {
+			msg = "updated";
+		}
+       BlogCategory b = blogCategoryService.createOrUpdateBlogCategory(blogCategory); 
+        if(b != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
         return "redirect:/admin/blogCategory/index"; 
     }
  

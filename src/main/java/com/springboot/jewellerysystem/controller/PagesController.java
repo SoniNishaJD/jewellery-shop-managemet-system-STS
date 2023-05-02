@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/pages") 
 public class PagesController { 
@@ -38,8 +40,9 @@ public class PagesController {
         return "admin/entry/pages_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deletePages(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deletePages(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         pagesService.removePages(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/pages/index?keyword=" + keyword; 
     }
  
@@ -51,8 +54,11 @@ public class PagesController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(Pages pages, @RequestParam("file")MultipartFile file) throws IOException {
-    	
+    public String save(Pages pages, @RequestParam("file")MultipartFile file, HttpSession session) throws IOException {
+    	String msg = "inserted";
+		if(pages.getId() != null && pages.getId() != 0) {
+			msg = "updated";
+		}
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
     	
     	if(fileName.length() > 3) {
@@ -61,7 +67,12 @@ public class PagesController {
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
     	}
     	
-        pagesService.createOrUpdatePages(pages); 
+    	Pages p = pagesService.createOrUpdatePages(pages); 
+    	if(p != null) {
+    		session.setAttribute("msg", msg);
+    	}else {
+    		session.setAttribute("error","error");
+    	}
         return "redirect:/admin/pages/index"; 
     }
  

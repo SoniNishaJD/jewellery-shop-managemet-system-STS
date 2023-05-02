@@ -3,6 +3,8 @@ package com.springboot.jewellerysystem.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -50,8 +52,9 @@ public class BannerImageController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String deleteBannerImage(@PathVariable(value = "id") Integer id, String keyword) {
+	public String deleteBannerImage(@PathVariable(value = "id") Integer id, String keyword,HttpSession session) {
 		bannerImageService.removeBannerImage(id);
+		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/bannerImage/index?keyword=" + keyword;
 	}
 
@@ -67,8 +70,11 @@ public class BannerImageController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(BannerImage bannerImage, @RequestParam("file")MultipartFile file) throws IOException {
-		
+	public String save(BannerImage bannerImage, @RequestParam("file")MultipartFile file, HttpSession session) throws IOException {
+		String msg = "inserted";
+		if(bannerImage.getId() != null && bannerImage.getId() != 0) {
+			msg = "updated";
+		}
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		
 		if(fileName.length() > 3) {
@@ -77,7 +83,12 @@ public class BannerImageController {
 			FileUploadUtil.saveFile(uploadDir, fileName, file);
 		}
 		
-		bannerImageService.createOrUpdateBannerImage(bannerImage);
+		BannerImage b =bannerImageService.createOrUpdateBannerImage(bannerImage);
+		if(b != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
 		return "redirect:/admin/bannerImage/index";
 	}
 

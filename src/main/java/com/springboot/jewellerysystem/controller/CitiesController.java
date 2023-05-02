@@ -2,6 +2,8 @@ package com.springboot.jewellerysystem.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,8 +46,9 @@ public class CitiesController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String deleteCities(@PathVariable(value = "id") Integer id, String keyword) {
+	public String deleteCities(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
 		citiesService.removeCities(id);
+		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/cities/index?keyword=" + keyword;
 	}
 
@@ -60,8 +63,17 @@ public class CitiesController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(Cities cities) {
-		citiesService.createOrUpdateCities(cities);
+	public String save(Cities cities , HttpSession session) {
+		String msg = "inserted";
+		if(cities.getId() != 0) {
+			msg = "updated";
+		}
+		Cities c = citiesService.createOrUpdateCities(cities);
+		if(c != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
 		return "redirect:/admin/cities/index";
 	}
 

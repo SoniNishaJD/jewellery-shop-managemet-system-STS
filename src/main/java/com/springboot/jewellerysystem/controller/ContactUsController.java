@@ -3,6 +3,8 @@ package com.springboot.jewellerysystem.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,8 +38,9 @@ public class ContactUsController {
         return "admin/entry/contactUs_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteContactUs(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteContactUs(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         contactUsService.removeContactUs(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/contactUs/index?keyword=" + keyword; 
     }
  
@@ -49,15 +52,23 @@ public class ContactUsController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(ContactUs contactUs) { 
-    	
+    public String save(ContactUs contactUs, HttpSession session) { 
+    	String msg = "inserted";
+		if(contactUs.getId() != null && contactUs.getId() != 0) {
+			msg = "updated";
+		}
     	if(contactUs.getIsRead() == null)
     	{contactUs.setIsRead("N");}
     	
     	if(contactUs.getEnquiryDate() == null) {
     		contactUs.setEnquiryDate(new Date());
     	}
-        contactUsService.createOrUpdateContactUs(contactUs); 
+    	ContactUs c =  contactUsService.createOrUpdateContactUs(contactUs);
+        if(c != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
         return "redirect:/admin/contactUs/index"; 
     }
  

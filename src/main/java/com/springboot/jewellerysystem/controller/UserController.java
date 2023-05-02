@@ -1,5 +1,6 @@
 package com.springboot.jewellerysystem.controller;
 
+import com.springboot.jewellerysystem.entity.Style;
 import com.springboot.jewellerysystem.entity.User; 
 import com.springboot.jewellerysystem.service.UserService; 
 import org.springframework.stereotype.Controller; 
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/user") 
 public class UserController { 
@@ -34,8 +37,9 @@ public class UserController {
         return "admin/entry/user_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteUser(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteUser(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         userService.removeUser(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/user/index?keyword=" + keyword; 
     }
  
@@ -47,11 +51,21 @@ public class UserController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(User user) { 
+    public String save(User user, HttpSession session) { 
+    	String msg = "inserted";
+		if(user.getId() != null && user.getId() != 0) {
+			msg = "updated";
+		}
     	if(user.getEntryDate() == null) {
     		user.setEntryDate(new Date());
     	}
-        userService.createOrUpdateUser(user); 
+    	User u =userService.createOrUpdateUser(user); 
+         
+        if(u != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
         return "redirect:/admin/user/index"; 
     }
  

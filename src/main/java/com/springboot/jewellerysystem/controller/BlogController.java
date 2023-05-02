@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -49,8 +51,9 @@ public class BlogController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String deleteBlog(@PathVariable(value = "id") Integer id, String keyword) {
+	public String deleteBlog(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
 		blogService.removeBlog(id);
+		 session.setAttribute("msg", "deleted");
 		return "redirect:/admin/blog/index?keyword=" + keyword;
 	}
 
@@ -65,7 +68,11 @@ public class BlogController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(Blog blog, @RequestParam("file")MultipartFile file) throws IOException {
+	public String save(Blog blog, @RequestParam("file")MultipartFile file, HttpSession session) throws IOException {
+		String msg = "inserted";
+		if(blog.getId() != 0) {
+			msg = "updated";
+		}
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		if (fileName.length() > 3) {
 		blog.setImage(fileName);
@@ -75,7 +82,12 @@ public class BlogController {
 		if(blog.getEntryDate() == null) {
     		blog.setEntryDate(new Date());
     	}
-		blogService.createOrUpdateBlog(blog);
+		Blog b =blogService.createOrUpdateBlog(blog);
+		if(b != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
 		return "redirect:/admin/blog/index";
 	}
 	

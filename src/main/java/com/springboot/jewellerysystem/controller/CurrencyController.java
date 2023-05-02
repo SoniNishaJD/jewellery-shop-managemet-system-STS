@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/currency") 
 public class CurrencyController { 
@@ -32,8 +34,9 @@ public class CurrencyController {
         return "admin/entry/currency_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteCurrency(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteCurrency(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         currencyService.removeCurrency(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/currency/index?keyword=" + keyword; 
     }
  
@@ -45,8 +48,17 @@ public class CurrencyController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(Currency currency) { 
-        currencyService.createOrUpdateCurrency(currency); 
+    public String save(Currency currency, HttpSession session) { 
+    	String msg = "inserted";
+		if(currency.getId() != null && currency.getId() != 0) {
+			msg = "updated";
+		}
+		Currency c =  currencyService.createOrUpdateCurrency(currency); 
+		if(c != null) {
+			session.setAttribute("msg", msg);
+		}else {
+			session.setAttribute("error","error");
+		}
         return "redirect:/admin/currency/index"; 
     }
  

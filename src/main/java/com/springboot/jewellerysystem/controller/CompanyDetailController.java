@@ -18,6 +18,8 @@ import com.springboot.jewellerysystem.util.FileUploadUtil;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping(value = "admin/companyDetail")
 public class CompanyDetailController {
@@ -42,8 +44,9 @@ public class CompanyDetailController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String deleteCompanyDetail(@PathVariable(value = "id") Integer id, String keyword) {
+	public String deleteCompanyDetail(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
 		companyDetailService.removeCompanyDetail(id);
+		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/companyDetail/index?keyword=" + keyword;
 	}
 
@@ -57,8 +60,11 @@ public class CompanyDetailController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(CompanyDetail companyDetail, @RequestParam("file") MultipartFile file) throws IOException {
-
+	public String save(CompanyDetail companyDetail, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+		String msg = "inserted";
+		if(companyDetail.getId() != 0) {
+			msg = "updated";
+		}
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		if (fileName.length() > 3) {
 		companyDetail.setLogo(fileName);
@@ -66,7 +72,12 @@ public class CompanyDetailController {
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 		}
 		
-		companyDetailService.createOrUpdateCompanyDetail(companyDetail);
+		CompanyDetail c = companyDetailService.createOrUpdateCompanyDetail(companyDetail);
+		if(c != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
 		return "redirect:/admin/companyDetail/index";
 	}
 

@@ -41,39 +41,8 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                <th:block th:if="${session.msg}">
-                              <script>ok1()</script>
-                              <th:block th:inline="text">[[${#session.removeAttribute('msg')}]]</th:block>
-                </th:block>
-            <div class="card card-success card-outline">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-edit"></i>
-                  SweetAlert2 Examples
-                </h3>
-              </div>
-              <div class="card-body">
-                <button type="button" class="btn btn-success swalDefaultSuccess">
-                  Launch Success Toast
-                </button>
-                <button type="button" class="btn btn-info swalDefaultInfo">
-                  Launch Info Toast
-                </button>
-                <button type="button" class="btn btn-danger swalDefaultError">
-                  Launch Error Toast
-                </button>
-                <button type="button" class="btn btn-warning swalDefaultWarning">
-                  Launch Warning Toast
-                </button>
-                <button type="button" class="btn btn-default swalDefaultQuestion">
-                  Launch Question Toast
-                </button>
-                <div class="text-muted mt-3">
-                  For more examples look at <a href="https://sweetalert2.github.io/">https://sweetalert2.github.io/</a>
-                </div>
-              </div>
-              <!-- /.card -->
-            </div>
+
+
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
@@ -126,56 +95,56 @@
   </div>
   <!-- xxxxxxxxxx -->
   <section layout:fragment="script1">
-  
-  <script>
-  
-  $(function() {
-    var Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
 
-    function ok1 () {
-        Toast.fire({
-          icon: 'success',
-          title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-        })
-      }
-    
-    $('.swalDefaultSuccess').click(function() {
-      Toast.fire({
-        icon: 'success',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultInfo').click(function() {
-      Toast.fire({
-        icon: 'info',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultError').click(function() {
-      Toast.fire({
-        icon: 'error',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultWarning').click(function() {
-      Toast.fire({
-        icon: 'warning',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultQuestion').click(function() {
-      Toast.fire({
-        icon: 'question',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-  });
-  </script>
+    <script>
+
+      $(function () {
+        var Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        function ok1() {
+          Toast.fire({
+            icon: 'success',
+            title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+          })
+        }
+
+        $('.swalDefaultSuccess').click(function () {
+          Toast.fire({
+            icon: 'success',
+            title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+          })
+        });
+        $('.swalDefaultInfo').click(function () {
+          Toast.fire({
+            icon: 'info',
+            title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+          })
+        });
+        $('.swalDefaultError').click(function () {
+          Toast.fire({
+            icon: 'error',
+            title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+          })
+        });
+        $('.swalDefaultWarning').click(function () {
+          Toast.fire({
+            icon: 'warning',
+            title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+          })
+        });
+        $('.swalDefaultQuestion').click(function () {
+          Toast.fire({
+            icon: 'question',
+            title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+          })
+        });
+      });
+    </script>
   </section>
   <!-- xxxxxxxxxx -->
 </body>

@@ -44,8 +44,9 @@ public class BrandController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String deleteBrand(@PathVariable(value = "id") Integer id, String keyword) {
+	public String deleteBrand(@PathVariable(value = "id") Integer id, String keyword,HttpSession session) {
 		brandService.removeBrand(id);
+		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/brand/index?keyword=" + keyword;
 	}
 
@@ -59,7 +60,10 @@ public class BrandController {
 
 	@PostMapping(value = "/save")
 	public String save(Brand brand, @RequestParam("file") MultipartFile file,HttpSession session) throws IOException {
-
+		String msg = "inserted";
+		if(brand.getId() != null && brand.getId() != 0) {
+			msg = "updated";
+		}
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		if (fileName.length() > 3) {
 			brand.setLogo(fileName);
@@ -70,6 +74,8 @@ public class BrandController {
 		Brand b = brandService.createOrUpdateBrand(brand);
 		if(b != null) {
 			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
 		}
 		return "redirect:/admin/brand/index";
 	}

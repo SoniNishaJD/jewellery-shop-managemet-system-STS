@@ -49,6 +49,7 @@ import com.springboot.jewellerysystem.service.WishlistService;
 public class HomeController {
 
 	private UserService userService;
+	
 	private CategoryService categoryService;
 	
 	private ProductService productService;

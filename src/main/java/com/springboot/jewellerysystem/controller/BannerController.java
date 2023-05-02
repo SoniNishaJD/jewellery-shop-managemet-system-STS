@@ -2,6 +2,8 @@ package com.springboot.jewellerysystem.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,8 +46,9 @@ public class BannerController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String deleteBanner(@PathVariable(value = "id") Integer id, String keyword) {
+	public String deleteBanner(@PathVariable(value = "id") Integer id, String keyword,HttpSession session) {
 		bannerService.removeBanner(id);
+		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/banner/index?keyword=" + keyword;
 	}
 
@@ -60,8 +63,18 @@ public class BannerController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(Banner banner) {
-		bannerService.createOrUpdateBanner(banner);
+	public String save(Banner banner, HttpSession session) {
+		String msg = "inserted";
+		if(banner.getId() != null && banner.getId() != 0) {
+			msg = "updated";
+		}
+		Banner b = bannerService.createOrUpdateBanner(banner);
+		if(b != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
+		
 		return "redirect:/admin/banner/index";
 	}
 

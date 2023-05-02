@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/feedback") 
 public class FeedbackController { 
@@ -34,7 +36,7 @@ public class FeedbackController {
         return "admin/entry/feedback_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteFeedback(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteFeedback(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         feedbackService.removeFeedback(id); 
         return "redirect:/admin/feedback/index?keyword=" + keyword; 
     }
@@ -47,11 +49,20 @@ public class FeedbackController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(Feedback feedback) { 
+    public String save(Feedback feedback, HttpSession session) { 
+    	String msg = "inserted";
+		if(feedback.getId() != null && feedback.getId() != 0) {
+			msg = "updated";
+		}
     	if(feedback.getDate() == null) {
     		feedback.setDate(new Date());
     	}
-        feedbackService.createOrUpdateFeedback(feedback); 
+      Feedback f =  feedbackService.createOrUpdateFeedback(feedback); 
+  	if(f != null) {
+		session.setAttribute("msg", msg);
+	}else {
+		session.setAttribute("error","error");
+	}
         return "redirect:/admin/feedback/index"; 
     }
  

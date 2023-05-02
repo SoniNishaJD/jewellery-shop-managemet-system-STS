@@ -2,6 +2,8 @@ package com.springboot.jewellerysystem.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,8 +53,9 @@ public class CompareController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String deleteCompare(@PathVariable(value = "id") Integer id, String keyword) {
+	public String deleteCompare(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
 		compareService.removeCompare(id);
+		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/compare/index?keyword=" + keyword;
 	}
 
@@ -70,8 +73,17 @@ public class CompareController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(Compare compare) {
-		compareService.createOrUpdateCompare(compare);
+	public String save(Compare compare, HttpSession session) {
+		String msg = "inserted";
+		if(compare.getId() != null && compare.getId() != 0) {
+			msg = "updated";
+		}
+		Compare c = compareService.createOrUpdateCompare(compare);
+		if(c != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
 		return "redirect:/admin/compare/index";
 	}
 

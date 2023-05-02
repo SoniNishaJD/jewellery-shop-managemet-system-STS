@@ -528,6 +528,13 @@
       <!-- /.sidebar -->
     </aside>
 
+    <!--Session Message -->
+    <th:block th:if="${session.msg}">
+      <div id="kk" th:class="${session.msg}"></div>
+      <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+    </th:block>
+    <!--/Session Message -->
+
     <!-- section -->
     <section layout:fragment="content1"></section>
 
@@ -559,9 +566,9 @@
   <script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
   <!-- ChartJS -->
   <script th:src="@{/admin/plugins/chart.js/Chart.min.js}"></script>
-  <!--  <!-- Sparkline -->
+  <!--   Sparkline -->
   <script th:src="@{/admin/plugins/sparklines/sparkline.js}"></script> -->
-  <!--  <!-- JQVMap -->
+  <!-- JQVMap -->
   <script th:src="@{/admin/plugins/jqvmap/jquery.vmap.min.js}"></script> -->
   <!-- <script th:src="@{/admin/plugins/jqvmap/maps/jquery.vmap.usa.js}"></script> -->
   <!-- jQuery Knob Chart -->
@@ -598,65 +605,56 @@
   <script th:src="@{/admin/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
   <script th:src="@{/admin/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
   <script th:src="@{/admin/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
-  <!-- AdminLTE App -->
-  <!-- Page specific script -->
-
-  <!-- =======================entry js==================== -->
-  <!-- jquery-validation -->
-
-  <!-- Page specific script -->
-  <!--  <script>
-    $(function () {
-      $.validator.setDefaults({
-        submitHandler: function () {
-          alert("Form successful submitted!");
-        }
+  <script>
+		
+    $(function() {
+      var Toast = Swal.mixin({
+        toast : true,
+        position : 'top-end',
+        showConfirmButton : false,
+        timer : 3000
       });
-      $('#quickForm')
-        .validate(
-          {
-            rules: {
-              email: {
-                required: true,
-                email: true,
-              },
-              password: {
-                required: true,
-                minlength: 5
-              },
-              terms: {
-                required: true
-              },
-            },
-            messages: {
-              email: {
-                required: "Please enter a email address",
-                email: "Please enter a valid email address"
-              },
-              password: {
-                required: "Please provide a password",
-                minlength: "Your password must be at least 5 characters long"
-              },
-              terms: "Please accept our terms"
-            },
-            errorElement: 'span',
-            errorPlacement: function (error, element) {
-              error.addClass('invalid-feedback');
-              element.closest('.form-group')
-                .append(error);
-            },
-            highlight: function (element, errorClass,
-              validClass) {
-              $(element).addClass('is-invalid');
-            },
-            unhighlight: function (element, errorClass,
-              validClass) {
-              $(element).removeClass('is-invalid');
-            }
-          });
+     
+      setTimeout(function(){
+        
+      const div = document.querySelector('#kk');
+      if(div.classList.contains('inserted')){
+        inserted_msg();
+      }
+      if(div.classList.contains('updated')){
+        updated_msg();
+      }
+      if(div.classList.contains('deleted')){
+        deleted_msg();
+      }				
+       
+      }, 2000);
+      
+      function inserted_msg() {
+        Toast
+            .fire({
+              icon : 'success',
+              title : 'Record inserted successfully !!'
+            })
+      }
+      function updated_msg() {
+        Toast
+            .fire({
+              icon : 'info',
+              title : 'Record updated successfully !!'
+            })
+      }
+      function deleted_msg() {
+        Toast
+            .fire({
+              icon : 'error',
+              title : 'Record deleted successfully !!'
+            })
+      }
+
+      
     });
   </script>
- -->
 
 
 <section layout:fragment="script1">

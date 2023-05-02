@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/mainCategory") 
 public class MainCategoryController { 
@@ -38,8 +40,9 @@ public class MainCategoryController {
         return "admin/entry/mainCategory_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteMainCategory(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteMainCategory(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         mainCategoryService.removeMainCategory(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/mainCategory/index?keyword=" + keyword; 
     }
  
@@ -51,8 +54,12 @@ public class MainCategoryController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(MainCategory mainCategory, @RequestParam("file")MultipartFile file) throws IOException { 
-      
+    public String save(MainCategory mainCategory, @RequestParam("file")MultipartFile file, HttpSession session) throws IOException { 
+    	String msg = "inserted";
+		if(mainCategory.getId() != null && mainCategory.getId() != 0) {
+			msg = "updated";
+		}
+    	
     	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
     	
     	if(fileName.length() > 3) {
@@ -61,7 +68,12 @@ public class MainCategoryController {
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
     	}
     	
-    	mainCategoryService.createOrUpdateMainCategory(mainCategory); 
+    	MainCategory m = mainCategoryService.createOrUpdateMainCategory(mainCategory); 
+        if(m != null) {
+    		session.setAttribute("msg", "inserted");
+    	}else {
+    		session.setAttribute("error","error");
+    	}
         return "redirect:/admin/mainCategory/index"; 
     }
  

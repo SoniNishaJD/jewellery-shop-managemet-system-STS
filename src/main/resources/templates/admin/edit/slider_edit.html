@@ -52,7 +52,7 @@
                       <input type="file" accept="image/png, image/jpeg" name="file" class="form-control" id="file" placeholder="Enter Image "
                         th:value="${slider.getImage()}">
                         
-                        <input type="hidden" th:value="${slider.getImage()}">
+                        <input type="hidden" name="image" th:value="${slider.getImage()}">
                         <img th:src="${slider.imagePath}" style="width:70px">
                         
                     </div>
@@ -77,12 +77,12 @@
                         th:value="${slider.getText4()}">
                     </div>
                     <div class="form-group">
-                      <label for="btnText">Btn Text</label>
+                      <label for="btnText">Button Text</label>
                       <input type="text" name="btnText" class="form-control" id="btnText" placeholder="Enter Btn Text "
                         th:value="${slider.getBtnText()}">
                     </div>
                     <div class="form-group">
-                      <label for="btnLink">Btn Link</label>
+                      <label for="btnLink">Button Link</label>
                       <input type="text" name="btnLink" class="form-control" id="btnLink" placeholder="Enter Btn Link "
                         th:value="${slider.getBtnLink()}">
                     </div>

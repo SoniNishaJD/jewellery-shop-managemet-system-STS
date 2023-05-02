@@ -92,6 +92,13 @@ public void setBannerImages(Set<BannerImage> bannerImages) {
 public Banner() { 
 super();
  }
+
+
+public Banner(Integer id) {
+	super();
+	this.id = id;
+}
+
 public Banner(String name, Integer status ){
  super();
  this.name = name; 

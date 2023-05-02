@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/newsletter") 
 public class NewsletterController { 
@@ -32,8 +34,9 @@ public class NewsletterController {
         return "admin/entry/newsletter_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteNewsletter(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteNewsletter(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         newsletterService.removeNewsletter(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/newsletter/index?keyword=" + keyword; 
     }
  
@@ -45,8 +48,17 @@ public class NewsletterController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(Newsletter newsletter) { 
-        newsletterService.createOrUpdateNewsletter(newsletter); 
+    public String save(Newsletter newsletter, HttpSession session) { 
+    	String msg = "inserted";
+		if(newsletter.getId() != null && newsletter.getId() != 0) {
+			msg = "updated";
+		}
+		Newsletter n = newsletterService.createOrUpdateNewsletter(newsletter); 
+		if(n != null) {
+    		session.setAttribute("msg", msg);
+    	}else {
+    		session.setAttribute("error","error");
+    	}
         return "redirect:/admin/newsletter/index"; 
     }
  

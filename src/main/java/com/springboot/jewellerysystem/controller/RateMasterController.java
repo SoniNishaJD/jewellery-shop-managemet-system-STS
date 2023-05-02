@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/rateMaster") 
 public class RateMasterController { 
@@ -32,8 +34,9 @@ public class RateMasterController {
         return "admin/entry/rateMaster_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteRateMaster(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteRateMaster(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         rateMasterService.removeRateMaster(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/rateMaster/index?keyword=" + keyword; 
     }
  
@@ -45,8 +48,18 @@ public class RateMasterController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(RateMaster rateMaster) { 
-        rateMasterService.createOrUpdateRateMaster(rateMaster); 
+    public String save(RateMaster rateMaster, HttpSession session) {
+    	String msg = "inserted";
+		if(rateMaster.getId() != null && rateMaster.getId() != 0) {
+			msg = "updated";
+		}
+    	RateMaster r = rateMasterService.createOrUpdateRateMaster(rateMaster); 
+        if(r != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
+
         return "redirect:/admin/rateMaster/index"; 
     }
  

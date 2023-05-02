@@ -2,6 +2,8 @@ package com.springboot.jewellerysystem.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,8 +46,9 @@ public class ProductDetailController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String deleteProductDetail(@PathVariable(value = "id") Integer id, String keyword) {
+	public String deleteProductDetail(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
 		productDetailService.removeProductDetail(id);
+		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/productDetail/index?keyword=" + keyword;
 	}
 
@@ -60,8 +63,17 @@ public class ProductDetailController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(ProductDetail productDetail) {
-		productDetailService.createOrUpdateProductDetail(productDetail);
+	public String save(ProductDetail productDetail, HttpSession session) {
+		String msg = "inserted";
+		if(productDetail.getId() != null && productDetail.getId() != 0) {
+			msg = "updated";
+		}
+		ProductDetail p =	productDetailService.createOrUpdateProductDetail(productDetail);
+		if(p != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
 		return "redirect:/admin/productDetail/index";
 	}
 

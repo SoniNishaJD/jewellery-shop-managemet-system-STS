@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/bannerType") 
 public class BannerTypeController { 
@@ -32,8 +34,9 @@ public class BannerTypeController {
         return "admin/entry/bannerType_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteBannerType(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteBannerType(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         bannerTypeService.removeBannerType(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/bannerType/index?keyword=" + keyword; 
     }
  
@@ -45,8 +48,17 @@ public class BannerTypeController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(BannerType bannerType) { 
-        bannerTypeService.createOrUpdateBannerType(bannerType); 
+    public String save(BannerType bannerType, HttpSession session) { 
+    	String msg = "inserted";
+		if(bannerType.getId() != null && bannerType.getId() != 0) {
+			msg = "updated";
+		}
+        BannerType b =bannerTypeService.createOrUpdateBannerType(bannerType);
+        if(b != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
         return "redirect:/admin/bannerType/index"; 
     }
  

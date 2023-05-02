@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/faq") 
 public class FaqController { 
@@ -32,8 +34,9 @@ public class FaqController {
         return "admin/entry/faq_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteFaq(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteFaq(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         faqService.removeFaq(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/faq/index?keyword=" + keyword; 
     }
  
@@ -45,8 +48,17 @@ public class FaqController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(Faq faq) { 
-        faqService.createOrUpdateFaq(faq); 
+    public String save(Faq faq, HttpSession session) { 
+    	String msg = "inserted";
+		if(faq.getId() != null && faq.getId() != 0) {
+			msg = "updated";
+		}
+       Faq f =  faqService.createOrUpdateFaq(faq); 
+   	if(f != null) {
+		session.setAttribute("msg", msg);
+	}else {
+		session.setAttribute("error","error");
+	}
         return "redirect:/admin/faq/index"; 
     }
  

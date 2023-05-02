@@ -3,6 +3,8 @@ package com.springboot.jewellerysystem.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -48,8 +50,9 @@ public class CategoryController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public String deleteCategory(@PathVariable(value = "id") Integer id, String keyword) {
+	public String deleteCategory(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
 		categoryService.removeCategory(id);
+		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/category/index?keyword=" + keyword;
 	}
 
@@ -65,16 +68,25 @@ public class CategoryController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(Category category, @RequestParam("file") MultipartFile file) throws IOException {
-
+	public String save(Category category, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+		String msg = "inserted";
+		if(category.getId() != null && category.getId() != 0) {
+			msg = "updated";
+		}
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		
 		if (fileName.length() > 3) {
 		category.setImage(fileName);
 		String uploadDir = "assets1/images/category";
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 		}
 		
-		categoryService.createOrUpdateCategory(category);
+		Category c = categoryService.createOrUpdateCategory(category);
+		if(c != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
 		return "redirect:/admin/category/index";
 	}
 

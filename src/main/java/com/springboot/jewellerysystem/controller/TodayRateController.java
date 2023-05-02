@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
-import java.util.List; 
+import java.util.List;
+
+import javax.servlet.http.HttpSession; 
 @Controller 
 @RequestMapping(value = "admin/todayRate") 
 public class TodayRateController { 
@@ -36,8 +38,9 @@ public class TodayRateController {
         return "admin/entry/todayRate_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
-    public String deleteTodayRate(@PathVariable(value = "id") Integer id, String keyword) { 
+    public String deleteTodayRate(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
         todayRateService.removeTodayRate(id); 
+        session.setAttribute("msg", "deleted");
         return "redirect:/admin/todayRate/index?keyword=" + keyword; 
     }
  
@@ -49,8 +52,19 @@ public class TodayRateController {
     }
  
     @PostMapping(value = "/save") 
-    public String save(TodayRate todayRate) { 
-        todayRateService.createOrUpdateTodayRate(todayRate); 
+    public String save(TodayRate todayRate , HttpSession session) { 
+    	
+    	
+    	String msg = "inserted";
+		if(todayRate.getId() != null && todayRate.getId() != 0) {
+			msg = "updated";
+		}
+		TodayRate t = todayRateService.createOrUpdateTodayRate(todayRate); 
+		if(t != null) {
+			session.setAttribute("msg", "inserted");
+		}else {
+			session.setAttribute("error","error");
+		}
         
         //\\//\\//\\
         List<Product> xlist = productService.getAllProduct();
@@ -61,7 +75,7 @@ public class TodayRateController {
 			float wt = p.getGroseWeight();
 			String is_fixed = p.getIsFixedLabour();
 			
-			float price = p.getGroseWeight()*rt.getPrice()/10;	
+			float price = p.getGroseWeight()*(rt.getPrice()/10);	
 			if(is_fixed == "N")
 			{
 				lab = wt * p.getLabour();
@@ -71,6 +85,7 @@ public class TodayRateController {
 			productService.createOrUpdateProduct(p);
 		}
 		//\\//\\//\\
+		
         return "redirect:/admin/todayRate/index"; 
     }
  
