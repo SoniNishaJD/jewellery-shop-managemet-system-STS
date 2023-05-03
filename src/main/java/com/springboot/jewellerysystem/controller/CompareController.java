@@ -17,6 +17,7 @@ import com.springboot.jewellerysystem.entity.User;
 import com.springboot.jewellerysystem.entity.Compare;
 import com.springboot.jewellerysystem.service.ProductService;
 import com.springboot.jewellerysystem.service.UserService;
+import com.springboot.jewellerysystem.util.Helper;
 import com.springboot.jewellerysystem.service.CompareService;
 
 @Controller
@@ -34,6 +35,8 @@ public class CompareController {
 
 	@GetMapping(value = "/index")
 	public String Compares(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		List<Compare> compares = compareService.getAllCompare();
 		model.addAttribute("listCompares", compares);
 		model.addAttribute("keyword", keyword);
@@ -42,6 +45,8 @@ public class CompareController {
 
 	@GetMapping(value = "/create")
 	public String formCompares(Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		model.addAttribute("Compare", new Compare());
 		List<Product> products = productService.getAllProduct();
 		model.addAttribute("listProducts", products);
@@ -54,6 +59,8 @@ public class CompareController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteCompare(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		compareService.removeCompare(id);
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/compare/index?keyword=" + keyword;
@@ -61,6 +68,8 @@ public class CompareController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateCompare(@PathVariable(value = "id") Integer id, Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		Compare compare = compareService.loadCompareById(id);
 		model.addAttribute("Compare", compare);
 		List<Product> products = productService.getAllProduct();

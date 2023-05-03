@@ -45,62 +45,60 @@
                     <thead>
                       <tr>
                         <th>Id</th>
-                        <th>User</th>
-                        <th>Order Date</th>
-                        <th>Address</th>
-                        <th>City</th>
-                        <th>Pincode</th>
                         <th>Order Num</th>
+                        <th>Order Date</th>
+                        <th>User</th>
+                        <th>City</th>
+
+
                         <th>Tracking Code</th>
                         <th>Delivery Status</th>
                         <th>Payment Type</th>
-                        <th>Payment Status</th>
-                        <th>Payment Detail</th>
-                        <th>Grand Total</th>
-                        <th>Discount</th>
+
+
+                        <th>Total</th>
+
                         <th style="width:150px"> Actions </th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr th:each="order : ${listOrders}">
                         <td th:text="${order.id}"> </td>
-                        <td th:text="${order.user.firstName}"> </td>
-                        <td th:text="${order.orderDate}"> </td>
-                        <td th:text="${order.address}"> </td>
-                        <td th:text="${order.city}"> </td>
-                        <td th:text="${order.pincode}"> </td>
                         <td th:text="${order.orderNum}"> </td>
+                        <td th:text="${order.orderDate}"> </td>
+
+                        <td th:text="${order.user.firstName}+' '+${order.user.lastName}"> </td>
+                        <td th:text="${order.city}"></td>
+
                         <td th:text="${order.trackingCode}"> </td>
                         <td th:text="${order.deliveryStatus}"> </td>
                         <td th:text="${order.paymentType}"> </td>
-                        <td th:text="${order.paymentStatus}"> </td>
-                        <td th:text="${order.paymentDetail}"> </td>
+
+
                         <td th:text="${order.grandTotal}"> </td>
-                        <td th:text="${order.discount}"> </td>
-                        <td> <a th:href="@{/admin/order/update/{id}(id=${order.id})}"
-                            class="btn btn-success btn-sm">UPDATE</a>
-                          <a th:href="@{/admin/order/delete/{id}(id=${order.id})}" class="btn btn-danger btn-sm"
-                            onClick="return confirm('Do you want to delete?')">DELETE</a>
+
+                        <td> <a th:href="@{/admin/orderDetail/index/{id}(id=${order.id})}"
+                            class="btn btn-success btn-sm">DETAIL</a>
+
                         </td>
                       </tr>
                     </tbody>
                     <tfoot>
                       <tr>
                         <th>Id</th>
-                        <th>User</th>
-                        <th>Order Date</th>
-                        <th>Address</th>
-                        <th>City</th>
-                        <th>Pincode</th>
+
                         <th>Order Num</th>
+                        <th>Order Date</th>
+                        <th>User</th>
+                        <th>City</th>
+
+
                         <th>Tracking Code</th>
                         <th>Delivery Status</th>
                         <th>Payment Type</th>
-                        <th>Payment Status</th>
-                        <th>Payment Detail</th>
-                        <th>Grand Total</th>
-                        <th>Discount</th>
-                        <th> Actions </th>
+
+
+                        <th>Total</th>
                       </tr>
                     </tfoot>
                   </table>

@@ -246,6 +246,10 @@ public class Order {
 		this.discount = discount;
 	}
 
+	public Order(int id2) {
+		this.id = id2;
+	}
+
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", orderDate=" + orderDate + ", address=" + address + ", city=" + city + ", pincode="

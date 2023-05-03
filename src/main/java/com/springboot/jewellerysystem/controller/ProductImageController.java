@@ -20,6 +20,7 @@ import com.springboot.jewellerysystem.entity.ProductImage;
 import com.springboot.jewellerysystem.service.ProductImageService;
 import com.springboot.jewellerysystem.service.ProductService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
+import com.springboot.jewellerysystem.util.Helper;
 
 @Controller
 @RequestMapping(value = "admin/productImage")
@@ -34,6 +35,8 @@ public class ProductImageController {
 
 	@GetMapping(value = "/index")
 	public String productImages(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		List<ProductImage> productImages = productImageService.getAllProductImage();
 		model.addAttribute("listProductImages", productImages);
 		model.addAttribute("keyword", keyword);
@@ -42,6 +45,8 @@ public class ProductImageController {
 
 	@GetMapping(value = "/create")
 	public String formProductImages(Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		model.addAttribute("productImage", new ProductImage());
 		List<Product> products = productService.getAllProduct();
 		model.addAttribute("listProducts", products);
@@ -51,6 +56,8 @@ public class ProductImageController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteProductImage(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		productImageService.removeProductImage(id);
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/productImage/index?keyword=" + keyword;
@@ -58,6 +65,8 @@ public class ProductImageController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateProductImage(@PathVariable(value = "id") Integer id, Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		ProductImage productImage = productImageService.loadProductImageById(id);
 		model.addAttribute("productImage", productImage);
 		List<Product> products = productService.getAllProduct();

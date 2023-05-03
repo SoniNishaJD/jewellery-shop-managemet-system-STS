@@ -22,6 +22,7 @@ import com.springboot.jewellerysystem.service.BrandService;
 import com.springboot.jewellerysystem.service.CategoryService;
 import com.springboot.jewellerysystem.service.ProductService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
+import com.springboot.jewellerysystem.util.Helper;
 
 @Controller
 @RequestMapping(value = "admin/product")
@@ -39,6 +40,8 @@ public class ProductController {
 
 	@GetMapping(value = "/index")
 	public String products(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		List<Product> products = productService.getAllProduct();
 		model.addAttribute("listProducts", products);
 		model.addAttribute("keyword", keyword);
@@ -47,6 +50,8 @@ public class ProductController {
 
 	@GetMapping(value = "/create")
 	public String formProducts(Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		model.addAttribute("product", new Product());
 		List<Brand> brands = brandService.getAllBrand();
 		model.addAttribute("listBrands", brands);
@@ -59,6 +64,8 @@ public class ProductController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteProduct(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		productService.removeProduct(id);session.setAttribute("msg", "deleted");
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/product/index?keyword=" + keyword;
@@ -66,6 +73,8 @@ public class ProductController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateProduct(@PathVariable(value = "id") Integer id, Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		Product product = productService.loadProductById(id);
 		model.addAttribute("product", product);
 		List<Brand> brands = brandService.getAllBrand();
@@ -93,7 +102,7 @@ public class ProductController {
 		
 		Product p =	productService.createOrUpdateProduct(product);
 		if(p != null) {
-			session.setAttribute("msg", "inserted");
+			session.setAttribute("msg", msg);
 		}else {
 			session.setAttribute("error","error");
 		}

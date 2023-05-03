@@ -50,7 +50,7 @@
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Message</th>
-                        <th>Enquiry Date</th>
+                        <th> Date</th>
                         <th>Is Read</th>
                         <th style="width:150px"> Actions </th>
                       </tr>
@@ -66,7 +66,7 @@
                         <td th:text="${contactUs.enquiryDate}"> </td>
                         <td th:text="${contactUs.isRead==1} ? 'YES' : 'NO'"> </td>
                         <td> <a th:href="@{/admin/contactUs/update/{id}(id=${contactUs.id})}"
-                            class="btn btn-success btn-sm">UPDATE</a>
+                            class="btn btn-success btn-sm">SHOW</a>
                           <a th:href="@{/admin/contactUs/delete/{id}(id=${contactUs.id})}" class="btn btn-danger btn-sm"
                             onClick="return confirm('Do you want to delete?')">DELETE</a>
                         </td>
@@ -80,7 +80,7 @@
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Message</th>
-                        <th>Enquiry Date</th>
+                        <th>Date</th>
                         <th>Is Read</th>
                         <th> Actions </th>
                       </tr>

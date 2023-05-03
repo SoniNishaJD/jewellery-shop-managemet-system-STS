@@ -1,7 +1,9 @@
 package com.springboot.jewellerysystem.controller;
 
 import com.springboot.jewellerysystem.entity.BlogCategory; 
-import com.springboot.jewellerysystem.service.BlogCategoryService; 
+import com.springboot.jewellerysystem.service.BlogCategoryService;
+import com.springboot.jewellerysystem.util.Helper;
+
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
@@ -22,7 +24,9 @@ public class BlogCategoryController {
  
     @GetMapping(value = "/index") 
     public String blogCategories(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) { 
-        List<BlogCategory> blogCategories = blogCategoryService.getAllBlogCategory(); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	List<BlogCategory> blogCategories = blogCategoryService.getAllBlogCategory(); 
         model.addAttribute("listBlogCategories", blogCategories); 
         model.addAttribute("keyword", keyword); 
         return "admin/list/blogCategories_list"; 
@@ -30,19 +34,26 @@ public class BlogCategoryController {
  
   @GetMapping(value = "/create") 
     public String formBlogCategories(Model model) { 
-        model.addAttribute("blogCategory", new BlogCategory()); 
+      
+	  if(Helper.checkUserRole()) { return "redirect:/";}
+  	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+	  model.addAttribute("blogCategory", new BlogCategory()); 
         return "admin/entry/blogCategory_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
     public String deleteBlogCategory(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
-        blogCategoryService.removeBlogCategory(id); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	blogCategoryService.removeBlogCategory(id); 
         session.setAttribute("msg", "deleted");
         return "redirect:/admin/blogCategory/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
     public String updateBlogCategory(@PathVariable(value = "id") Integer id, Model model) { 
-        BlogCategory blogCategory = blogCategoryService.loadBlogCategoryById(id); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	BlogCategory blogCategory = blogCategoryService.loadBlogCategoryById(id); 
         model.addAttribute("blogCategory", blogCategory); 
         return "admin/edit/blogCategory_edit"; 
     }

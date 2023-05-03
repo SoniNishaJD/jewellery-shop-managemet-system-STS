@@ -1,7 +1,9 @@
 package com.springboot.jewellerysystem.controller;
 
 import com.springboot.jewellerysystem.entity.Language; 
-import com.springboot.jewellerysystem.service.LanguageService; 
+import com.springboot.jewellerysystem.service.LanguageService;
+import com.springboot.jewellerysystem.util.Helper;
+
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
@@ -24,7 +26,9 @@ public class LanguageController {
  
     @GetMapping(value = "/index") 
     public String languages(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) { 
-        List<Language> languages = languageService.getAllLanguage(); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	List<Language> languages = languageService.getAllLanguage(); 
         model.addAttribute("listLanguages", languages); 
         model.addAttribute("keyword", keyword); 
         return "admin/list/languages_list"; 
@@ -32,19 +36,25 @@ public class LanguageController {
  
   @GetMapping(value = "/create") 
     public String formLanguages(Model model) { 
-        model.addAttribute("language", new Language()); 
+	  if(Helper.checkUserRole()) { return "redirect:/";}
+  	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}  
+	  model.addAttribute("language", new Language()); 
         return "admin/entry/language_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
     public String deleteLanguage(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
-        languageService.removeLanguage(id); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	languageService.removeLanguage(id); 
         session.setAttribute("msg", "deleted");
         return "redirect:/admin/language/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
     public String updateLanguage(@PathVariable(value = "id") Integer id, Model model) { 
-        Language language = languageService.loadLanguageById(id); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	Language language = languageService.loadLanguageById(id); 
         model.addAttribute("language", language); 
         return "admin/edit/language_edit"; 
     }

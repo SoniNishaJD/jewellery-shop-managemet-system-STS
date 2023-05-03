@@ -1,7 +1,9 @@
 package com.springboot.jewellerysystem.controller;
 
 import com.springboot.jewellerysystem.entity.Faq; 
-import com.springboot.jewellerysystem.service.FaqService; 
+import com.springboot.jewellerysystem.service.FaqService;
+import com.springboot.jewellerysystem.util.Helper;
+
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping; 
@@ -22,7 +24,9 @@ public class FaqController {
  
     @GetMapping(value = "/index") 
     public String faqs(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) { 
-        List<Faq> faqs = faqService.getAllFaq(); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	List<Faq> faqs = faqService.getAllFaq(); 
         model.addAttribute("listFaqs", faqs); 
         model.addAttribute("keyword", keyword); 
         return "admin/list/faqs_list"; 
@@ -30,19 +34,25 @@ public class FaqController {
  
   @GetMapping(value = "/create") 
     public String formFaqs(Model model) { 
-        model.addAttribute("faq", new Faq()); 
+	  if(Helper.checkUserRole()) { return "redirect:/";}
+  	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";} 
+	  model.addAttribute("faq", new Faq()); 
         return "admin/entry/faq_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
     public String deleteFaq(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
-        faqService.removeFaq(id); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	faqService.removeFaq(id); 
         session.setAttribute("msg", "deleted");
         return "redirect:/admin/faq/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
     public String updateFaq(@PathVariable(value = "id") Integer id, Model model) { 
-        Faq faq = faqService.loadFaqById(id); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	Faq faq = faqService.loadFaqById(id); 
         model.addAttribute("faq", faq); 
         return "admin/edit/faq_edit"; 
     }

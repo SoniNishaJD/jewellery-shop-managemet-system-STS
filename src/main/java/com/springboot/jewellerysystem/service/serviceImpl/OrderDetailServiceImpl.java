@@ -3,7 +3,8 @@ package com.springboot.jewellerysystem.service.serviceImpl;
 import java.util.List; 
 import javax.persistence.EntityNotFoundException; 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.springboot.jewellerysystem.dao.OrderDetailDAO; 
+import com.springboot.jewellerysystem.dao.OrderDetailDAO;
+import com.springboot.jewellerysystem.entity.Order;
 import com.springboot.jewellerysystem.entity.OrderDetail; 
 import com.springboot.jewellerysystem.service.OrderDetailService; 
 import javax.transaction.Transactional;
@@ -35,5 +36,11 @@ return orderDetailDao.save(orderDetail);
  	    public void removeOrderDetail(Integer id) {
  	        orderDetailDao.deleteById(id);
  	    }
+
+@Override
+public List<OrderDetail> getAllOrderDetailByOrder(Order order) {
+
+	return orderDetailDao.findAllOrderDetailByOrder(order);
+}
 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.springboot.jewellerysystem.entity.CompanyDetail;
 import com.springboot.jewellerysystem.service.CompanyDetailService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
+import com.springboot.jewellerysystem.util.Helper;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,6 +32,8 @@ public class CompanyDetailController {
 
 	@GetMapping(value = "/index")
 	public String companyDetails(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		List<CompanyDetail> companyDetails = companyDetailService.getAllCompanyDetail();
 		model.addAttribute("listCompanyDetails", companyDetails);
 		model.addAttribute("keyword", keyword);
@@ -39,12 +42,16 @@ public class CompanyDetailController {
 
 	@GetMapping(value = "/create")
 	public String formCompanyDetails(Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		model.addAttribute("companyDetail", new CompanyDetail());
 		return "admin/entry/companyDetail_entry";
 	}
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteCompanyDetail(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		companyDetailService.removeCompanyDetail(id);
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/companyDetail/index?keyword=" + keyword;
@@ -52,7 +59,9 @@ public class CompanyDetailController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateCompanyDetail(@PathVariable(value = "id") Integer id, Model model) {
-		CompanyDetail companyDetail = companyDetailService.loadCompanyDetailById(id);
+		
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}CompanyDetail companyDetail = companyDetailService.loadCompanyDetailById(id);
 		model.addAttribute("companyDetail", companyDetail);
 		List<CompanyDetail> companyDetails = companyDetailService.getAllCompanyDetail();
 		model.addAttribute("listCompanyDetails", companyDetails);

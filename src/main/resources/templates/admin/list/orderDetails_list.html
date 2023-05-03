@@ -16,7 +16,7 @@
           <div class="row mb-2">
             <div class="col-sm-6">
 
-              <h1>OrderDetail</h1>
+              <h1>OrderDetail </h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -36,50 +36,41 @@
 
 
               <div class="card">
-                <div class="card-header">
-                  <a th:href="@{/admin/orderDetail/create}" class="btn btn-primary btn-sm">ADD NEW ORDERDETAIL</a>
-                </div>
+                
                 <!-- /.card-header -->
                 <div class="card-body">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>Id</th>
-                        <th>Product</th>
-                        <th>Order</th>
-                        <th>Mrp</th>
+                        <th >Photo</th>                       
+                       <th >Product</th>
                         <th>Price</th>
                         <th>Qty</th>
                         <th>Amount</th>
-                        <th style="width:150px"> Actions </th>
+                        
                       </tr>
                     </thead>
                     <tbody>
                       <tr th:each="orderDetail : ${listOrderDetails}">
-                        <td th:text="${orderDetail.id}"> </td>
-                        <td th:text="${orderDetail.product.name}"> </td>
-                        <td th:text="${orderDetail.order.address}"> </td>
-                        <td th:text="${orderDetail.mrp}"> </td>
-                        <td th:text="${orderDetail.price}"> </td>
-                        <td th:text="${orderDetail.qty}"> </td>
-                        <td th:text="${orderDetail.amount}"> </td>
-                        <td> <a th:href="@{/admin/orderDetail/update/{id}(id=${orderDetail.id})}"
-                            class="btn btn-success btn-sm">UPDATE</a>
-                          <a th:href="@{/admin/orderDetail/delete/{id}(id=${orderDetail.id})}"
-                            class="btn btn-danger btn-sm" onClick="return confirm('Do you want to delete?')">DELETE</a>
-                        </td>
+                        <td th:text="${orderDetail.id}"></td>
+                        <td><img th:src="${orderDetail.product.imagePath}" style="width:70px"> </td>
+                        <td th:text="${orderDetail.product.name}"></td>                                               
+                        <td th:text="${orderDetail.price}"></td>
+                        <td th:text="${orderDetail.qty}"></td>
+                        <td th:text="${orderDetail.amount}"></td>                        
                       </tr>
                     </tbody>
                     <tfoot>
                       <tr>
                         <th>Id</th>
+                        <th>Photo</th>
                         <th>Product</th>
-                        <th>Order</th>
-                        <th>Mrp</th>
+                                                
                         <th>Price</th>
                         <th>Qty</th>
                         <th>Amount</th>
-                        <th> Actions </th>
+                        
                       </tr>
                     </tfoot>
                   </table>

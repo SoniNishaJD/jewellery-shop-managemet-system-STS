@@ -16,6 +16,7 @@ import com.springboot.jewellerysystem.entity.Product;
 import com.springboot.jewellerysystem.entity.Review;
 import com.springboot.jewellerysystem.service.ProductService;
 import com.springboot.jewellerysystem.service.ReviewService;
+import com.springboot.jewellerysystem.util.Helper;
 
 @Controller
 @RequestMapping(value = "admin/review")
@@ -30,6 +31,8 @@ public class ReviewController {
 
 	@GetMapping(value = "/index")
 	public String reviews(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		List<Review> reviews = reviewService.getAllReview();
 		model.addAttribute("listReviews", reviews);
 		model.addAttribute("keyword", keyword);
@@ -38,6 +41,8 @@ public class ReviewController {
 
 	@GetMapping(value = "/create")
 	public String formReviews(Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		model.addAttribute("review", new Review());
 		List<Product> products = productService.getAllProduct();
 		model.addAttribute("listProducts", products);
@@ -47,6 +52,8 @@ public class ReviewController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteReview(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		reviewService.removeReview(id);
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/review/index?keyword=" + keyword;
@@ -54,6 +61,8 @@ public class ReviewController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateReview(@PathVariable(value = "id") Integer id, Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		Review review = reviewService.loadReviewById(id);
 		model.addAttribute("review", review);
 		List<Product> products = productService.getAllProduct();

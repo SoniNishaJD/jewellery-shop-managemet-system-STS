@@ -20,6 +20,7 @@ import com.springboot.jewellerysystem.entity.MainCategory;
 import com.springboot.jewellerysystem.service.CategoryService;
 import com.springboot.jewellerysystem.service.MainCategoryService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
+import com.springboot.jewellerysystem.util.Helper;
 
 @Controller
 @RequestMapping(value = "admin/category")
@@ -34,6 +35,8 @@ public class CategoryController {
 
 	@GetMapping(value = "/index")
 	public String categories(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		List<Category> categories = categoryService.getAllCategory();
 		model.addAttribute("listCategories", categories);
 		model.addAttribute("keyword", keyword);
@@ -42,6 +45,8 @@ public class CategoryController {
 
 	@GetMapping(value = "/create")
 	public String formCategories(Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		model.addAttribute("category", new Category());
 		List<MainCategory> mainCategories = mainCategoryService.getAllMainCategory();
 		model.addAttribute("listMainCategories", mainCategories);
@@ -51,6 +56,8 @@ public class CategoryController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteCategory(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		categoryService.removeCategory(id);
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/category/index?keyword=" + keyword;
@@ -58,6 +65,8 @@ public class CategoryController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateCategory(@PathVariable(value = "id") Integer id, Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		Category category = categoryService.loadCategoryById(id);
 		
 		model.addAttribute("category", category);

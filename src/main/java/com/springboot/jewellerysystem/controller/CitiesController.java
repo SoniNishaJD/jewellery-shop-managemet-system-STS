@@ -16,6 +16,7 @@ import com.springboot.jewellerysystem.entity.Cities;
 import com.springboot.jewellerysystem.entity.State;
 import com.springboot.jewellerysystem.service.CitiesService;
 import com.springboot.jewellerysystem.service.StateService;
+import com.springboot.jewellerysystem.util.Helper;
 
 @Controller
 @RequestMapping(value = "admin/cities")
@@ -30,6 +31,8 @@ public class CitiesController {
 
 	@GetMapping(value = "/index")
 	public String citieses(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		List<Cities> citieses = citiesService.getAllCities();
 		model.addAttribute("listCitieses", citieses);
 		model.addAttribute("keyword", keyword);
@@ -38,6 +41,8 @@ public class CitiesController {
 
 	@GetMapping(value = "/create")
 	public String formCitieses(Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		model.addAttribute("cities", new Cities());
 		List<State> states = stateService.getAllState();
 		model.addAttribute("listStates", states);
@@ -47,6 +52,8 @@ public class CitiesController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteCities(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		citiesService.removeCities(id);
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/cities/index?keyword=" + keyword;
@@ -54,6 +61,8 @@ public class CitiesController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateCities(@PathVariable(value = "id") Integer id, Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		Cities cities = citiesService.loadCitiesById(id);
 		model.addAttribute("cities", cities);
 		List<State> states = stateService.getAllState();

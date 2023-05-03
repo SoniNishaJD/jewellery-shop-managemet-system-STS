@@ -6,6 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
 import com.springboot.jewellerysystem.entity.Category;
 import com.springboot.jewellerysystem.entity.Product;
 import com.springboot.jewellerysystem.service.CategoryService;
@@ -34,6 +39,27 @@ public class Helper {
 				
 		return category;
 		 
+	}
+	
+	public static boolean checkAdminRole() {
+		String role="";
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session = attr.getRequest().getSession();
+		
+		if(session.getAttribute("urole") != null) {
+			role = session.getAttribute("urole").toString();
+		}
+		return role.equalsIgnoreCase("ADMIN");
+	}
+	public static boolean checkUserRole() {
+		String role="";
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session = attr.getRequest().getSession();
+		
+		if(session.getAttribute("urole") != null) {
+			role = session.getAttribute("urole").toString();
+		}
+		return role.equalsIgnoreCase("USER");
 	}
 
 }

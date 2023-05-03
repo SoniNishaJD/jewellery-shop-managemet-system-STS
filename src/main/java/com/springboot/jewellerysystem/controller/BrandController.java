@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.springboot.jewellerysystem.entity.Brand;
 import com.springboot.jewellerysystem.service.BrandService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
+import com.springboot.jewellerysystem.util.Helper;
 
 @Controller
 @RequestMapping(value = "admin/brand")
@@ -30,6 +31,8 @@ public class BrandController {
 
 	@GetMapping(value = "/index")
 	public String brands(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		List<Brand> brands = brandService.getAllBrand();
 		model.addAttribute("listBrands", brands);
 		model.addAttribute("keyword", keyword);
@@ -38,6 +41,8 @@ public class BrandController {
 
 	@GetMapping(value = "/create")
 	public String formBrands(Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		model.addAttribute("brand", new Brand());
 		
 		return "admin/entry/brand_entry";
@@ -45,6 +50,8 @@ public class BrandController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteBrand(@PathVariable(value = "id") Integer id, String keyword,HttpSession session) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		brandService.removeBrand(id);
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/brand/index?keyword=" + keyword;
@@ -52,6 +59,8 @@ public class BrandController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateBrand(@PathVariable(value = "id") Integer id, Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		Brand brand = brandService.loadBrandById(id);
 		model.addAttribute("brand", brand);
 		List<Brand> brands = brandService.getAllBrand();

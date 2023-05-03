@@ -16,6 +16,7 @@ import com.springboot.jewellerysystem.entity.Banner;
 import com.springboot.jewellerysystem.entity.BannerType;
 import com.springboot.jewellerysystem.service.BannerService;
 import com.springboot.jewellerysystem.service.BannerTypeService;
+import com.springboot.jewellerysystem.util.Helper;
 
 @Controller
 @RequestMapping(value = "admin/banner")
@@ -30,6 +31,9 @@ public class BannerController {
 
 	@GetMapping(value = "/index")
 	public String banners(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+		if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		
 		List<Banner> banners = bannerService.getAllBanner();
 		model.addAttribute("listBanners", banners);
 		model.addAttribute("keyword", keyword);
@@ -38,6 +42,10 @@ public class BannerController {
 
 	@GetMapping(value = "/create")
 	public String formBanners(Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+		if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		
+		
 		model.addAttribute("banner", new Banner());
 		List<BannerType> bannerTypes = bannerTypeService.getAllBannerType();
 		model.addAttribute("listBannerTypes", bannerTypes);
@@ -47,6 +55,9 @@ public class BannerController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteBanner(@PathVariable(value = "id") Integer id, String keyword,HttpSession session) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+		if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		
 		bannerService.removeBanner(id);
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/banner/index?keyword=" + keyword;

@@ -18,6 +18,7 @@ import com.springboot.jewellerysystem.entity.Product;
 import com.springboot.jewellerysystem.service.OrderDetailService;
 import com.springboot.jewellerysystem.service.OrderService;
 import com.springboot.jewellerysystem.service.ProductService;
+import com.springboot.jewellerysystem.util.Helper;
 
 @Controller
 @RequestMapping(value = "admin/orderDetail")
@@ -33,16 +34,20 @@ public class OrderDetailController {
 		this.orderService = orderService;
 	}
 
-	@GetMapping(value = "/index")
-	public String orderDetails(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
-		List<OrderDetail> orderDetails = orderDetailService.getAllOrderDetail();
+	@GetMapping(value = "/index/{id}")
+	public String orderDetails(Model model, @PathVariable("id") int id)  {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		List<OrderDetail> orderDetails = orderDetailService.getAllOrderDetailByOrder(new Order(id));
 		model.addAttribute("listOrderDetails", orderDetails);
-		model.addAttribute("keyword", keyword);
+		
 		return "admin/list/orderDetails_list";
 	}
 
 	@GetMapping(value = "/create")
 	public String formOrderDetails(Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		model.addAttribute("orderDetail", new OrderDetail());
 		List<Product> products = productService.getAllProduct();
 		model.addAttribute("listProducts", products);
@@ -55,6 +60,8 @@ public class OrderDetailController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteOrderDetail(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		orderDetailService.removeOrderDetail(id);
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/orderDetail/index?keyword=" + keyword;
@@ -62,6 +69,8 @@ public class OrderDetailController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateOrderDetail(@PathVariable(value = "id") Integer id, Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		OrderDetail orderDetail = orderDetailService.loadOrderDetailById(id);
 		model.addAttribute("orderDetail", orderDetail);
 		List<Product> products = productService.getAllProduct();

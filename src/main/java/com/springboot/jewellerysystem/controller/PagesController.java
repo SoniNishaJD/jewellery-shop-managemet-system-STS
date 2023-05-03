@@ -3,6 +3,7 @@ package com.springboot.jewellerysystem.controller;
 import com.springboot.jewellerysystem.entity.Pages; 
 import com.springboot.jewellerysystem.service.PagesService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
+import com.springboot.jewellerysystem.util.Helper;
 
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
@@ -28,7 +29,9 @@ public class PagesController {
  
     @GetMapping(value = "/index") 
     public String pageses(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) { 
-        List<Pages> pageses = pagesService.getAllPages(); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	List<Pages> pageses = pagesService.getAllPages(); 
         model.addAttribute("listPageses", pageses); 
         model.addAttribute("keyword", keyword); 
         return "admin/list/pageses_list"; 
@@ -36,19 +39,25 @@ public class PagesController {
  
   @GetMapping(value = "/create") 
     public String formPageses(Model model) { 
-        model.addAttribute("pages", new Pages()); 
+	  if(Helper.checkUserRole()) { return "redirect:/";}
+  	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}  
+	  model.addAttribute("pages", new Pages()); 
         return "admin/entry/pages_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
     public String deletePages(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
-        pagesService.removePages(id); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	pagesService.removePages(id); 
         session.setAttribute("msg", "deleted");
         return "redirect:/admin/pages/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
     public String updatePages(@PathVariable(value = "id") Integer id, Model model) { 
-        Pages pages = pagesService.loadPagesById(id); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	Pages pages = pagesService.loadPagesById(id); 
         model.addAttribute("pages", pages); 
         return "admin/edit/pages_edit"; 
     }

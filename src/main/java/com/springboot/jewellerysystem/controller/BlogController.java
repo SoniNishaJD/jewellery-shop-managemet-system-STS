@@ -21,6 +21,7 @@ import com.springboot.jewellerysystem.entity.BlogCategory;
 import com.springboot.jewellerysystem.service.BlogCategoryService;
 import com.springboot.jewellerysystem.service.BlogService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
+import com.springboot.jewellerysystem.util.Helper;
 
 @Controller
 @RequestMapping(value = "admin/blog")
@@ -35,6 +36,8 @@ public class BlogController {
 
 	@GetMapping(value = "/index")
 	public String blogs(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		List<Blog> blogs = blogService.getAllBlog();
 		model.addAttribute("listBlogs", blogs);
 		model.addAttribute("keyword", keyword);
@@ -43,6 +46,8 @@ public class BlogController {
 
 	@GetMapping(value = "/create")
 	public String formBlogs(Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		model.addAttribute("blog", new Blog());
 		List<BlogCategory> blogCategories = blogCategoryService.getAllBlogCategory();
 		model.addAttribute("listBlogCategories", blogCategories);
@@ -52,6 +57,8 @@ public class BlogController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteBlog(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		blogService.removeBlog(id);
 		 session.setAttribute("msg", "deleted");
 		return "redirect:/admin/blog/index?keyword=" + keyword;
@@ -59,6 +66,8 @@ public class BlogController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateBlog(@PathVariable(value = "id") Integer id, Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
 		Blog blog = blogService.loadBlogById(id);
 		model.addAttribute("blog", blog);
 		List<BlogCategory> blogCategories = blogCategoryService.getAllBlogCategory();

@@ -3,6 +3,7 @@ package com.springboot.jewellerysystem.controller;
 import com.springboot.jewellerysystem.entity.Style; 
 import com.springboot.jewellerysystem.service.StyleService;
 import com.springboot.jewellerysystem.util.FileUploadUtil;
+import com.springboot.jewellerysystem.util.Helper;
 
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
@@ -28,7 +29,9 @@ public class StyleController {
  
     @GetMapping(value = "/index") 
     public String styles(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) { 
-        List<Style> styles = styleService.getAllStyle(); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	List<Style> styles = styleService.getAllStyle(); 
         model.addAttribute("listStyles", styles); 
         model.addAttribute("keyword", keyword); 
         return "admin/list/styles_list"; 
@@ -36,19 +39,25 @@ public class StyleController {
  
   @GetMapping(value = "/create") 
     public String formStyles(Model model) { 
-        model.addAttribute("style", new Style()); 
+	  if(Helper.checkUserRole()) { return "redirect:/";}
+  	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}  
+	  model.addAttribute("style", new Style()); 
         return "admin/entry/style_entry"; 
     } 
     @GetMapping(value = "/delete/{id}") 
     public String deleteStyle(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) { 
-        styleService.removeStyle(id); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	styleService.removeStyle(id); 
         session.setAttribute("msg", "deleted");
         return "redirect:/admin/style/index?keyword=" + keyword; 
     }
  
     @GetMapping(value = "/update/{id}") 
     public String updateStyle(@PathVariable(value = "id") Integer id, Model model) { 
-        Style style = styleService.loadStyleById(id); 
+    	if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+    	Style style = styleService.loadStyleById(id); 
         model.addAttribute("style", style); 
         return "admin/edit/style_edit"; 
     }
