@@ -1,46 +1,54 @@
 package com.springboot.jewellerysystem.service.serviceImpl;
 
-import java.util.List; 
-import javax.persistence.EntityNotFoundException; 
+import java.util.List;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.springboot.jewellerysystem.dao.OrderDetailDAO;
 import com.springboot.jewellerysystem.entity.Order;
-import com.springboot.jewellerysystem.entity.OrderDetail; 
-import com.springboot.jewellerysystem.service.OrderDetailService; 
+import com.springboot.jewellerysystem.entity.OrderDetail;
+import com.springboot.jewellerysystem.entity.User;
+import com.springboot.jewellerysystem.service.OrderDetailService;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class OrderDetailServiceImpl implements OrderDetailService { 
+public class OrderDetailServiceImpl implements OrderDetailService {
 
-@Autowired
- private OrderDetailDAO orderDetailDao;
- 
- @Override 
-    public List<OrderDetail> getAllOrderDetail() { 
-        return orderDetailDao.findAll(); 
-    } 
+	@Autowired
+	private OrderDetailDAO orderDetailDao;
 
-@Override 
-  public OrderDetail loadOrderDetailById(Integer id) {
- return orderDetailDao.findById(id).orElseThrow(() -> new EntityNotFoundException("OrderDetail with ID " + id + " Not Found"));
- }
+	@Override
+	public List<OrderDetail> getAllOrderDetail() {
+		return orderDetailDao.findAll();
+	}
 
-@Override 
-    public OrderDetail createOrUpdateOrderDetail(OrderDetail orderDetail) {
-return orderDetailDao.save(orderDetail);
-   }
+	@Override
+	public OrderDetail loadOrderDetailById(Integer id) {
+		return orderDetailDao.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("OrderDetail with ID " + id + " Not Found"));
+	}
 
-  @Override
- 	    public void removeOrderDetail(Integer id) {
- 	        orderDetailDao.deleteById(id);
- 	    }
+	@Override
+	public OrderDetail createOrUpdateOrderDetail(OrderDetail orderDetail) {
+		return orderDetailDao.save(orderDetail);
+	}
 
-@Override
-public List<OrderDetail> getAllOrderDetailByOrder(Order order) {
+	@Override
+	public void removeOrderDetail(Integer id) {
+		orderDetailDao.deleteById(id);
+	}
 
-	return orderDetailDao.findAllOrderDetailByOrder(order);
-}
+	@Override
+	public List<OrderDetail> getAllOrderDetailByOrder(Order order) {
+
+		return orderDetailDao.findAllOrderDetailByOrder(order);
+	}
+
+	@Override
+	public void removeOrderDetaiilByUser(User user) {
+		
+
+	}
 
 }

@@ -44,4 +44,10 @@ public User getUserByEmailandPassword(String email, String password) {
 	return userDao.findByEmailAndPassword(email, password);
 }
 
+@Override
+public boolean checkEmailExist(String email) {
+	
+	return userDao.existsByEmail(email);
+}
+
 }

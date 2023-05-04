@@ -85,5 +85,14 @@ public class OrderController {
     	}
 		return "redirect:/admin/order/index";
 	}
+	@GetMapping(value = "/updateStatus/{id}")
+	public String updateOrderStatus(@PathVariable(value = "id") Integer id, Model model) {
+		if(Helper.checkUserRole()) { return "redirect:/";}
+    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		Order order = orderService.loadOrderById(id);
+		model.addAttribute("order", order);
+		
+		return "admin/order-status";
+	}
 
 }

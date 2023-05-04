@@ -45,6 +45,7 @@
 
 
     <div class="main-wrapper">
+        <th:block th:if="${session.newsletter}==null">
         <!-- Begin Jewellery's Newsletter Popup Area -->
         <div class="popup_wrapper">
             <div class="test">
@@ -53,8 +54,8 @@
                     <h2>Sign Up Newsletter</h2>
                     <p>Every piece is "UNIQUE" and New "BRAND"</p>
                     <div class="subscribe-form-group">
-                        <form class="subscribe-form" action="#">
-                            <input autocomplete="off" type="text" name="message" id="message"
+                        <form class="subscribe-form" method="post" th:action="@{/newsletter}">
+                            <input autocomplete="off" type="text" name="email" id="message"
                                 placeholder="Enter your email address">
                             <button type="submit">subscribe</button>
                         </form>
@@ -67,7 +68,7 @@
             </div>
         </div>
         <!-- Jewellery's Newsletter Popup Area Here -->
-
+		</th:block>
         <!-- Begin Jewellery's Header Main Area -->
         <header class="header-main_area">
             <div class="header-top_area">
@@ -705,7 +706,17 @@
                 </div>
             </div>
         </div>
+        
+        
         <!-- Jewellery's Footer Area End Here -->
+        <th:block th:if="${session.msg}">
+		<script>
+			alert("[[${session.msg}]]")
+		</script>
+		<p th:text="${#session.removeAttribute('msg')}"></p>
+	    </th:block>
+        
+        
         <!-- Begin Jewellery's Modal Area -->
         <div class="modal fade modal-wrapper" id="exampleModalCenter">
             <div class="modal-dialog modal-dialog-centered" role="document">

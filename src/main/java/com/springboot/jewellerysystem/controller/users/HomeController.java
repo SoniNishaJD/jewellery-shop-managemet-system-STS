@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.springboot.jewellerysystem.entity.Banner;
 import com.springboot.jewellerysystem.entity.Blog;
@@ -20,9 +24,12 @@ import com.springboot.jewellerysystem.entity.Category;
 import com.springboot.jewellerysystem.entity.CompanyDetail;
 import com.springboot.jewellerysystem.entity.Compare;
 import com.springboot.jewellerysystem.entity.ContactUs;
+import com.springboot.jewellerysystem.entity.Country;
 import com.springboot.jewellerysystem.entity.Faq;
 import com.springboot.jewellerysystem.entity.Link;
 import com.springboot.jewellerysystem.entity.MainCategory;
+import com.springboot.jewellerysystem.entity.Newsletter;
+import com.springboot.jewellerysystem.entity.Order;
 import com.springboot.jewellerysystem.entity.OurService;
 import com.springboot.jewellerysystem.entity.Product;
 import com.springboot.jewellerysystem.entity.TodayRate;
@@ -37,20 +44,27 @@ import com.springboot.jewellerysystem.service.CategoryService;
 import com.springboot.jewellerysystem.service.CompanyDetailService;
 import com.springboot.jewellerysystem.service.CompareService;
 import com.springboot.jewellerysystem.service.ContactUsService;
+import com.springboot.jewellerysystem.service.CountryService;
 import com.springboot.jewellerysystem.service.FaqService;
 import com.springboot.jewellerysystem.service.LinkService;
+import com.springboot.jewellerysystem.service.NewsletterService;
+import com.springboot.jewellerysystem.service.OrderService;
 import com.springboot.jewellerysystem.service.OurServiceService;
 import com.springboot.jewellerysystem.service.ProductService;
 import com.springboot.jewellerysystem.service.TodayRateService;
 import com.springboot.jewellerysystem.service.UserService;
 import com.springboot.jewellerysystem.service.WishlistService;
+import com.springboot.jewellerysystem.util.Helper;
 
 @Controller
 public class HomeController {
 
+	private OrderService orderService;
+	private NewsletterService newsletterService;
 	private UserService userService;
-	
 	private CategoryService categoryService;
+
+	private CountryService countryService;
 	
 	private ProductService productService;
 	
@@ -77,11 +91,16 @@ public class HomeController {
 	
 	
 	public HomeController(UserService userService, CategoryService categoryService, ProductService productService,
+			CountryService countryService,
+			OrderService orderService,
+			NewsletterService newsletterService,
 			OurServiceService ourServiceService, CompanyDetailService companyDetailService,
 			ContactUsService contactUsService, LinkService linkService, FaqService faqService, BlogService blogService,
 			BlogCategoryService blogCategoryService, WishlistService wishlistService, BannerService bannerService,
 			CartService cartService, BrandService brandService, CompareService compareService, TodayRateService todayRateService) {
 		super();
+		this.orderService = orderService;
+		this.newsletterService = newsletterService;
 		this.userService = userService;
 		this.categoryService = categoryService;
 		this.productService = productService;
@@ -98,6 +117,7 @@ public class HomeController {
 		this.brandService = brandService;
 		this.compareService = compareService;
 		this.todayRateService = todayRateService;
+		this.countryService = countryService;
 	}
 
 
@@ -415,6 +435,10 @@ public class HomeController {
 
 	@GetMapping("/cart")
 	public String showCart(@RequestParam(value = "del_id",defaultValue = "0") int del_id, @RequestParam(value = "add_id",defaultValue = "0") int add_id,   Model m) {
+		
+		if(!Helper.checkUserRole() && !Helper.checkAdminRole()) {return "redirect:/logout";}
+		
+		
 		if(add_id > 0)
 		{
 			Product product = productService.loadProductById(add_id);
@@ -460,7 +484,91 @@ public class HomeController {
 		return "user/cart";
 		
 	}
+	@GetMapping("/register")
+	public String register() {
+		
+		
+		return "/user/register";		
+	}
 	
+	@PostMapping("/register")
+	public String register(@ModelAttribute User user,HttpSession session ) {
+		
+		if(userService.checkEmailExist(user.getEmail()))
+		{
+			session.setAttribute("msg", "Email Already exist..");
+			
+		}else {
+		user.setRole("USER");
+		user.setEntryDate(new Date());
+		user.setStatus(1);
+		
+		session.setAttribute("msg", "Registration Completed successfully..");
+		userService.createOrUpdateUser(user);
+		}
+		return "/admin/register";
+		
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		
+		return "/user/login";		
+	}
+	
+	@PostMapping("/login")
+	public String CheckLogin(@RequestParam("email") String email, @RequestParam("password") String passord,
+			HttpSession session) {
+		
+		User user = userService.getUserByEmailandPassword(email, passord);
+		
+		if (user != null) {
+			session.setAttribute("uname", user.getFirstName() + " " + user.getLastName());
+			session.setAttribute("uid", user.getId());
+			session.setAttribute("urole", user.getRole());
+			System.out.println("xxxxxxxxxxxxx");
+			System.out.println(user);
+			System.out.println("xxxxxxxxxxxxx");
+			
+			if (Helper.checkUserRole()) {
+				
+				return "redirect:/";
+			} else {
+				session.setAttribute("msg", "Something went Wrong.");
+				return "redirect:/logout";
+			}
+
+		} else
+
+		{
+			session.setAttribute("msg", "Wrong Username or Password...");
+			return "redirect:/login";
+		}
+
+	}
+	@GetMapping("/login-register")
+	public String login_register() {	
+		
+		return "/user/login-register";		
+	}
+	
+	@GetMapping("/logout")
+	public String logout() {
+
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session = attr.getRequest().getSession();
+
+		if (session.getAttribute("uname") != null)
+			session.removeAttribute("uname");
+
+		if (session.getAttribute("uid") != null)
+			session.removeAttribute("uid");
+
+		if (session.getAttribute("urole") != null)
+			session.removeAttribute("urole");
+
+		return "redirect:/login";
+	}
 	
 	
 	@GetMapping("/compare")
@@ -590,12 +698,89 @@ public class HomeController {
 		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
 		m.addAttribute("companyDetail", companyDetail);
 		
+		List<Country> countryList = countryService.getAllCountry();
+		m.addAttribute("countryList",countryList);
+		
 		return "user/checkout";
+	}
+	@PostMapping("/checkout")
+	public String submitCheckout(@ModelAttribute("Order")Order order,Model m,HttpSession session1  ) {
+		
+		
+		
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session = attr.getRequest().getSession();
+		int uid =0;
+		if (session.getAttribute("uid") != null)
+		{ uid = (int)session.getAttribute("uid");}
+		User user = userService.loadUserById(uid);
+		
+		List<Cart> carts =  cartService.getAllCart();
+	 	float total=0;
+	 	
+	 	for(int i=0;i<carts.size();i++)
+	 	{
+	 		Cart cart =  carts.get(i);	 		
+	 		total += cart.getQty()*carts.get(i).getProduct().getSalesPrice();
+	 	}
+	 	
+	 	
+	 	order.setOrderDate(new Date());
+	 	order.setUser(user);
+	 	order.setFirstName(order.getFirstName());
+	 	order.setLastName(order.getLastName());
+	 	//order.setAddress("");
+	 	//order.setCity("");
+	 	//order.setPincode("");
+	 	order.setOrderNum("1111");
+	 	order.setTrackingCode("1111");
+	 	order.setDeliveryStatus("Pending");
+	 	order.setPaymentType(order.getPaymentType());
+	 	order.setPaymentStatus(0);
+	 	order.setPaymentDetail(order.getPaymentType());
+	 	order.setGrandTotal(total);
+	 	order.setDiscount(0f);
+	 	
+	 	Order order1 = orderService.createOrUpdateOrder(order);
+	 	if(order1 != null) {
+	 	
+	 		for(int i=0;i<carts.size();i++)
+		 	{
+		 		Cart cart =  carts.get(i);	 		
+		 		cartService.removeCart(cart.getId());
+		 	}	
+	 		
+	 	order1.setOrderNum(Helper.getOrderNo(order1.getId()));
+	 	order1.setTrackingCode(Helper.getOrderNo(order1.getId()));
+	 	
+	 	orderService.createOrUpdateOrder(order1);
+	 	
+	 	session1.setAttribute("order_no", order1.getOrderNum());	 	
+		return "user/order-submit";
+	 	}
+	 	else {
+	 		session1.setAttribute("msg", "Error in Submitting Order");
+	 		return "user/checkout";
+	 	}
 	}
 	
 	@GetMapping("/profile")
 	public String showAccount() {
 		return "user/my-account";
 	}
+	
+	@PostMapping("/newsletter")
+	public String newsletter(@RequestParam("email")String email) {
+		Newsletter newsletter = new Newsletter();
+		newsletter.setEmail(email);
+		newsletter.setStatus(1);
+		newsletterService.createOrUpdateNewsletter(newsletter);
+		
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session = attr.getRequest().getSession();
+		session.setAttribute("newsletter", "submitted");
+		return "redirect:/";
+	}
+	
 	
 }

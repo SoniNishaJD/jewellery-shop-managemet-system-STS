@@ -1,6 +1,8 @@
 package com.springboot.jewellerysystem.util;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +15,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.springboot.jewellerysystem.entity.Category;
 import com.springboot.jewellerysystem.entity.Product;
-import com.springboot.jewellerysystem.service.CategoryService;
 
 public class Helper {
 	
@@ -59,7 +60,17 @@ public class Helper {
 		if(session.getAttribute("urole") != null) {
 			role = session.getAttribute("urole").toString();
 		}
-		return role.equalsIgnoreCase("USER");
+		return role.equalsIgnoreCase("CUSTOMER");
+	}
+	public static String getOrderNo(int id) {
+		String pattern = "yyyyMMdd";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String date = simpleDateFormat.format(new Date());
+		
+		String ids = String.valueOf(10000+id);
+			
+		return date+"-"+ids;
+		
 	}
 
 }

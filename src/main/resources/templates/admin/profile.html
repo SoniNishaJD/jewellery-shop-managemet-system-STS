@@ -38,12 +38,12 @@
 
 		<div class="card">
 			<div class="card-body register-card-body">
-				<p class="login-box-msg">Profile</p>
+				<h3 class="login-box-msg">Profile</h3>
 
-				<form action="@{/admin/register}" method="post">
+				
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" name="firstName"
-							placeholder="First name" required />
+							placeholder="First name"  readonly required th:value="${user.firstName}" />
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-user"></span>
@@ -51,8 +51,8 @@
 						</div>
 					</div>
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" name="lastName"
-							placeholder="Last name" required />
+						<input type="text" class="form-control" readonly name="lastName"
+							placeholder="Last name"  th:value="${user.lastName}" required />
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-user"></span>
@@ -60,7 +60,7 @@
 						</div>
 					</div>
 					<div class="input-group mb-3">
-						<input type="email" name="email" class="form-control"
+						<input type="email" name="email"  th:value="${user.email}" readonly class="form-control"
 							placeholder="Email" required />
 						<div class="input-group-append">
 							<div class="input-group-text">
@@ -72,7 +72,7 @@
 					
 
 					<div class="input-group mb-3">
-						<input required type="text" name="phone" class="form-control"
+						<input required type="text"   th:value="${user.phone}" readonly name="phone" class="form-control"
 							placeholder="Phone" />
 							
 						<div class="input-group-append">
@@ -84,7 +84,7 @@
 					<div class="row">
 						<div class="col-6">
 							<a th:href="@{/admin/edit-profile}">
-								<button type="submit" class="btn btn-primary btn-block">
+								<button type="button" class="btn btn-primary btn-block">
 									Edit Profile</button>
 							</a>
 						</div>
@@ -96,12 +96,12 @@
 						</div>
 
 					</div>
-				</form>
+				
 
 
 				<div class="row">
 				<div class="col-12" >
-					<a th:href="@{/admin/edit-profile}" class="text-center">Back
+					<a th:href="@{/admin}" class="text-center">Back
 						to Dashboard</a>
 				</div>
 			</div>

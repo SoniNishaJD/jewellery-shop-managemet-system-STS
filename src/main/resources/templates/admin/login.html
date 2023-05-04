@@ -124,5 +124,12 @@
     ></script>
     <!-- AdminLTE App -->
     <script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+    
+     <th:block th:if="${session.msg}">
+		<script>
+			alert("[[${session.msg}]]")
+		</script>
+		<p th:text="${#session.removeAttribute('msg')}"></p>
+	</th:block>
   </body>
 </html>

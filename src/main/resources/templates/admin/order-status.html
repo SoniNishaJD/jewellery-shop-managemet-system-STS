@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jewellery Shop | Change Order Status</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" th:href="@{/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}">
+  <style>
+    /* Style the video: 100% width and height to cover the entire window */
+    #myVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body class="hold-transition login-page">
+
+  <video autoplay muted loop id="myVideo">
+    <source th:src="@{/admin/bg.mp4}" type="video/mp4" />
+  </video>
+
+  <div class="login-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a href="#" class="h1">Change Status</a>
+      </div>
+      <div class="card-body">
+        <h3 th:text="${order.orderNum}"></h3>
+        <h4 th:text="${order.orderDate}"></h4>
+        <p class="login-box-msg" th:text="${order.user.firstName} +' '+ ${order.user.lastName}"></p>
+        <form th:action="@{/logout}" method="get">
+          <div class="input-group mb-3">
+
+          </div>
+          <div class="input-group mb-3">
+
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block">In Process</button>
+            </div>
+
+            <div class="col-12" style="padding: 10px;">
+              <button type="submit" class="btn btn-secondary btn-block">Ready For Delivery</button>
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-warning btn-block">On the Way</button>
+            </div>
+
+            <div class="col-12" style="padding: 10px;">
+              <button type="submit" class="btn btn-success btn-block">Delivered</button>
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-danger btn-block">Cencelled</button>
+            </div>
+
+            <!-- /.col -->
+          </div>
+        </form>
+
+        <p class="mt-3 mb-1">
+          <a th:href="@{/admin/order/index}">Back to Home</a>
+        </p>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+
+  <!-- jQuery -->
+  <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+  <!-- Bootstrap 4 -->
+  <script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <!-- AdminLTE App -->
+  <script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+</body>
+
+</html>

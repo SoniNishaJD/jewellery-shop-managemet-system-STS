@@ -4,16 +4,20 @@ import java.util.List;
 
 import com.springboot.jewellerysystem.entity.Order;
 import com.springboot.jewellerysystem.entity.OrderDetail;
+import com.springboot.jewellerysystem.entity.User;
 
-public interface OrderDetailService { 
+public interface OrderDetailService {
 
-  List<OrderDetail> getAllOrderDetail();
-  List<OrderDetail> getAllOrderDetailByOrder(Order order);
+	List<OrderDetail> getAllOrderDetail();
 
-OrderDetail loadOrderDetailById(Integer id );
+	List<OrderDetail> getAllOrderDetailByOrder(Order order);
 
-OrderDetail createOrUpdateOrderDetail(OrderDetail orderDetail);
+	OrderDetail loadOrderDetailById(Integer id);
 
-void removeOrderDetail(Integer id);
+	OrderDetail createOrUpdateOrderDetail(OrderDetail orderDetail);
 
-} 
+	void removeOrderDetail(Integer id);
+	
+	void removeOrderDetaiilByUser(User user);
+
+}

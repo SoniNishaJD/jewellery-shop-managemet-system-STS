@@ -20,11 +20,11 @@
   <link rel="stylesheet" th:href="@{/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
   <!-- JQVMap -->
   <link rel="stylesheet" th:href="@{/admin/plugins/jqvmap/jqvmap.min.css}">
-   <!-- SweetAlert2  Notification-->
+  <!-- SweetAlert2  Notification-->
   <link rel="stylesheet" th:href="@{/admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css}">
   <!-- Theme style -->
   <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}">
-  
+
   <link rel="stylesheet" th:href="@{/admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" th:href="@{/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
@@ -32,7 +32,7 @@
   <link rel="stylesheet" th:href="@{/admin/plugins/daterangepicker/daterangepicker.css}">
   <!-- summernote -->
   <link rel="stylesheet" th:href="@{/admin/plugins/summernote/summernote-bs4.min.css}">
-  
+
   <!--=================== list css===============-->
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -67,16 +67,17 @@
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
               class="fas fa-bars"></i></a></li>
-        <li class="nav-item d-none d-sm-inline-block"><a href="index3.html" class="nav-link">Home</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a th:href="@{/admin}" class="nav-link">Home</a></li>
         <li class="nav-item d-none d-sm-inline-block"><a href="#" class="nav-link">Contact</a></li>
       </ul>
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
-        <li class="nav-item d-none d-sm-inline-block"><a th:href="@{/admin/}" class="nav-link">Welcome Admin : <b><span th:text="${session.uname}"></span></b></a></li>
-        <li class="nav-item d-none d-sm-inline-block"><a th:href="@{/admin/profile}" class="nav-link" >Profile</a></li>
-        <li class="nav-item d-none d-sm-inline-block"><a th:href="@{/admin/logout}" class="nav-link" >Logout</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a th:href="@{/admin/}" class="nav-link">Welcome Admin : <b><span
+                th:text="${session.uname}"></span></b></a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a th:href="@{/admin/profile}" class="nav-link">Profile</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a th:href="@{/admin/log-out}" class="nav-link">Logout</a></li>
         <li class="nav-item"><a class="nav-link" data-widget="navbar-search" href="#" role="button"> <i
               class="fas fa-search"></i>
           </a>
@@ -106,7 +107,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link"> <img th:src="@{/admin/dist/img/sj.jpeg}" alt="Logo"
+      <a th:href="@{/admin}" class="brand-link"> <img th:src="@{/admin/dist/img/sj.jpeg}" alt="Logo"
           class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Jewellery Shop</span>
       </a>
@@ -426,7 +427,7 @@
 
 
                 <li class="nav-item">
-                  <a href="/admin/todayRate/index" class="nav-link">
+                  <a th:href="@{/admin/todayRate/update/1}" class="nav-link">
                     <i class='fas fa-money-check'></i>
                     <p> Today Rate</p>
                   </a>
@@ -517,7 +518,7 @@
 
 
             <li class="nav-item">
-              <a href="/admin/logout" class="nav-link">
+              <a href="/admin/log-out" class="nav-link">
                 <i class='far fa-grin-beam-sweat'></i>
                 <p> Logout</p>
               </a>
@@ -531,16 +532,16 @@
       <!-- /.sidebar -->
     </aside>
 
-    <!-- session for message -->    
+    <!-- session for message -->
     <th:block th:if="${session.msg}">
-		<div id="kk" th:class="${session.msg}"></div> 
-		<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+      <div id="kk" th:class="${session.msg}"></div>
+      <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
     </th:block>
     <!-- end session for message -->
-    
-    
+
+
     <!-- section -->
-    
+
     <section layout:fragment="content1">
     </section>
 
@@ -572,10 +573,10 @@
   <script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
   <!-- ChartJS -->
   <script th:src="@{/admin/plugins/chart.js/Chart.min.js}"></script>
-  <!--  <!-- Sparkline -->
-  <script th:src="@{/admin/plugins/sparklines/sparkline.js}"></script> -->
-  <!--  <!-- JQVMap -->
-  <script th:src="@{/admin/plugins/jqvmap/jquery.vmap.min.js}"></script> -->
+  <!--  Sparkline -->
+  <script th:src="@{/admin/plugins/sparklines/sparkline.js}"></script>
+  <!--   JQVMap -->
+  <script th:src="@{/admin/plugins/jqvmap/jquery.vmap.min.js}"></script>
   <!-- <script th:src="@{/admin/plugins/jqvmap/maps/jquery.vmap.usa.js}"></script> -->
   <!-- jQuery Knob Chart -->
   <script th:src="@{/admin/plugins/jquery-knob/jquery.knob.min.js}"></script>
@@ -611,58 +612,58 @@
   <script th:src="@{/admin/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
   <script th:src="@{/admin/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
   <script th:src="@{/admin/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
-  
-  <script>
-		
-			$(function() {
-				var Toast = Swal.mixin({
-					toast : true,
-					position : 'top-end',
-					showConfirmButton : false,
-					timer : 3000
-				});
-				
-				setTimeout(function(){
-					
-				const div = document.querySelector('#kk');
-				if(div.classList.contains('inserted')){
-					inserted_msg();
-				}
-				if(div.classList.contains('updated')){
-					updated_msg();
-				}
-				if(div.classList.contains('deleted')){
-					deleted_msg();
-				}				
-				 
-				}, 2000);
-				
-				function inserted_msg() {
-					Toast
-							.fire({
-								icon : 'success',
-								title : 'Record inserted successfully !!'
-							})
-				}
-				function updated_msg() {
-					Toast
-							.fire({
-								icon : 'info',
-								title : 'Record updated successfully !!'
-							})
-				}
-				function deleted_msg() {
-					Toast
-							.fire({
-								icon : 'error',
-								title : 'Record deleted successfully !!'
-							})
-				}
 
-				
-			});
-		</script>
-  
+  <script>
+
+    $(function () {
+      var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+
+      setTimeout(function () {
+
+        const div = document.querySelector('#kk');
+        if (div.classList.contains('inserted')) {
+          inserted_msg();
+        }
+        if (div.classList.contains('updated')) {
+          updated_msg();
+        }
+        if (div.classList.contains('deleted')) {
+          deleted_msg();
+        }
+
+      }, 2000);
+
+      function inserted_msg() {
+        Toast
+          .fire({
+            icon: 'success',
+            title: 'Record inserted successfully !!'
+          })
+      }
+      function updated_msg() {
+        Toast
+          .fire({
+            icon: 'info',
+            title: 'Record updated successfully !!'
+          })
+      }
+      function deleted_msg() {
+        Toast
+          .fire({
+            icon: 'error',
+            title: 'Record deleted successfully !!'
+          })
+      }
+
+
+    });
+  </script>
+
   <!-- AdminLTE App -->
   <!-- Page specific script -->
 
@@ -724,22 +725,23 @@
  -->
 
 
-<section layout:fragment="script1">
-  <script>
-    $(function () {
-      $("#example1").DataTable(
-        {
-          "responsive": true,
-          "lengthChange": false,
-          "autoWidth": false,
-          "buttons": ["copy", "csv", "excel", "pdf", "print",
-            "colvis"]
-        }).buttons().container().appendTo(
-          '#example1_wrapper .col-md-6:eq(0)');
+  <section layout:fragment="script1">
+    <script>
+      $(function () {
+        $("#example1").DataTable(
+          {
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print",
+              "colvis"]
+          }).buttons().container().appendTo(
+            '#example1_wrapper .col-md-6:eq(0)');
 
-    });
-  </script>
+      });
+    </script>
 
-</section>
+  </section>
 </body>
+
 </html>

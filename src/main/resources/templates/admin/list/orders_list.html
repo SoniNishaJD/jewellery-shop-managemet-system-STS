@@ -71,7 +71,11 @@
                         <td th:text="${order.city}"></td>
 
                         <td th:text="${order.trackingCode}"> </td>
-                        <td th:text="${order.deliveryStatus}"> </td>
+                        <td>
+                          <a th:href="@{/admin/order/updateStatus/{id}(id=${order.id})}"><button
+                              class="btn btn-xs btn-danger"><i class='far fa-bell'></i></button></a>
+                          <span style="width:120px" th:text="${order.deliveryStatus}"></span>
+                        </td>
                         <td th:text="${order.paymentType}"> </td>
 
 

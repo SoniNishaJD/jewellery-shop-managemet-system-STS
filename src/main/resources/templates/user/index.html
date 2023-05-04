@@ -624,6 +624,14 @@
             </div>
         </div>
         <!-- Jewellery's Shipping Area End Here -->
+        <th:block th:if="${session.msg}">
+            <script>
+                alert("[[${session.msg}]]")
+            </script>
+            <p th:text="${#session.removeAttribute('msg')}"></p>
+        </th:block>
+
+
     </div>
 
 </body>

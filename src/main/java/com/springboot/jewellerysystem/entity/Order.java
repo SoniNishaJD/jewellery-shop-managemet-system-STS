@@ -35,6 +35,14 @@ public class Order {
 	private Date orderDate;
 
 	@Basic
+	@Column(name = "first_name", nullable = false, length = 255)
+	private String firstName;
+
+	@Basic
+	@Column(name = "last_name", nullable = false, length = 50)
+	private String lastName;
+	
+	@Basic
 	@Column(name = "address", nullable = false, length = 255)
 	private String address;
 
@@ -95,6 +103,30 @@ public class Order {
 
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Set<OrderDetail> getOrderDetail() {
+		return orderDetail;
+	}
+
+	public void setOrderDetail(Set<OrderDetail> orderDetail) {
+		this.orderDetail = orderDetail;
 	}
 
 	public String getAddress() {
@@ -233,6 +265,8 @@ public class Order {
 			Float discount) {
 		super();
 		this.orderDate = orderDate;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.address = address;
 		this.city = city;
 		this.pincode = pincode;
@@ -252,7 +286,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", orderDate=" + orderDate + ", address=" + address + ", city=" + city + ", pincode="
+		return "Order [id=" + id + ", orderDate=" + orderDate + ", firstName = " +firstName+", lastName = "+lastName+" address=" + address + ", city=" + city + ", pincode="
 				+ pincode + ", orderNum=" + orderNum + ", trackingCode=" + trackingCode + ", deliveryStatus="
 				+ deliveryStatus + ", paymentType=" + paymentType + ", paymentStatus=" + paymentStatus
 				+ ", paymentDetail=" + paymentDetail + ", grandTotal=" + grandTotal + ", discount=" + discount + "]";

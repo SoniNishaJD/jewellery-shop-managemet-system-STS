@@ -3,14 +3,15 @@ package com.springboot.jewellerysystem.service;
 import com.springboot.jewellerysystem.entity.Order;
 import java.util.List;
 
-public interface OrderService { 
+public interface OrderService {
 
-  List<Order> getAllOrder();
+	List<Order> getAllOrder();
 
-Order loadOrderById(Integer id );
+	Order loadOrderById(Integer id);
 
-Order createOrUpdateOrder(Order order);
+	Order createOrUpdateOrder(Order order);
 
-void removeOrder(Integer id);
+	void removeOrder(Integer id);
 
-} 
+	
+}

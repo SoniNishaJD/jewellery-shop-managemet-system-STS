@@ -14,5 +14,6 @@ public interface UserService {
 	void removeUser(Integer id);
 
 	User getUserByEmailandPassword(String email, String password);
-
+	
+    boolean checkEmailExist(String email);
 }

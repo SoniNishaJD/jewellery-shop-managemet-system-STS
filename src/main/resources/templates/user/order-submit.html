@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order Submitted </title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" th:href="@{/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}">
+<style>
+      /* Style the video: 100% width and height to cover the entire window */
+      #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        padding: 20px;
+      }
+    </style>
+</head>
+<body class="hold-transition login-page">
+
+<video autoplay muted loop id="myVideo">
+      <source th:src="@{/admin/bg.mp4}" type="video/mp4" />
+    </video>
+
+<div class="login-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="#" class="h1"><b>Order</b>Placed</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Thanks for order, we will update you</p>
+      <form th:action="@{/logout}" method="get">
+        <div class="input-group mb-3">
+          
+        </div>
+        <div class="input-group mb-3">
+          <h3>Order No: <span th:text="${session.order_no}">23050611001</span></h3>
+          <h4>Tracking Code: <span  th:text="${session.order_no}">23050611001</span></h4>
+          <p>You can check your order by this code</p>
+        </div>
+        
+      </form>
+
+      <p class="mt-3 mb-1">
+        <a th:href="@{/}">Back to HomePage</a>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+</body>
+</html>
