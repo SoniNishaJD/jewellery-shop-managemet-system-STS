@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -133,7 +134,7 @@ public class HomeController {
 //		}
 //		//\\//\\//\\
 		
-		List<Category> tabCategory1= new ArrayList<>();// =helper.getCategoryList(new int[]{1,2,3,4},categoryService);
+		List<Category> tabCategory1= new ArrayList<>();//helper.getCategoryList(new int[]{1,2,3,4},categoryService);
 		List<Category> tabCategory2= new ArrayList<>();//helper.getCategoryList(new int[]{5,11,12,14},categoryService);
 		List<Category> tabCategory3= new ArrayList<>();//helper.getCategoryList(new int[]{7,10,6,8},categoryService);
 		Category category = new Category();
@@ -260,6 +261,37 @@ public class HomeController {
 	
 		return "user/about-us";
 	}
+	@GetMapping("/change-password")
+	public String changepassword1(){
+		if(!Helper.checkUserRole()) {
+			return "redirect:/login";
+		}
+
+		return "/user/change-password";
+
+}
+	@PostMapping("/change-password")
+	public String changepassword2(@RequestParam("password")String password) {
+		if(!Helper.checkUserRole()) {
+			return "redirect:/login";
+		}
+		
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session = attr.getRequest().getSession();
+		int uid = 0;
+		if(session.getAttribute("uid") != null) {
+			uid = (int)session.getAttribute("uid");
+			User user2 = userService.loadUserById(uid);
+			user2.setPassword(password);
+			userService.createOrUpdateUser(user2);
+		} 
+		
+		session.setAttribute("msg", "Password change successfully..");
+		
+		return "redirect:/";
+	}
+
+	
 	
 	@GetMapping("/contact")
 	public String showContact(Model m,ContactUs contactUs) {
@@ -300,12 +332,15 @@ public class HomeController {
 	}
 	
 	@PostMapping("/contact/save")
-	public String saveContact(ContactUs contactUs) {
-		
-		contactUsService.createOrUpdateContactUs(contactUs);
+	public String saveContact(ContactUs contactUs,HttpSession session ) {
 		
 		
-		return "redirect: /home?success";
+		ContactUs contactUs2 =  contactUsService.createOrUpdateContactUs(contactUs);
+		if(contactUs2 != null) {
+			session.setAttribute("msg", "Contact submitted successfully...");
+		}
+		
+		return "redirect:/contact";
 	}
 	
 	@GetMapping("/faq")
@@ -531,8 +566,8 @@ public class HomeController {
 			System.out.println("xxxxxxxxxxxxx");
 			
 			if (Helper.checkUserRole()) {
-				
-				return "redirect:/";
+				session.setAttribute("msg", "You are successfully Login..");
+				return "redirect:/home";
 			} else {
 				session.setAttribute("msg", "Something went Wrong.");
 				return "redirect:/logout";
@@ -567,7 +602,8 @@ public class HomeController {
 		if (session.getAttribute("urole") != null)
 			session.removeAttribute("urole");
 
-		return "redirect:/login";
+		session.setAttribute("msg", "You are successfully log-out from system..");
+		return "redirect:/";
 	}
 	
 	
@@ -763,9 +799,27 @@ public class HomeController {
 	 		return "user/checkout";
 	 	}
 	}
+
+	@GetMapping("/log-out")
+	public String logoutForm() {
+		
+		return "/user/logout";
+	}
 	
-	@GetMapping("/profile")
-	public String showAccount() {
+	@GetMapping("/myAccount")
+	public String showAccount(Model m) {
+		
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session = attr.getRequest().getSession();
+		int id = (int)session.getAttribute("uid");
+		User user = userService.loadUserById(id);		
+		m.addAttribute("user",user);
+		
+		List<Category> listCategory = categoryService.getAllCategoryByMainCategory(new MainCategory(1));
+		m.addAttribute("listCategory",listCategory);
+		CompanyDetail companyDetail = companyDetailService.getAllCompanyDetail().get(0);
+		m.addAttribute("companyDetail", companyDetail);
+		
 		return "user/my-account";
 	}
 	

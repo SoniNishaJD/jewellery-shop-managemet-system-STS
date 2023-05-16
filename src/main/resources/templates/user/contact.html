@@ -59,7 +59,7 @@
                         <div class="contact-form-content">
                             <h3 class="contact-page-title">Tell Us Your Message</h3>
                             <div class="contact-form">
-                                <form id="contact-form" th:action="@{/contact/save}" method="post">
+                                <form  th:action="@{/contact/save}" method="post">
                                     <div class="form-group">
                                         <label>Your First Name <span class="required">*</span></label>
                                         <input type="text" name="firstName" required th:field="${contactUs.firstName}">
@@ -82,8 +82,8 @@
 
                                         <input type="hidden" name="isRead" value="N">
                                         <div class="form-group">
-                                            <button type="submit" value="submit" id="submit"
-                                                class="jewellery-contact-form_btn" name="submit">Submit
+                                            <button type="submit" value="submit" id="xsubmit"
+                                                class="jewellery-contact-form_btn" name="xsubmit">Submit
                                             </button>
                                         </div>
                                 </form>

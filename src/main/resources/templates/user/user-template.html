@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Home One || Sonika Jewellers </title>
+    <title>Sonika Jewellers || Home Page</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,9 +45,9 @@
 
 
     <div class="main-wrapper">
-        <th:block th:if="${session.newsletter}==null">
+       
         <!-- Begin Jewellery's Newsletter Popup Area -->
-        <div class="popup_wrapper">
+       <!--  <div class="popup_wrapper">
             <div class="test">
                 <span class="popup_off"><i class="ion-android-close"></i></span>
                 <div class="subscribe_area">
@@ -66,9 +66,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Jewellery's Newsletter Popup Area Here -->
-		</th:block>
+		
         <!-- Begin Jewellery's Header Main Area -->
         <header class="header-main_area">
             <div class="header-top_area">
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-7">
+                        <div class="col-lg-4">
                             <div class="ht-right_area">
                                 <div class="ht-menu">
                                     <ul>
@@ -102,6 +102,20 @@
                                     </li>
 
 
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="ht-left_area">
+                                <div class="header-shipping_area">
+                                    <ul>
+                                        <li>
+                                           <th:block th:if="${session.uname}">
+                                            <span>Welcome: <b th:text="${session.uname}"></b> | <a th:href="@{/change-password}">Change Password</a> <a href="/log-out">Logout</a> </span>
+                                        </th:block>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -174,6 +188,13 @@
                                         <li><a th:href="@{/about}">About Us</a></li>
                                         <li><a th:href="@{contact}">Contact</a></li>
                                         <li><a th:href="@{/shop}">Jewellery</a></li>
+                                        <th:block th:if="${session.uid}">
+                                            <li><a th:href="@{/myAccount}">My Account</a></li>    
+                                        </th:block>
+                                        <th:block th:if="${session.uid}==null">
+                                            <li><a th:href="@{/login}">Login/Register</a></li>    
+                                        </th:block>
+                                    
                                     </ul>
                                 </nav>
                             </div>
@@ -941,12 +962,15 @@
     <script th:src="@{assets/js/plugins/jquery.elevateZoom-3.0.8.min.js}"></script>
     <!-- Timecircles JS -->
     <script th:src="@{assets/js/plugins/timecircles.min.js}"></script>
-    <!-- Mailchimp Ajax JS -->
-    <script th:src="@{assets/js/plugins/mailchimp-ajax.js}"></script>
-
+    
     <!-- Main JS -->
     <script th:src="@{assets/js/main.js}"></script>
     <!-- <script th:src="@{assets/js/main.min.js}"></script> -->
+
+<th:block th:if="${session.msg}">
+     <script>alert('[[${session.msg}]]')</script>
+     <p th:text="${#session.removeAttribute('msg')}"></p>
+</th:block>
 
 </body>
 

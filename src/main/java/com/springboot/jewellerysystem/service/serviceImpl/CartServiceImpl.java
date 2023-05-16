@@ -4,7 +4,8 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException; 
 import org.springframework.beans.factory.annotation.Autowired;
 import com.springboot.jewellerysystem.dao.CartDAO; 
-import com.springboot.jewellerysystem.entity.Cart; 
+import com.springboot.jewellerysystem.entity.Cart;
+import com.springboot.jewellerysystem.entity.User;
 import com.springboot.jewellerysystem.service.CartService; 
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,17 @@ return cartDao.save(cart);
  	    public void removeCart(Integer id) {
  	        cartDao.deleteById(id);
  	    }
+
+@Override
+public List<Cart> getAllCartByUser(User user) {
+	
+	return cartDao.findByUser(user);
+}
+
+@Override
+public void removeCartByUser(User user) {
+	cartDao.deleteByUser(user);
+	
+}
 
 }

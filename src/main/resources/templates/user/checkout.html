@@ -1,187 +1,207 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="user/user-template">
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="user/user-template"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+  </head>
 
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout</title>
-</head>
+  <body>
+    <div layout:fragment="content1">
+      <!-- Begin Jewellery's Breadcrumb Area -->
+      <div class="breadcrumb-area">
+        <div class="container">
+          <div class="breadcrumb-content">
+            <h2>Checkout</h2>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li class="active">Checkout</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Jewellery's Breadcrumb Area End Here -->
+      <!-- Begin Jewellery's Checkout Area -->
+      <div class="checkout-area">
+        <div class="container">
+          <form th:action="@{/checkout}" method="post">
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <div class="checkbox-form">
+                  <h3>Billing Details</h3>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="country-select clearfix">
+                        <label>Country <span class="required">*</span></label>
+                        <select class="myniceselect nice-select wide">
+                          <option
+                            th:each="country: ${countryList}"
+                            th:text="${country.name}"
+                          ></option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="checkout-form-list">
+                        <label
+                          >First Name <span class="required">*</span></label
+                        >
+                        <input placeholder="" name="firstName" type="text" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="checkout-form-list">
+                        <label>Last Name <span class="required">*</span></label>
+                        <input placeholder="" name="lastName" type="text" />
+                      </div>
+                    </div>
 
-<body>
+                    <div class="col-md-12">
+                      <div class="checkout-form-list">
+                        <label>Address <span class="required">*</span></label>
+                        <input
+                          name="address"
+                          placeholder="Street address"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="checkout-form-list">
+                        <input
+                          name="address2"
+                          placeholder="Apartment, suite, unit etc. (optional)"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="checkout-form-list">
+                        <label>City <span class="required">*</span></label>
+                        <input type="text" name="city" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="checkout-form-list">
+                        <label>Pincode <span class="required">*</span></label>
+                        <input name="pincode" placeholder="" type="text" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-	<div layout:fragment="content1">
+              <div class="col-lg-6 col-12">
+                <div class="your-order">
+                  <h3>Your order</h3>
+                  <div class="your-order-table table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="cart-product-name">Product</th>
+                          <th class="cart-product-total" align="right">
+                            Total
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="cart_item" th:each="cart:${carts}">
+                          <td
+                            class="cart-product-name"
+                            th:text="${cart.product.name}"
+                          >
+                            <strong
+                              class="product-quantity"
+                              th:text="' x '${cart.qty}"
+                            >
+                            </strong>
+                          </td>
+                          <td class="cart-product-total" align="right">
+                            <span
+                              class="amount"
+                              th:text="${cart.product.salesPrice} * ${cart.qty}"
+                            ></span>
+                          </td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr class="cart-subtotal">
+                          <th>Cart Subtotal</th>
+                          <td align="right">
+                            <span class="amount" th:text="${total}"></span>
+                          </td>
+                        </tr>
+                        <tr class="order-total">
+                          <th>Order Total</th>
+                          <td align="right">
+                            <strong
+                              ><span class="amount" th:text="${total}"></span
+                            ></strong>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
 
-		<!-- Begin Jewellery's Breadcrumb Area -->
-		<div class="breadcrumb-area">
-			<div class="container">
-				<div class="breadcrumb-content">
-					<h2>Checkout</h2>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li class="active">Checkout</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- Jewellery's Breadcrumb Area End Here -->
-		<!-- Begin Jewellery's Checkout Area -->
-		<div class="checkout-area">
-			<div class="container">
-<form th:action="@{/checkout}" method="post">
-				<div class="row">
-					
-						<div class="col-lg-6 col-12">
-
-							<div class="checkbox-form">
-								<h3>Billing Details</h3>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="country-select clearfix">
-											<label>Country <span class="required">*</span></label> 
-											<select
-												class="myniceselect nice-select wide"
-												th:each="country: ${countryList}">
-												<option th:text="${country.name}"></option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="checkout-form-list">
-											<label>First Name <span class="required">*</span></label> <input
-												placeholder="" type="text">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="checkout-form-list">
-											<label>Last Name <span class="required">*</span></label> <input
-												placeholder="" type="text">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="checkout-form-list">
-											<label>Company Name</label> <input placeholder="" type="text">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="checkout-form-list">
-											<label>Address <span class="required">*</span></label> <input
-												name="address" placeholder="Street address" type="text">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="checkout-form-list">
-											<input name="address2"
-												placeholder="Apartment, suite, unit etc. (optional)"
-												type="text">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="checkout-form-list">
-											<label>City <span class="required">*</span></label> <input
-												type="text" name="city">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="checkout-form-list">
-											<label>Pincode <span class="required">*</span></label> <input
-												name="pincode" placeholder="" type="text">
-										</div>
-									</div>
-									
-
-								</div>
-							</div>
-
-						</div>
-
-						<div class="col-lg-6 col-12">
-							<div class="your-order">
-								<h3>Your order</h3>
-								<div class="your-order-table table-responsive">
-									<table class="table">
-										<thead>
-											<tr>
-												<th class="cart-product-name">Product</th>
-												<th class="cart-product-total" align="right">Total</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr class="cart_item" th:each="cart:${carts}">
-												<td class="cart-product-name" th:text="${cart.product.name}">
-													<strong class="product-quantity" th:text="' x '${cart.qty}">
-												</strong>
-												</td>
-												<td class="cart-product-total" align="right"><span
-													class="amount"
-													th:text="${cart.product.salesPrice} * ${cart.qty}"></span></td>
-											</tr>
-
-										</tbody>
-										<tfoot>
-											<tr class="cart-subtotal">
-												<th>Cart Subtotal</th>
-												<td align="right"><span class="amount"
-													th:text="${total}"></span></td>
-											</tr>
-											<tr class="order-total">
-												<th>Order Total</th>
-												<td align="right"><strong><span class="amount"
-														th:text="${total}"></span></strong></td>
-											</tr>
-										</tfoot>
-									</table>
-								</div>
-
-								<div class="payment-method">
-									<div class="payment-accordion">
-										<div id="accordion">
-											<div class="card">
-												<div class="card-header" id="#payment-1">
-													<h5 class="panel-title">
-														<input type="radio" checked name="paymentType"
-															value="Direct Bank Transfer"> Direct Bank
-														Transfer.
-													</h5>
-												</div>
-
-											</div>
-											<div class="card">
-												<div class="card-header" id="#payment-2">
-													<h5 class="panel-title">
-														<input type="radio" name="paymentType"
-															value="Cheque Payment"> Cheque Payment.
-													</h5>
-												</div>
-
-											</div>
-											<div class="card">
-												<div class="card-header" id="#payment-3">
-													<h5 class="panel-title">
-														<input type="radio" name="paymentType"
-															value="CASH ON DELIVERY"> CASH ON DELIVERY.
-													</h5>
-												</div>
-
-											</div>
-										</div>
-										<div class="order-button-payment">
-											<input value="Place order" type="submit">
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					
-				</div>
-</form>
-			</div>
-		</div>
-		<!-- Jewellery's Checkout Area End Here -->
-	</div>
-</body>
-
+                  <div class="payment-method">
+                    <div class="payment-accordion">
+                      <div id="accordion">
+                        <div class="card">
+                          <div class="card-header" id="#payment-1">
+                            <h5 class="panel-title">
+                              <input
+                                type="radio"
+                                checked
+                                name="paymentType"
+                                value="Direct Bank Transfer"
+                              />
+                              Direct Bank Transfer.
+                            </h5>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="#payment-2">
+                            <h5 class="panel-title">
+                              <input
+                                type="radio"
+                                name="paymentType"
+                                value="Cheque Payment"
+                              />
+                              Cheque Payment.
+                            </h5>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="#payment-3">
+                            <h5 class="panel-title">
+                              <input
+                                type="radio"
+                                name="paymentType"
+                                value="CASH ON DELIVERY"
+                              />
+                              CASH ON DELIVERY.
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="order-button-payment">
+                        <input value="Place order" type="submit" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- Jewellery's Checkout Area End Here -->
+    </div>
+  </body>
 </html>

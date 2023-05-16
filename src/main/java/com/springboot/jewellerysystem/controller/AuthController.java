@@ -91,10 +91,10 @@ public class AuthController {
 	}
 
 	@PostMapping("/login")
-	public String CheckLogin(@RequestParam("email") String email, @RequestParam("password") String passord,
+	public String CheckLogin(@RequestParam("email") String email, @RequestParam("password") String password,
 			HttpSession session) {
 		
-		User user = userService.getUserByEmailandPassword(email, passord);
+		User user = userService.getUserByEmailandPassword(email, password);
 		if (user != null) {
 			session.setAttribute("uname", user.getFirstName() + " " + user.getLastName());
 			session.setAttribute("uid", user.getId());
@@ -208,9 +208,15 @@ public class AuthController {
 		
 		return "/admin";
 	}
-
 	@GetMapping("/change-password")
-	public String changepassword(@RequestParam("password")String password) {
+	public String changepassword1(@RequestParam("password")String password) {
+		if(!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
+		return "/admin/change-password-admin";
+	}
+	@PostMapping("/change-password")
+	public String changepassword2(@RequestParam("password")String password) {
 		if(!Helper.checkAdminRole()) {
 			return "redirect:/admin/logout";
 		}
