@@ -79,7 +79,7 @@ public class ProductDetailController {
 		}
 		ProductDetail p =	productDetailService.createOrUpdateProductDetail(productDetail);
 		if(p != null) {
-			session.setAttribute("msg", "inserted");
+			session.setAttribute("msg", "updated");
 		}else {
 			session.setAttribute("error","error");
 		}

@@ -66,7 +66,7 @@ public class RateMasterController {
 		}
     	RateMaster r = rateMasterService.createOrUpdateRateMaster(rateMaster); 
         if(r != null) {
-			session.setAttribute("msg", "inserted");
+			session.setAttribute("msg", "updated");
 		}else {
 			session.setAttribute("error","error");
 		}

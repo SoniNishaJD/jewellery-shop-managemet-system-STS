@@ -72,7 +72,7 @@ public class UserController {
     	User u =userService.createOrUpdateUser(user); 
          
         if(u != null) {
-			session.setAttribute("msg", "inserted");
+			session.setAttribute("msg", "updated");
 		}else {
 			session.setAttribute("error","error");
 		}

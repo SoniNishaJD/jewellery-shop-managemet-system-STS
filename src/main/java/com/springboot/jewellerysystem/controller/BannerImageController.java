@@ -1,6 +1,8 @@
 package com.springboot.jewellerysystem.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -88,13 +90,20 @@ public class BannerImageController {
 		if(bannerImage.getId() != null && bannerImage.getId() != 0) {
 			msg = "updated";
 		}
+		String fileTime = new SimpleDateFormat("yyyyMMddHHmmssms").format(new Date());
+		
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		
 		if(fileName.length() > 3) {
+			fileName = fileTime+fileName;
 			bannerImage.setBannerImage(fileName);		
 			String uploadDir = "assets1/images/bannerImage";
 			FileUploadUtil.saveFile(uploadDir, fileName, file);
-		}
+		}else {
+    		if(bannerImage.getId() ==null) {
+    			bannerImage.setBannerImage("no-img.png");
+    		}
+    	}
 		
 		BannerImage b =bannerImageService.createOrUpdateBannerImage(bannerImage);
 		if(b != null) {

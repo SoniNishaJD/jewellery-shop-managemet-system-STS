@@ -79,7 +79,7 @@ public class StateController {
 		}
 		State s =stateService.createOrUpdateState(state);
 		if(s != null) {
-			session.setAttribute("msg", "inserted");
+			session.setAttribute("msg", "updated");
 		}else {
 			session.setAttribute("error","error");
 		}

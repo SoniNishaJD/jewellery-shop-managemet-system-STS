@@ -60,7 +60,7 @@
                       <input type="file" accept="image/png, image/jpeg" name="file" class="form-control" id="file"
                         placeholder="Enter Banner Image ">
 
-                      <input type="hidden" th:value="${bannerImage.getBannerImage()}">
+                      <input name="bannerImage" type="hidden" th:value="${bannerImage.getBannerImage()}">
                       <img th:src="${bannerImage.imagePath}" style="width:70px">
 
                     </div>

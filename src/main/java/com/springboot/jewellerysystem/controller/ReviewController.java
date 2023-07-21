@@ -79,7 +79,7 @@ public class ReviewController {
 		}
 		Review r =reviewService.createOrUpdateReview(review);
 		if(r != null) {
-			session.setAttribute("msg", "inserted");
+			session.setAttribute("msg", "updated");
 		}else {
 			session.setAttribute("error","error");
 		}

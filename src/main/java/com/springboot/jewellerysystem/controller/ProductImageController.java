@@ -1,6 +1,8 @@
 package com.springboot.jewellerysystem.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -35,8 +37,12 @@ public class ProductImageController {
 
 	@GetMapping(value = "/index")
 	public String productImages(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
 		List<ProductImage> productImages = productImageService.getAllProductImage();
 		model.addAttribute("listProductImages", productImages);
 		model.addAttribute("keyword", keyword);
@@ -45,8 +51,12 @@ public class ProductImageController {
 
 	@GetMapping(value = "/create")
 	public String formProductImages(Model model) {
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
 		model.addAttribute("productImage", new ProductImage());
 		List<Product> products = productService.getAllProduct();
 		model.addAttribute("listProducts", products);
@@ -56,8 +66,12 @@ public class ProductImageController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteProductImage(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
 		productImageService.removeProductImage(id);
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/productImage/index?keyword=" + keyword;
@@ -65,8 +79,12 @@ public class ProductImageController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateProductImage(@PathVariable(value = "id") Integer id, Model model) {
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
 		ProductImage productImage = productImageService.loadProductImageById(id);
 		model.addAttribute("productImage", productImage);
 		List<Product> products = productService.getAllProduct();
@@ -76,24 +94,33 @@ public class ProductImageController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(ProductImage productImage, @RequestParam("file")MultipartFile file, HttpSession session) throws IOException {
+	public String save(ProductImage productImage, @RequestParam("file") MultipartFile file, HttpSession session)
+			throws IOException {
 		String msg = "inserted";
-		if(productImage.getId() != null && productImage.getId() != 0) {
+		if (productImage.getId() != null && productImage.getId() != 0) {
 			msg = "updated";
 		}
+		String fileTime = new SimpleDateFormat("yyyyMMddHHmmssms").format(new Date());
+
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		
-		if(fileName.length() > 3) {
-		productImage.setImage(fileName);
-		String uploadDir = "assets1/images/productImage";
-		FileUploadUtil.saveFile(uploadDir, fileName, file);
+
+		if (fileName.length() > 3) {
+			fileName = fileTime + fileName;
+
+			productImage.setImage(fileName);
+			String uploadDir = "assets1/images/productImage";
+			FileUploadUtil.saveFile(uploadDir, fileName, file);
+		} else {
+			if (productImage.getId() == null) {
+				productImage.setImage("no-img.png");
+			}
 		}
-		
-		ProductImage p =	productImageService.createOrUpdateProductImage(productImage);
-		if(p != null) {
-			session.setAttribute("msg", "inserted");
-		}else {
-			session.setAttribute("error","error");
+
+		ProductImage p = productImageService.createOrUpdateProductImage(productImage);
+		if (p != null) {
+			session.setAttribute("msg", "updated");
+		} else {
+			session.setAttribute("error", "error");
 		}
 
 		return "redirect:/admin/productImage/index";

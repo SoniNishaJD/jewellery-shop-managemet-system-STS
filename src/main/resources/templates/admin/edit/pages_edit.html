@@ -65,11 +65,11 @@
                     <div class="form-group">
                       <label for="file">Page Banner</label>
                       <input type="file" accept="image/png, image/jpeg" name="file" class="form-control" id="file"
-                        placeholder="Enter Page Banner " >
-                        
-                        <input type="hidden" th:value="${pages.getPageBanner()}">
-                        <img th:src="${pages.imagePath}" style="width:70px">
-                        
+                        placeholder="Enter Page Banner ">
+
+                      <input name="pageBanner" type="hidden" th:value="${pages.getPageBanner()}">
+                      <img th:src="${pages.imagePath}" style="width:70px">
+
                     </div>
                     <div class="form-group">
                       <label for="status">Status</label>
@@ -84,7 +84,8 @@
                   <!-- /.card-body -->
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm">UPDATE</button>
-                    <a th:href="@{/admin/pages/index}"><button type="button" class="btn btn-dark btn-sm">BACK</button></a>
+                    <a th:href="@{/admin/pages/index}"><button type="button"
+                        class="btn btn-dark btn-sm">BACK</button></a>
                   </div>
                 </form>
               </div>

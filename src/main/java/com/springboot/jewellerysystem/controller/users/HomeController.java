@@ -534,7 +534,7 @@ public class HomeController {
 			session.setAttribute("msg", "Email Already exist..");
 			
 		}else {
-		user.setRole("USER");
+		user.setRole("CUSTOMER");
 		user.setEntryDate(new Date());
 		user.setStatus(1);
 		

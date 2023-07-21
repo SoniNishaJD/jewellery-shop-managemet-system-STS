@@ -1,6 +1,8 @@
 package com.springboot.jewellerysystem.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -73,13 +75,21 @@ public class BrandController {
 		if(brand.getId() != null && brand.getId() != 0) {
 			msg = "updated";
 		}
+		String fileTime = new SimpleDateFormat("yyyyMMddHHmmssms").format(new Date());
+		
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		if (fileName.length() > 3) {
+			fileName = fileTime+fileName;
 			brand.setLogo(fileName);
 			String uploadDir = "assets1/images/brand";
 			FileUploadUtil.saveFile(uploadDir, fileName, file);
 
-		}
+		}else {
+    		if(brand.getId() ==null) {
+    			brand.setLogo("no-img.png");
+    		}
+    	}
+		
 		Brand b = brandService.createOrUpdateBrand(brand);
 		if(b != null) {
 			session.setAttribute("msg", "inserted");

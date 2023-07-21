@@ -1,6 +1,8 @@
 package com.springboot.jewellerysystem.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -40,8 +42,12 @@ public class ProductController {
 
 	@GetMapping(value = "/index")
 	public String products(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
 		List<Product> products = productService.getAllProduct();
 		model.addAttribute("listProducts", products);
 		model.addAttribute("keyword", keyword);
@@ -50,8 +56,12 @@ public class ProductController {
 
 	@GetMapping(value = "/create")
 	public String formProducts(Model model) {
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
 		model.addAttribute("product", new Product());
 		List<Brand> brands = brandService.getAllBrand();
 		model.addAttribute("listBrands", brands);
@@ -64,17 +74,26 @@ public class ProductController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteProduct(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
-		productService.removeProduct(id);session.setAttribute("msg", "deleted");
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
+		productService.removeProduct(id);
+		session.setAttribute("msg", "deleted");
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/product/index?keyword=" + keyword;
 	}
 
 	@GetMapping(value = "/update/{id}")
 	public String updateProduct(@PathVariable(value = "id") Integer id, Model model) {
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
 		Product product = productService.loadProductById(id);
 		model.addAttribute("product", product);
 		List<Brand> brands = brandService.getAllBrand();
@@ -87,26 +106,34 @@ public class ProductController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(Product product, @RequestParam("file")MultipartFile file, HttpSession session) throws IOException {
+	public String save(Product product, @RequestParam("file") MultipartFile file, HttpSession session)
+			throws IOException {
 		String msg = "inserted";
-		if(product.getId() != null && product.getId() != 0) {
+		if (product.getId() != null && product.getId() != 0) {
 			msg = "updated";
 		}
+		String fileTime = new SimpleDateFormat("yyyyMMddHHmmssms").format(new Date());
+
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		
-		if(fileName.length() > 3) {
-		product.setImage(fileName);
-		String uploadDir = "assets1/images/product";
-		FileUploadUtil.saveFile(uploadDir, fileName, file);
-		}
-		
-		Product p =	productService.createOrUpdateProduct(product);
-		if(p != null) {
-			session.setAttribute("msg", msg);
+
+		if (fileName.length() > 3) {
+			fileName = fileTime + fileName;
+			product.setImage(fileName);
+			String uploadDir = "assets1/images/product";
+			FileUploadUtil.saveFile(uploadDir, fileName, file);
 		}else {
-			session.setAttribute("error","error");
+			if (product.getId() == null) {
+				product.setImage("no-img.png");
+			}
 		}
-		
+
+		Product p = productService.createOrUpdateProduct(product);
+		if (p != null) {
+			session.setAttribute("msg", msg);
+		} else {
+			session.setAttribute("error", "error");
+		}
+
 		return "redirect:/admin/product/index";
 	}
 

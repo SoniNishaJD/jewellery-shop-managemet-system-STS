@@ -71,7 +71,7 @@ public class TodayRateController {
 		}
 		TodayRate t = todayRateService.createOrUpdateTodayRate(todayRate); 
 		if(t != null) {
-			session.setAttribute("msg", "inserted");
+			session.setAttribute("msg", "updated");
 		}else {
 			session.setAttribute("error","error");
 		}

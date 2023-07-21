@@ -1,6 +1,5 @@
 package com.springboot.jewellerysystem.controller;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -17,6 +16,8 @@ import com.springboot.jewellerysystem.util.FileUploadUtil;
 import com.springboot.jewellerysystem.util.Helper;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -32,8 +33,12 @@ public class CompanyDetailController {
 
 	@GetMapping(value = "/index")
 	public String companyDetails(Model model, @RequestParam(name = "keyword", defaultValue = "") String keyword) {
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
 		List<CompanyDetail> companyDetails = companyDetailService.getAllCompanyDetail();
 		model.addAttribute("listCompanyDetails", companyDetails);
 		model.addAttribute("keyword", keyword);
@@ -42,16 +47,24 @@ public class CompanyDetailController {
 
 	@GetMapping(value = "/create")
 	public String formCompanyDetails(Model model) {
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
 		model.addAttribute("companyDetail", new CompanyDetail());
 		return "admin/entry/companyDetail_entry";
 	}
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteCompanyDetail(@PathVariable(value = "id") Integer id, String keyword, HttpSession session) {
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
 		companyDetailService.removeCompanyDetail(id);
 		session.setAttribute("msg", "deleted");
 		return "redirect:/admin/companyDetail/index?keyword=" + keyword;
@@ -59,9 +72,14 @@ public class CompanyDetailController {
 
 	@GetMapping(value = "/update/{id}")
 	public String updateCompanyDetail(@PathVariable(value = "id") Integer id, Model model) {
-		
-		if(Helper.checkUserRole()) { return "redirect:/";}
-    	if(!Helper.checkAdminRole()) {return "redirect:/admin/logout";}CompanyDetail companyDetail = companyDetailService.loadCompanyDetailById(id);
+
+		if (Helper.checkUserRole()) {
+			return "redirect:/";
+		}
+		if (!Helper.checkAdminRole()) {
+			return "redirect:/admin/logout";
+		}
+		CompanyDetail companyDetail = companyDetailService.loadCompanyDetailById(id);
 		model.addAttribute("companyDetail", companyDetail);
 		List<CompanyDetail> companyDetails = companyDetailService.getAllCompanyDetail();
 		model.addAttribute("listCompanyDetails", companyDetails);
@@ -69,23 +87,33 @@ public class CompanyDetailController {
 	}
 
 	@PostMapping(value = "/save")
-	public String save(CompanyDetail companyDetail, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+	public String save(CompanyDetail companyDetail, @RequestParam("file") MultipartFile file, HttpSession session)
+			throws IOException {
 		String msg = "inserted";
-		if(companyDetail.getId() != 0) {
+		if (companyDetail.getId() != 0) {
 			msg = "updated";
 		}
+		String fileTime = new SimpleDateFormat("yyyyMMddHHmmssms").format(new Date());
+
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		if (fileName.length() > 3) {
-		companyDetail.setLogo(fileName);
-		String uploadDir = "assets1/images/companyDetail";
-		FileUploadUtil.saveFile(uploadDir, fileName, file);
+			
+			fileName = fileTime + fileName;
+			companyDetail.setLogo(fileName);
+			String uploadDir = "assets1/images/companyDetail";
+			FileUploadUtil.saveFile(uploadDir, fileName, file);
+			
+		} else {
+			if (companyDetail.getId() == null) {
+				companyDetail.setLogo("no-img.png");
+			}
 		}
-		
+
 		CompanyDetail c = companyDetailService.createOrUpdateCompanyDetail(companyDetail);
-		if(c != null) {
+		if (c != null) {
 			session.setAttribute("msg", "inserted");
-		}else {
-			session.setAttribute("error","error");
+		} else {
+			session.setAttribute("error", "error");
 		}
 		return "redirect:/admin/companyDetail/index";
 	}

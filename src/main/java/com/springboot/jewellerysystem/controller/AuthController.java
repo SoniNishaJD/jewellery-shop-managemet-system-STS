@@ -132,7 +132,7 @@ public class AuthController {
 			session.setAttribute("msg", "Email Already exist..");
 			
 		}else {
-		user.setRole("USER");
+		user.setRole("CUSTOMER");
 		user.setEntryDate(new Date());
 		user.setStatus(1);		
 		session.setAttribute("msg", "Registration Completed successfully..");

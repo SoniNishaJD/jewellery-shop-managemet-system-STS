@@ -45,9 +45,9 @@
 
 
     <div class="main-wrapper">
-       
+
         <!-- Begin Jewellery's Newsletter Popup Area -->
-       <!--  <div class="popup_wrapper">
+        <!--  <div class="popup_wrapper">
             <div class="test">
                 <span class="popup_off"><i class="ion-android-close"></i></span>
                 <div class="subscribe_area">
@@ -68,7 +68,7 @@
             </div>
         </div> -->
         <!-- Jewellery's Newsletter Popup Area Here -->
-		
+
         <!-- Begin Jewellery's Header Main Area -->
         <header class="header-main_area">
             <div class="header-top_area">
@@ -80,7 +80,8 @@
                                     <ul>
                                         <li>
                                             <span>Telephone Enquiry:</span>
-                                            <a th:href="@{'callto://' + ${companyDetail.phone}}">+91-8238609160</a>
+                                            <!--  <a th:href="@{'callto://' + ${companyDetail.phone}}"></a>-->
+                                            <span th:text="${companyDetail.getHelplineNo()}"></span>
                                         </li>
                                     </ul>
                                 </div>
@@ -104,7 +105,7 @@
 
                                     </ul>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -112,9 +113,11 @@
                                 <div class="header-shipping_area">
                                     <ul>
                                         <li>
-                                           <th:block th:if="${session.uname}">
-                                            <span>Welcome: <b th:text="${session.uname}"></b> | <a th:href="@{/change-password}">Change Password</a> <a href="/log-out">Logout</a> </span>
-                                        </th:block>
+                                            <th:block th:if="${session.uname}">
+                                                <span>Welcome: <b th:text="${session.uname}"></b> | <a
+                                                        th:href="@{/change-password}">Change Password</a> <a
+                                                        href="/log-out">Logout</a> </span>
+                                            </th:block>
                                         </li>
                                     </ul>
                                 </div>
@@ -139,8 +142,9 @@
                                     <select class="nice-select select-search-category" name="cat_id">
                                         <option value="0">All</option>
                                         <option th:each="category:${listCategory}" th:value="${category.id}"
-                                            th:text="${category.name}"></option>
-
+                                            th:text="${category.name}"> <a
+                                                th:href="@{/shop(cat_id=${category.id})}"></a></option>
+                                      
                                     </select>
                                     <input type="text" placeholder="Enter your Jewellery Type ..." name="search">
                                     <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
@@ -189,12 +193,12 @@
                                         <li><a th:href="@{contact}">Contact</a></li>
                                         <li><a th:href="@{/shop}">Jewellery</a></li>
                                         <th:block th:if="${session.uid}">
-                                            <li><a th:href="@{/myAccount}">My Account</a></li>    
+                                            <li><a th:href="@{/myAccount}">My Account</a></li>
                                         </th:block>
                                         <th:block th:if="${session.uid}==null">
-                                            <li><a th:href="@{/login}">Login/Register</a></li>    
+                                            <li><a th:href="@{/login}">Login/Register</a></li>
                                         </th:block>
-                                    
+
                                     </ul>
                                 </nav>
                             </div>
@@ -727,17 +731,17 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
         <!-- Jewellery's Footer Area End Here -->
         <th:block th:if="${session.msg}">
-		<script>
-			alert("[[${session.msg}]]")
-		</script>
-		<p th:text="${#session.removeAttribute('msg')}"></p>
-	    </th:block>
-        
-        
+            <script>
+                alert("[[${session.msg}]]")
+            </script>
+            <p th:text="${#session.removeAttribute('msg')}"></p>
+        </th:block>
+
+
         <!-- Begin Jewellery's Modal Area -->
         <div class="modal fade modal-wrapper" id="exampleModalCenter">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -962,15 +966,15 @@
     <script th:src="@{assets/js/plugins/jquery.elevateZoom-3.0.8.min.js}"></script>
     <!-- Timecircles JS -->
     <script th:src="@{assets/js/plugins/timecircles.min.js}"></script>
-    
+
     <!-- Main JS -->
     <script th:src="@{assets/js/main.js}"></script>
     <!-- <script th:src="@{assets/js/main.min.js}"></script> -->
 
-<th:block th:if="${session.msg}">
-     <script>alert('[[${session.msg}]]')</script>
-     <p th:text="${#session.removeAttribute('msg')}"></p>
-</th:block>
+    <th:block th:if="${session.msg}">
+        <script>alert('[[${session.msg}]]')</script>
+        <p th:text="${#session.removeAttribute('msg')}"></p>
+    </th:block>
 
 </body>
 
